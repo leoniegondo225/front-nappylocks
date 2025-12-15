@@ -20,6 +20,7 @@ import { useAuthStore, type User } from "@/lib/auth-store"
 import { Product } from "@/types/product"
 import { ServicesTab } from "@/components/superadmin/service-tab"
 import { StaffTab } from "@/components/superadmin/staff-tab"
+import { ClientsTab } from "@/components/manager/clients-tab"
 
 
 
@@ -230,6 +231,7 @@ useEffect(() => {
 
             {activeTab === "services" && <ServicesTab />}
             {activeTab === "staff" && <StaffTab/>}
+            {activeTab === "clients" && <ClientsTab/> }
 
             {activeTab === "bookings" && <BookingsTab bookings={bookings} onUpdateStatus={() => { }} />}
             {activeTab === "logs" && <LogsTab logs={logs} />}

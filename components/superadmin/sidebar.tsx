@@ -69,11 +69,13 @@ export function Sidebar({ activeTab, sidebarOpen, onTabChange, onClose }: Sideba
             { id: "users", label: "Utilisateurs", icon: Users },
             { id: "salons", label: "Salons", icon: Building2 },
             { id: "services", label: "Prestation", icon: Building2 },
+            { id: "clients", label: "Client", icon: Users },
             { id: "staff", label: "Personnel", icon: UsersRound },
             { id: "products", label: "Boutique", icon: ShoppingBag },
             { id: "bookings", label: "Réservations", icon: Calendar },
             { id: "logs", label: "Logs système", icon: Activity },
             { id: "settings", label: "Paramètres", icon: Settings },
+            
           ].map(({ id, label, icon: Icon }) => (
             <Button
               key={id}
