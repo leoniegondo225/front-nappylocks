@@ -23,6 +23,16 @@ import { ServicesTab } from "@/components/superadmin/service-tab"
 import { StaffTab } from "@/components/superadmin/staff-tab"
 import { useToast } from "@/components/ui/use-toast"
 import { useAuthSafe } from "@/hooks/useAuthSafe"
+import { useAuthStore } from "@/lib/auth-store"
+
+
+interface Service {
+  _id: string
+  name: string
+  price: number
+  duration: number
+  isActive: boolean
+}
 
 export default function ManagerDashboard() {
   const router = useRouter()
@@ -30,10 +40,22 @@ export default function ManagerDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("dashboard")
   const { toast } = useToast()
-
+const [clients, setClients] = useState<any[]>([])
+ const [loading, setLoading] = useState(true)
+const [services, setServices] = useState<any[]>([])
+const salonId = user?.salonId
+const [rdvForm, setRdvForm] = useState({
+  clientId: "",
+  date: "",
+  time: "",
+  service: "",
+  coiffeur: "",
+  notes: "",
+})
   // États des modals
   const [openClientModal, setOpenClientModal] = useState(false)
   const [openRdvModal, setOpenRdvModal] = useState(false)
+  const [availableSlots, setAvailableSlots] = useState<string[]>([])
   const [clientForm, setClientForm] = useState({
   prenom: "",
   nom: "",
@@ -41,6 +63,11 @@ export default function ManagerDashboard() {
   email: "",
   notes: "",
 })
+
+const updateRdvForm = (key: string, value: string) => {
+  setRdvForm((prev) => ({ ...prev, [key]: value }))
+}
+
 const handleClientChange = (key: keyof typeof clientForm, value: string) => {
   setClientForm((prev) => ({ ...prev, [key]: value }))
 }
@@ -52,13 +79,78 @@ const handleClientChange = (key: keyof typeof clientForm, value: string) => {
     }
   }, [isAuthenticated, user, router, isLoading])
 
-  if (isLoading) {
-  return (
-    <div className="flex h-screen items-center justify-center">
-      <p>Chargement...</p>
-    </div>
-  )
-}
+useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true)
+      try {
+        const token = useAuthStore.getState().token
+        if (!token) throw new Error("Utilisateur non authentifié")
+
+        const [clientsRes, servicesRes] = await Promise.all([
+          fetch("http://localhost:3500/api/allclient", {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          fetch("http://localhost:3500/api/getAllservice", {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+        ])
+
+        if (!clientsRes.ok || !servicesRes.ok) {
+          throw new Error("Erreur lors du chargement des données")
+        }
+
+        const clientsData = await clientsRes.json()
+        const servicesData = await servicesRes.json()
+
+        setClients(Array.isArray(clientsData) ? clientsData : [])
+        setServices(
+          Array.isArray(servicesData)
+            ? servicesData.filter((s: Service) => s.isActive)
+            : []
+        )
+      } catch (error: any) {
+        console.error("Erreur chargement données :", error)
+        toast({
+          title: "Erreur de chargement",
+          description: error.message || "Impossible de récupérer les données.",
+          variant: "destructive",
+        })
+        setClients([])
+        setServices([])
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [toast])
+
+useEffect(() => {
+  if (!rdvForm.date || !user?.salonId){
+     setAvailableSlots([]) 
+   return
+  }
+
+  const loadSlots = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:3500/api/slots?date=${rdvForm.date}&salonId=${user.salonId}`
+      )
+
+      const data = await res.json()
+      setAvailableSlots(data.availableSlots || [])
+    } catch (e) {
+      console.error("Erreur slots", e)
+      setAvailableSlots([])
+    }
+  }
+
+  loadSlots()
+}, [rdvForm.date, user?.salonId])
+
+
+
+
 
   if (!isAuthenticated || (user?.role !== "gerant" && user?.role !== "admin")) {
     return null
@@ -97,6 +189,50 @@ const handleClientChange = (key: keyof typeof clientForm, value: string) => {
   }
 }
 
+
+
+const handleCreateRdv = async () => {
+  try {
+    const token = localStorage.getItem("token")
+
+    const res = await fetch(
+      "http://localhost:3500/api/rdv/salon",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          ...rdvForm,
+          salonId: user?.salonId,
+        }),
+      }
+    )
+
+    if (!res.ok) {
+      const err = await res.json()
+      throw new Error(err.message)
+    }
+
+    toast({ title: "Rendez-vous créé avec succès" })
+    setOpenRdvModal(false)
+  } catch (e: any) {
+    toast({
+      title: "Erreur",
+      description: e.message,
+      variant: "destructive",
+    })
+  }
+}
+
+  if (isLoading) {
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <p>Chargement...</p>
+    </div>
+  )
+}
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-950">
@@ -144,118 +280,204 @@ const handleClientChange = (key: keyof typeof clientForm, value: string) => {
           </div>
         </header>
 
-        {/* ======================= MODAL CLIENT ======================= */}
-        <Dialog open={openClientModal} onOpenChange={setOpenClientModal}>
-          <DialogContent className="sm:max-w-xl">
-            <DialogHeader>
-              <DialogTitle>Nouveau client</DialogTitle>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label>Prénom</Label>
-                  <Input placeholder="Marie" value={clientForm.prenom}
-            onChange={(e) => handleClientChange("prenom", e.target.value)}/>
-                </div>
-                <div>
-                  <Label>Nom</Label>
-                  <Input placeholder="Dubois"  value={clientForm.nom}
-            onChange={(e) => handleClientChange("nom", e.target.value)}/>
-                </div>
-              </div>
-              <div>
-                <Label>Téléphone</Label>
-                <Input placeholder="06 12 34 56 78 " value={clientForm.telephone}
-          onChange={(e) => handleClientChange("telephone", e.target.value)}/>
-              </div>
-              <div>
-                <Label>Email (facultatif)</Label>
-                <Input type="email" placeholder="marie@example.com" value={clientForm.email}
-  onChange={(e) => handleClientChange("email", e.target.value)}/>
-              </div>
-              <div>
-                <Label>Notes</Label>
-                <Textarea placeholder="Allergies, préférences..." className="min-h-24"  value={clientForm.notes}
-          onChange={(e) => handleClientChange("notes", e.target.value)} />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button variant="outline" onClick={() => setOpenClientModal(false)}>Annuler</Button>
-              <Button onClick={handleCreateClient}>Enregistrer</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+    {/* ======================= MODAL CLIENT ======================= */}
+<Dialog open={openClientModal} onOpenChange={setOpenClientModal}>
+  <DialogContent className="sm:max-w-xl rounded-2xl shadow-xl p-6 bg-white dark:bg-gray-900">
+    <DialogHeader>
+      <DialogTitle className="text-2xl font-bold text-gray-800 dark:text-gray-100">
+        Nouveau client
+      </DialogTitle>
+    </DialogHeader>
+    <div className="grid gap-5 py-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <Label>Prénom</Label>
+          <Input
+            placeholder="Marie"
+            value={clientForm.prenom}
+            onChange={(e) => handleClientChange("prenom", e.target.value)}
+            className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
+          />
+        </div>
+        <div>
+          <Label>Nom</Label>
+          <Input
+            placeholder="Dubois"
+            value={clientForm.nom}
+            onChange={(e) => handleClientChange("nom", e.target.value)}
+            className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
+          />
+        </div>
+      </div>
+      <div>
+        <Label>Téléphone</Label>
+        <Input
+          placeholder="06 12 34 56 78"
+          value={clientForm.telephone}
+          onChange={(e) => handleClientChange("telephone", e.target.value)}
+          className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
+        />
+      </div>
+      <div>
+        <Label>Email (facultatif)</Label>
+        <Input
+          type="email"
+          placeholder="marie@example.com"
+          value={clientForm.email}
+          onChange={(e) => handleClientChange("email", e.target.value)}
+          className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
+        />
+      </div>
+      <div>
+        <Label>Notes</Label>
+        <Textarea
+          placeholder="Allergies, préférences..."
+          className="min-h-24 border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
+          value={clientForm.notes}
+          onChange={(e) => handleClientChange("notes", e.target.value)}
+        />
+      </div>
+    </div>
+    <DialogFooter className="flex justify-end gap-3">
+      <Button
+        variant="outline"
+        className="border-gray-300 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+        onClick={() => setOpenClientModal(false)}
+      >
+        Annuler
+      </Button>
+      <Button className="bg-cyan-500 hover:bg-cyan-600 text-white" onClick={handleCreateClient}>
+        Enregistrer
+      </Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
 
-        {/* ======================= MODAL RDV ======================= */}
-        <Dialog open={openRdvModal} onOpenChange={setOpenRdvModal}>
-          <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle>Ajouter un rendez-vous</DialogTitle>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label>Client</Label>
-                  <div className="relative">
-                    <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input className="pl-10" placeholder="Rechercher un client..." />
-                  </div>
-                </div>
-                <div>
-                  <Label>Date</Label>
-                  <Input type="date" />
-                </div>
-              </div>
+{/* ======================= MODAL RDV ======================= */}
+<Dialog open={openRdvModal} onOpenChange={setOpenRdvModal}>
+  <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl p-6 bg-white dark:bg-gray-900">
+    <DialogHeader>
+      <DialogTitle className="text-2xl font-bold text-gray-800 dark:text-gray-100">
+        Ajouter un rendez-vous
+      </DialogTitle>
+    </DialogHeader>
+    <div className="grid gap-5 py-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <Label>Client</Label>
+          <div className="relative">
+            <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400 dark:text-gray-500" />
+            <Select
+              value={rdvForm.clientId}
+              onValueChange={(v) => updateRdvForm("clientId", v)}
+            >
+              <SelectTrigger className="pl-9 border-gray-300 dark:border-gray-700 focus:ring-cyan-400">
+                <SelectValue placeholder="Choisir un client" />
+              </SelectTrigger>
+              <SelectContent>
+                {(Array.isArray(clients) ? clients : []).map((c) => (
+                  <SelectItem key={c._id} value={c._id}>
+                    {c.prenom} {c.nom} ({c.telephone})
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+        <div>
+          <Label>Date</Label>
+          <Input
+            type="date"
+            value={rdvForm.date}
+            onChange={(e) =>{ updateRdvForm("date", e.target.value); updateRdvForm("time", "");}}
+            className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
+          />
+        </div>
+      </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label>Heure</Label>
-                  <Input type="time" />
-                </div>
-                <div>
-                  <Label>Service</Label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Choisir un service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="coupe">Coupe</SelectItem>
-                      <SelectItem value="couleur">Couleur</SelectItem>
-                      <SelectItem value="tresses">Tresses Africaines</SelectItem>
-                      <SelectItem value="soin">Soin</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <Label>Heure</Label>
+          <Select
+  value={rdvForm.time}
+  disabled={!rdvForm.date || availableSlots.length === 0}
+  onValueChange={(v) => updateRdvForm("time", v)}
+>
+  <SelectTrigger>
+    <SelectValue
+      placeholder={
+        !rdvForm.date
+          ? "Choisissez d'abord une date"
+          : availableSlots.length === 0
+          ? "Aucun créneau disponible"
+          : "Heure disponible"
+      }
+    />
+  </SelectTrigger>
+  <SelectContent>
+    {availableSlots.length === 0 && rdvForm.date && (
+      <SelectItem disabled value="none">
+        Aucun créneau disponible ce jour
+      </SelectItem>
+    )}
+    {availableSlots.map((slot) => (
+      <SelectItem key={slot} value={slot}>
+        {slot}
+      </SelectItem>
+    ))}
+  </SelectContent>
+</Select>
 
-              <div>
-                <Label>Coiffeur/se</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choisir un employé" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="amina">Amina</SelectItem>
-                    <SelectItem value="fatou">Fatou</SelectItem>
-                    <SelectItem value="yasmine">Yasmine</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+        </div>
+        <div>
+          <Label>Service</Label>
+          <Select
+            value={rdvForm.service}
+            onValueChange={(v) => updateRdvForm("service", v)}
+          >
+            <SelectTrigger className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400">
+              <SelectValue placeholder="Choisir un service" />
+            </SelectTrigger>
+            <SelectContent>
+              {services.map((s) => (
+                <SelectItem key={s._id} value={s._id}>
+                  {s.name} – {s.price} FCFA
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
 
-              <div>
-                <Label>Notes</Label>
-                <Textarea placeholder="Détails supplémentaires..." />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button variant="outline" onClick={() => setOpenRdvModal(false)}>Annuler</Button>
-              <Button onClick={() => {
-                toast({ title: "Rendez-vous ajouté !" })
-                setOpenRdvModal(false)
-              }}>Créer le rendez-vous</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+      <div>
+        <Label>Coiffeur/se</Label>
+        <Input disabled placeholder="Assigné automatiquement" className="border-gray-300 dark:border-gray-700" />
+      </div>
+
+      <div>
+        <Label>Notes</Label>
+        <Textarea
+          value={rdvForm.notes}
+          onChange={(e) => updateRdvForm("notes", e.target.value)}
+          className="min-h-24 border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
+        />
+      </div>
+    </div>
+    <DialogFooter className="flex justify-end gap-3">
+      <Button
+        variant="outline"
+        className="border-gray-300 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+        onClick={() => setOpenRdvModal(false)}
+      >
+        Annuler
+      </Button>
+      <Button className="bg-cyan-500 hover:bg-cyan-600 text-white" onClick={handleCreateRdv}>
+        Créer le rendez-vous
+      </Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+
 
         {/* ======================= TON CONTENU ORIGINAL INTACT ======================= */}
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
@@ -286,7 +508,7 @@ const handleClientChange = (key: keyof typeof clientForm, value: string) => {
                         <PopularServices />
                       </div>
                     </div>
-                    <StaffPlanning />
+                    {salonId && <StaffPlanning salonId={salonId} />}
                     <AppointmentsList />
                   </TabsContent>
 
@@ -295,7 +517,7 @@ const handleClientChange = (key: keyof typeof clientForm, value: string) => {
                   </TabsContent>
 
                   <TabsContent value="planning" className="mt-4 md:mt-6">
-                    <StaffPlanning />
+                    {salonId && <StaffPlanning salonId={salonId} />}
                   </TabsContent>
                 </Tabs>
               </>
@@ -303,7 +525,7 @@ const handleClientChange = (key: keyof typeof clientForm, value: string) => {
 
             {activeTab === "planning" && (
               <div className="space-y-4 md:space-y-6">
-                <StaffPlanning />
+                {salonId && <StaffPlanning salonId={salonId} />}
                 <AppointmentsList />
               </div>
             )}

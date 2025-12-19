@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Globe, Store } from "lucide-react"
+import { useEffect, useState } from "react"
+
 
 interface Appointment {
   id: string
@@ -12,63 +14,75 @@ interface Appointment {
   origin: "online" | "instore"
 }
 
-
-const appointments: Appointment[] = [
-  {
-    id: "1",
-    time: "09:00",
-    client: "Marie Dubois",
-    service: "Tresses Africaines",
-    stylist: "Amina",
-    status: "confirmed",
-    origin: "online",
-  },
-  {
-    id: "2",
-    time: "10:30",
-    client: "Julien Martin",
-    service: "Coupe Homme",
-    stylist: "Fatou",
-    status: "arrived",
-    origin: "instore",
-  },
-  {
-    id: "3",
-    time: "11:00",
-    client: "Carole Lefebvre",
-    service: "Soin Profond",
-    stylist: "Amina",
-    status: "confirmed",
-    origin: "online",
-  },
-  {
-    id: "4",
-    time: "12:30",
-    client: "David Bernard",
-    service: "Défrisage",
-    stylist: "Yasmine",
-    status: "inprogress",
-    origin: "online",
-  },
-  {
-    id: "5",
-    time: "14:00",
-    client: "Sophie Petit",
-    service: "Coloration",
-    stylist: "Fatou",
-    status: "confirmed",
-    origin: "instore",
-  },
-]
-
 const statusConfig = {
   confirmed: { label: "Confirmé", color: "bg-blue-100 text-blue-800" },
-  arrived: { label: "Arrivé", color: "bg-green-100 text-green-800" },
+  arrived: { label: "En attente", color: "bg-green-100 text-green-800" },
   inprogress: { label: "En cours", color: "bg-yellow-100 text-yellow-800" },
   completed: { label: "Terminé", color: "bg-gray-100 text-gray-800" },
 }
 
+
+
+const mapStatus = (status: string) => {
+  switch (status) {
+    case "CONFIRMED":
+      return "confirmed"
+    case "PENDING":
+      return "arrived"
+    case "CANCELLED":
+      return "completed"
+    default:
+      return "confirmed"
+  }
+}
+const mapOrigin = (source: string) =>
+  source === "ONLINE" ? "online" : "instore"
+
+
 export function AppointmentsList() {
+  const [appointments, setAppointments] = useState<Appointment[]>([])
+  const [loading, setLoading] = useState(true)
+
+
+   useEffect(() => {
+    const fetchRdvs = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/rdv/gerant`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        const data = await res.json()
+
+        const formatted: Appointment[] = data.map((rdv: any) => ({
+          id: rdv._id,
+          time: rdv.time,
+          client: `${rdv.clientId?.prenom} ${rdv.clientId?.nom}`,
+          service: rdv.service,
+          stylist: rdv.coiffeur || "-",
+          status: mapStatus(rdv.status),
+          origin: mapOrigin(rdv.source),
+        }))
+
+          setAppointments(formatted)
+      } catch (error) {
+        console.error("Erreur chargement RDV", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchRdvs()
+  }, [])
+
+    if (loading) {
+    return <p className="text-sm text-muted-foreground">Chargement...</p>
+  }
+
+
   return (
     <Card>
       <CardHeader>

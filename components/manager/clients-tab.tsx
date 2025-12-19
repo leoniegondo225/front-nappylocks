@@ -40,6 +40,8 @@ interface Client {
   lastVisit: string
   totalSpent: number
   createdBy?: CreatedBy
+  createdAt?: string   // ✅ date + heure de création
+  updatedAt?: string
 }
 
 interface Service {
@@ -79,6 +81,14 @@ export function ClientsTab() {
     price: "",
     notes: ""
   })
+
+  const formatDateTime = (date?: string) => {
+  if (!date) return "—"
+  return new Date(date).toLocaleString("fr-FR", {
+    dateStyle: "short",
+    timeStyle: "short",
+  })
+}
 
   const employees = ["Amina", "Fatou", "Yasmine", "Sophie", "Lucas"]
 
@@ -336,9 +346,16 @@ export function ClientsTab() {
             </div>
 
             <div className="mt-5 flex items-center justify-between">
-              <div className="text-xs text-muted-foreground">
-                {client.createdBy ? `Par ${client.createdBy.username}` : "—"}
-              </div>
+              <div className="text-xs text-muted-foreground space-y-1">
+              
+              
+               <div>
+    {client.createdBy ? `Par ${client.createdBy.username}` : "—"}
+  </div>
+              <div>
+    Créé le {formatDateTime(client.createdAt)}
+  </div>
+  </div>
               <div className="flex gap-3">
                 <Button size="sm" variant="outline" onClick={() => openEditModal(client)}>
                   <Edit2 className="w-4 h-4 mr-2" />
@@ -363,6 +380,7 @@ export function ClientsTab() {
                 <th className="text-left px-6 py-4 font-medium">Contact</th>
                 <th className="text-center px-6 py-4 font-medium">Statut</th>
                 <th className="text-left px-6 py-4 font-medium">Créé par</th>
+                <th className="text-left px-6 py-4 font-medium">Créé le</th>
                 <th className="text-right px-6 py-4 font-medium">Actions</th>
               </tr>
             </thead>
@@ -402,6 +420,10 @@ export function ClientsTab() {
                   <td className="px-6 py-5 text-muted-foreground">
                     {client.createdBy ? client.createdBy.username : "—"}
                   </td>
+                  <td className="px-6 py-5 text-muted-foreground text-sm">
+  {formatDateTime(client.createdAt)}
+</td>
+
                   <td className="px-6 py-5 text-right">
                     <div className="flex justify-end gap-3">
                       <Button size="sm" variant="outline" onClick={() => openEditModal(client)}>

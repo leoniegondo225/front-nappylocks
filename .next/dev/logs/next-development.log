@@ -1,925 +1,1213 @@
-[00:00:01.653] Server  LOG      ✓ Ready in 1143ms
-[00:00:14.769] Server  LOG      ○ Compiling / ...
-[00:00:16.627] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:17.431] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:17.431] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:17.432] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765558425273}
-[00:00:19.434] Browser ERROR   {}
-[00:00:19.434] Browser ERROR   {}
-[00:03:09.682] Browser WARN    Image with src "/products/shea-butter.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
-[00:03:26.919] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765558615081}
-[00:03:27.220] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:03:53.509] Browser ERROR   Login error: {}
-[00:05:29.419] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:29.757] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:05:29.757] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/auth/login","route":"/auth/login"}
-[00:05:29.757] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765558737927}
-[00:05:59.382] Browser ERROR   Login error: {}
-[00:07:04.761] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765558832927}
-[00:07:05.064] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[00:08:13.868] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765558902035}
-[00:08:21.033] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:08:21.033] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:18:14.924] Server  LOG      ✓ Compiled in 321ms
-[00:18:27.213] Server  LOG      ✓ Compiled in 283ms
-[00:18:39.988] Server  LOG      ✓ Compiled in 241ms
-[00:18:51.246] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:18:51.677] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:18:51.677] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[00:18:51.677] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765559539721}
-[00:18:56.682] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:18:56.682] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:30:48.562] Server  LOG      ✓ Compiled in 249ms
-[00:30:49.434] Browser ERROR   uncaughtError: ReferenceError: token is not defined
-[00:35:32.639] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:35:32.652] Server  LOG      ✓ Compiled in 381ms
-[00:35:33.384] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:35:34.426] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:35:34.426] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[00:35:34.426] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765560542000}
-[01:37:42.734] Server  LOG      ✓ Compiled in 325ms
-[01:39:41.344] Server  LOG      ✓ Compiled in 332ms
-[01:40:06.441] Server  LOG      ✓ Compiled in 240ms
-[01:40:24.400] Server  LOG      ✓ Compiled in 296ms
-[01:40:25.437] Browser ERROR   ./components/superadmin/users-tab.tsx:198:2
+[00:00:01.527] Server  LOG      ✓ Ready in 1004ms
+[00:00:05.164] Server  LOG      ○ Compiling /manager ...
+[00:00:09.764] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:10.231] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:10.231] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
+[00:00:10.231] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765984202738}
+[00:00:11.418] Browser ERROR   Erreur chargement RDV {}
+[00:00:11.419] Browser ERROR   Erreur chargement RDV {}
+[00:00:15.425] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:00:15.425] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:00:24.477] Browser ERROR   Erreur slots {}
+[00:07:05.231] Server  LOG      ✓ Compiled in 1455ms
+[00:07:07.995] Server  LOG      ✓ Compiled in 1822ms
+[00:07:12.364] Server  LOG      ✓ Compiled in 1995ms
+[00:08:18.034] Server  LOG      ✓ Compiled in 2.9s
+[00:08:20.977] Server  LOG      ✓ Compiled in 1570ms
+[00:08:22.088] Browser ERROR   ./app/manager/page.tsx:147:2
 Parsing ecmascript source code failed
-  196 |
-  197 |   fetchSalons()
-> 198 | }, [])
+  145 |
+  146 |   loadSlots()
+> 147 | }, [rdvForm.date, user?.salonId])
       |  ^
-  199 |
-  200 |
-  201 |   // ➤ Mise à jour utilisateur (à implémenter côté backend aussi si besoin)
+  148 |
+  149 |
+  150 |
 
 Expression expected
 
 Import traces:
   Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
 
   Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[01:40:31.475] Server  LOG      ✓ Compiled in 204ms
-[01:40:34.247] Server  LOG      ✓ Compiled in 314ms
-[01:40:35.573] Server  LOG      ✓ Compiled in 205ms
-[01:41:03.530] Server  LOG      ✓ Compiled in 214ms
-[01:41:23.467] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:41:23.822] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[01:41:23.822] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[01:41:23.822] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765564491900}
-[01:41:27.922] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[01:41:27.922] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[01:42:51.880] Server  LOG      ✓ Compiled in 380ms
-[01:43:13.320] Server  LOG      ✓ Compiled in 225ms
-[01:44:27.641] Server  LOG      ✓ Compiled in 299ms
-[01:44:28.429] Browser ERROR   ./components/superadmin/users-tab.tsx:443:13
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[00:08:24.085] Browser ERROR   ./app/manager/page.tsx:148:2
 Parsing ecmascript source code failed
-  441 |         </Dialog>
-  442 |       )}
-> 443 |       </div>
-      |             ^
-> 444 |     </div>
-      | ^^^^^
-  445 |   )
-  446 | }
-
-Expected '</', got 'jsx text (
-    )'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[01:44:45.704] Server  LOG      ✓ Compiled in 509ms
-[01:44:46.431] Browser ERROR   ./components/superadmin/users-tab.tsx:446:1
-Parsing ecmascript source code failed
-  444 |     </div>
-  445 |   )
-> 446 | }
-      | ^
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[01:44:47.429] Browser ERROR   ./components/superadmin/users-tab.tsx:446:1
-Parsing ecmascript source code failed
-  444 |     </div>
-  445 |   )
-> 446 | }
-      | ^
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[01:44:50.432] Browser ERROR   ./components/superadmin/users-tab.tsx:446:1
-Parsing ecmascript source code failed
-  444 |     </div>
-  445 |   )
-> 446 | }
-      | ^
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[01:45:21.823] Server  LOG      ✓ Compiled in 267ms
-[01:45:22.432] Browser ERROR   ./components/superadmin/users-tab.tsx:448:16
-Parsing ecmascript source code failed
-  446 |                   </Button>
-  447 |                 </div>
-> 448 |               )}
-      |                ^
-  449 |             </CardContent>
-  450 |           </Card>
-  451 |         ))}
-
-Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[02:04:08.221] Server  LOG      ✓ Compiled in 237ms
-[02:04:20.931] Server  LOG      ✓ Compiled in 201ms
-[02:04:22.320] Server  LOG      ✓ Compiled in 257ms
-[02:04:31.150] Server  LOG      ✓ Compiled in 256ms
-[02:04:47.931] Server  LOG      ✓ Compiled in 262ms
-[02:37:58.143] Server  LOG      ✓ Compiled in 264ms
-[05:30:11.852] Server  LOG      ✓ Compiled in 159ms
-[05:31:47.716] Server  LOG      ✓ Compiled in 249ms
-[05:31:48.429] Browser ERROR   ./components/superadmin/users-tab.tsx:34:4
-Parsing ecmascript source code failed
-  32 |   Edit,
-  33 |   Download,
-> 34 |    ,
-     |    ^
-  35 |   Mail,
-  36 |   Phone,
-  37 |   Lock,
-
-Unexpected token `,`. Expected identifier or string
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:31:49.024] Server  LOG      ✓ Compiled in 359ms
-[05:31:53.786] Server  LOG      ✓ Compiled in 246ms
-[05:32:04.574] Server  LOG      ✓ Compiled in 307ms
-[05:32:06.729] Server  LOG      ✓ Compiled in 244ms
-[05:32:14.387] Server  LOG      ✓ Compiled in 191ms
-[05:33:26.720] Server  LOG      ✓ Compiled in 198ms
-[05:33:27.435] Browser ERROR   ./components/superadmin/users-tab.tsx:504:33
-Parsing ecmascript source code failed
-  502 |                                 value={editingUser.telephone || ""}
-  503 |                                 
-> 504 |                                 }
-      |                                 ^
-  505 |                               />
-  506 |                             </div>
-  507 |                             <div className="space-y-2">
-
-Expected '</', got '}'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:33:28.433] Browser ERROR   ./components/superadmin/users-tab.tsx:504:33
-Parsing ecmascript source code failed
-  502 |                                 value={editingUser.telephone || ""}
-  503 |                                 onChange={(e) => setEditingUser({ ...editingUser, telephone: e.target.value || undefined })}
-> 504 |                                 }
-      |                                 ^
-  505 |                               />
-  506 |                             </div>
-  507 |                             <div className="space-y-2">
-
-Expected '</', got '}'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:33:59.281] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:33:59.810] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[05:33:59.810] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[05:33:59.810] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765578440818}
-[05:34:04.309] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[05:34:04.309] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[05:36:21.473] Server  LOG      ✓ Compiled in 267ms
-[05:36:23.791] Server  LOG      ✓ Compiled in 286ms
-[05:36:28.816] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:36:29.066] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[05:36:29.066] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[05:36:29.066] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765578590174}
-[05:36:33.044] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[05:36:33.044] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[05:37:14.011] Server  LOG      ✓ Compiled in 235ms
-[05:37:15.235] Server  LOG      ✓ Compiled in 273ms
-[05:37:20.283] Server  LOG      ✓ Compiled in 316ms
-[05:37:21.802] Server  LOG      ✓ Compiled in 185ms
-[05:37:24.996] Server  LOG      ✓ Compiled in 301ms
-[05:37:25.439] Browser ERROR   ./components/superadmin/users-tab.tsx:410:31
-Parsing ecmascript source code failed
-  408 |                   </Button>
-  409 |                 </DialogFooter>
-> 410 |               </DialogContent>
-      |                               ^
-> 411 |             </Dialog>
-      | ^^^^^^^^^^^^^
-  412 |           )}
-  413 |         </div>
-  414 |       </div>
-
-Expected '</', got 'jsx text (
-            )'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:37:27.443] Browser ERROR   ./components/superadmin/users-tab.tsx:410:31
-Parsing ecmascript source code failed
-  408 |                   </Button>
-  409 |                 </DialogFooter>
-> 410 |               </DialogContent>
-      |                               ^
-> 411 |             </Dialog>
-      | ^^^^^^^^^^^^^
-  412 |           )}
-  413 |         </div>
-  414 |       </div>
-
-Expected '</', got 'jsx text (
-            )'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:37:31.430] Browser ERROR   ./components/superadmin/users-tab.tsx:410:31
-Parsing ecmascript source code failed
-  408 |                   </Button>
-  409 |                 </DialogFooter>
-> 410 |               </DialogContent>
-      |                               ^
-> 411 |             </Dialog>
-      | ^^^^^^^^^^^^^
-  412 |           )}
-  413 |         </div>
-  414 |       </div>
-
-Expected '</', got 'jsx text (
-            )'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:37:36.428] Browser ERROR   ./components/superadmin/users-tab.tsx:410:31
-Parsing ecmascript source code failed
-  408 |                   </Button>
-  409 |                 </DialogFooter>
-> 410 |               </DialogContent>
-      |                               ^
-> 411 |             </Dialog>
-      | ^^^^^^^^^^^^^
-  412 |           )}
-  413 |         </div>
-  414 |       </div>
-
-Expected '</', got 'jsx text (
-            )'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:37:37.440] Browser ERROR   ./components/superadmin/users-tab.tsx:410:31
-Parsing ecmascript source code failed
-  408 |                   </Button>
-  409 |                 </DialogFooter>
-> 410 |               </DialogContent>
-      |                               ^
-> 411 |             </Dialog>
-      | ^^^^^^^^^^^^^
-  412 |           )}
-  413 |         </div>
-  414 |       </div>
-
-Expected '</', got 'jsx text (
-            )'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:37:39.428] Server  LOG      ✓ Compiled in 322ms
-[05:37:40.435] Browser ERROR   ./components/superadmin/users-tab.tsx:353:44
-Parsing ecmascript source code failed
-  351 |                   </div>
-  352 | <div className=" grid grid-cols-1 md:grid-cols-2 gap-6> 
-> 353 |                   <div className="space-y-2">
-      |                                            ^^
-  354 |                     <Label htmlFor="add-role" className="text-base">
-  355 |                       <Shield className="w-4 h-4 inline mr-2 text-muted-foreground" />
-  356 |                       Rôle
-
-Unterminated string constant
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:37:41.987] Server  LOG      ✓ Compiled in 354ms
-[05:37:42.435] Browser ERROR   ./components/superadmin/users-tab.tsx:410:31
-Parsing ecmascript source code failed
-  408 |                   </Button>
-  409 |                 </DialogFooter>
-> 410 |               </DialogContent>
-      |                               ^
-> 411 |             </Dialog>
-      | ^^^^^^^^^^^^^
-  412 |           )}
-  413 |         </div>
-  414 |       </div>
-
-Expected '</', got 'jsx text (
-            )'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/users-tab.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/users-tab.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[05:38:44.252] Server  LOG      ✓ Compiled in 283ms
-[05:38:46.721] Server  LOG      ✓ Compiled in 252ms
-[05:38:50.890] Server  LOG      ✓ Compiled in 201ms
-[05:39:01.042] Server  LOG      ✓ Compiled in 258ms
-[05:39:04.207] Server  LOG      ✓ Compiled in 202ms
-[05:39:13.654] Server  LOG      ✓ Compiled in 211ms
-[05:39:29.662] Server  LOG      ✓ Compiled in 210ms
-[05:41:35.384] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:41:36.124] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[05:41:36.124] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[05:41:36.124] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765578897047}
-[05:42:04.730] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[05:42:04.730] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[05:43:42.988] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[05:43:43.335] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[05:43:43.335] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[05:43:43.335] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765579024441}
-[05:44:46.193] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765579087371}
-[05:44:46.509] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[05:45:06.839] Browser ERROR   Login error: {}
-[05:45:43.203] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765579144375}
-[05:45:53.014] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765579154188}
-[05:45:58.778] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765579159953}
-[05:46:32.056] Browser ERROR   Login error: {}
-[05:46:37.569] Browser ERROR   Login error: {}
-[06:13:55.200] Server  LOG      ✓ Compiled in 138ms
-[06:13:55.583] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[06:13:56.432] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[06:13:56.432] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/auth/login","route":"/auth/login"}
-[06:13:56.432] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765580837065}
-[06:13:56.501] Server  LOG      ✓ Compiled in 216ms
-[06:15:43.996] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765580945175}
-[06:15:44.310] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[06:15:48.707] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765580949885}
-[06:15:51.306] Browser ERROR   uncaughtError: TypeError: clients.filter is not a function
-[30:28:41.317] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[30:28:41.596] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[30:28:41.596] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[30:28:41.596] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668115744}
-[30:28:59.705] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668133836}
-[30:29:00.005] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[30:30:15.350] Browser ERROR   Login error: {}
-[30:30:28.975] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668223118}
-[30:30:32.879] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668227024}
-[30:30:37.844] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:30:37.844] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:31:47.880] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[30:31:48.204] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[30:31:48.204] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[30:31:48.204] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668302258}
-[30:31:52.746] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:31:52.746] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:32:30.640] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[30:32:30.874] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[30:32:30.874] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[30:32:30.874] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668344956}
-[30:32:59.201] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668373337}
-[30:32:59.500] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[30:33:13.809] Browser ERROR   Login error: {}
-[30:33:28.782] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668402918}
-[30:33:35.792] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668409934}
-[30:33:39.982] Browser ERROR   uncaughtError: TypeError: clients.filter is not a function
-[30:35:48.869] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[30:35:49.145] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[30:35:49.145] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[30:35:49.145] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668543289}
-[30:35:50.858] Browser ERROR   uncaughtError: TypeError: clients.filter is not a function
-[30:38:28.251] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[30:38:30.664] Server  LOG      ✓ Compiled in 2.3s
-[30:38:30.678] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[30:38:30.999] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[30:38:32.435] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[30:38:32.435] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[30:38:32.435] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765668705659}
-[30:38:37.246] Browser ERROR   Erreur chargement données : {}
-[30:38:37.246] Browser ERROR   Erreur chargement données : {}
-[30:39:11.175] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:39:11.175] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:41:25.898] Server  LOG      ✓ Compiled in 2.2s
-[30:41:58.336] Server  LOG      ✓ Compiled in 1587ms
-[30:42:04.652] Server  LOG      ✓ Compiled in 3.9s
-[30:44:52.076] Server  LOG      ✓ Compiled in 1276ms
-[30:46:49.886] Server  LOG      ✓ Compiled in 1868ms
-[30:46:53.515] Server  LOG      ✓ Compiled in 1672ms
-[30:46:59.372] Browser LOG     Token utilisé pour createclient : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2RmNWM4MzdjYTUwNDZjZTJlYjA3NiIsInJvbGUiOiJnZXJhbnQiLCJpYXQiOjE3NjU2Njg0MDIsImV4cCI6MTc2NjI3MzIwMn0.O2dtYQAGFoGDCcaoTIZkb2Sa9EyyeHPaIKJ3I-Kz62w
-[30:52:23.892] Browser LOG     Token utilisé pour createclient : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2RmNWM4MzdjYTUwNDZjZTJlYjA3NiIsInJvbGUiOiJnZXJhbnQiLCJpYXQiOjE3NjU2Njg0MDIsImV4cCI6MTc2NjI3MzIwMn0.O2dtYQAGFoGDCcaoTIZkb2Sa9EyyeHPaIKJ3I-Kz62w
-[30:52:35.998] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[30:52:36.866] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[30:52:36.866] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[30:52:36.866] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765669551013}
-[30:53:06.260] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[30:53:06.743] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[30:53:06.743] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[30:53:06.743] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765669580885}
-[30:53:10.543] Browser ERROR   Erreur chargement données : {}
-[30:53:10.543] Browser ERROR   Erreur chargement données : {}
-[30:53:13.509] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:53:13.509] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:53:37.167] Browser LOG     Token utilisé pour createclient : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2RmNWM4MzdjYTUwNDZjZTJlYjA3NiIsInJvbGUiOiJnZXJhbnQiLCJpYXQiOjE3NjU2Njg0MDIsImV4cCI6MTc2NjI3MzIwMn0.O2dtYQAGFoGDCcaoTIZkb2Sa9EyyeHPaIKJ3I-Kz62w
-[30:58:29.324] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765669903456}
-[30:58:29.468] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[30:59:03.775] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765669937784}
-[30:59:10.784] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765669944923}
-[30:59:25.026] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[30:59:25.026] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:00:32.582] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:00:32.582] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:01:24.924] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[31:01:25.299] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[31:01:25.300] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[31:01:25.300] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765670079328}
-[31:01:51.430] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765670105567}
-[31:01:51.730] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[31:02:08.328] Browser ERROR   Login error: {}
-[31:03:10.161] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765670184300}
-[31:03:14.160] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765670188166}
-[31:03:17.960] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:03:17.960] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:03:54.222] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[31:03:54.534] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[31:03:54.535] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[31:03:54.535] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765670228606}
-[31:03:59.363] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765670233507}
-[31:03:59.670] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[31:04:14.636] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765670248780}
-[31:04:19.048] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765670253197}
-[31:04:22.154] Browser ERROR   Erreur chargement données : {}
-[31:04:22.154] Browser ERROR   Erreur chargement données : {}
-[31:04:36.424] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:04:36.424] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:04:58.156] Browser LOG     Token utilisé pour createclient : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2RmZDUyM2NmZDRhYWRmYjQ5NDAyZSIsInJvbGUiOiJnZXJhbnQiLCJzYWxvbklkIjoiNjkzZGZjNzMzY2ZkNGFhZGZiNDk0MDBhIiwiaWF0IjoxNzY1NjcwMjQ4LCJleHAiOjE3NjYyNzUwNDh9.BdvLsw726uBwd-E1vwZKArciJihJX_qlKoaTbcujZhY
-[31:08:16.442] Server  LOG      ✓ Compiled in 1388ms
-[31:08:39.022] Server  LOG      ✓ Compiled in 1991ms
-[31:10:38.923] Server  LOG      ✓ Compiled in 3.2s
-[31:10:47.583] Server  LOG      ✓ Compiled in 6.2s
-[31:11:01.462] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:11:01.462] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[31:14:02.609] Server  LOG      ✓ Compiled in 1337ms
-[31:14:09.488] Server  LOG      ✓ Compiled in 1710ms
-[31:16:28.861] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading '0')
-[31:19:07.497] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[31:19:08.046] Server  LOG      ✓ Compiled in 1297ms
-[31:19:08.870] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[31:19:10.430] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[31:19:10.430] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[31:19:10.430] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765671143666}
-[31:20:43.370] Server  LOG      ✓ Compiled in 2.4s
-[31:21:08.321] Browser ERROR   Erreur chargement données : {}
-[31:21:08.322] Browser ERROR   Erreur chargement données : {}
-[53:59:45.280] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765752769554}
-[53:59:45.580] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[53:59:47.835] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[53:59:48.029] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[53:59:48.029] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/auth/login","route":"/auth/login"}
-[53:59:48.029] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765752772322}
-[53:59:59.538] Browser ERROR   Login error: {}
-[54:00:18.957] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765752803246}
-[54:00:19.261] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[54:00:26.757] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765752811014}
-[54:01:36.391] Browser ERROR   Erreur chargement données : {}
-[54:01:36.391] Browser ERROR   Erreur chargement données : {}
-[54:01:56.735] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[54:01:56.735] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[54:05:55.348] Server  LOG      ✓ Compiled in 1758ms
-[54:05:57.771] Server  LOG      ✓ Compiled in 1483ms
-[54:06:00.992] Server  LOG      ✓ Compiled in 1492ms
-[54:06:19.569] Server  LOG      ✓ Compiled in 3.2s
-[54:06:28.061] Server  LOG      ✓ Compiled in 1710ms
-[54:06:30.262] Server  LOG      ✓ Compiled in 1771ms
-[54:06:34.584] Server  LOG      ✓ Compiled in 259ms
-[54:06:40.657] Server  LOG      ✓ Compiled in 120ms
-[54:06:57.693] Server  LOG      ✓ Compiled in 151ms
-[54:07:00.795] Server  LOG      ✓ Compiled in 134ms
-[54:07:39.362] Server  LOG      ✓ Compiled in 1786ms
-[54:07:42.639] Server  LOG      ✓ Compiled in 1879ms
-[54:07:46.448] Server  LOG      ✓ Compiled in 2.5s
-[54:07:49.368] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[54:07:49.901] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[54:07:49.901] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[54:07:49.901] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765753255454}
-[54:07:55.248] Browser ERROR   Erreur chargement données : {}
-[54:07:55.248] Browser ERROR   Erreur chargement données : {}
-[54:09:38.455] Server  LOG      ✓ Compiled in 1816ms
-[54:09:45.543] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[54:09:46.227] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[54:09:46.227] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[54:09:46.227] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765753371805}
-[54:09:50.433] Browser ERROR   Erreur chargement données : {}
-[54:09:50.433] Browser ERROR   Erreur chargement données : {}
-[54:12:57.155] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[54:12:57.529] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[54:12:57.529] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[54:12:57.529] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765753563086}
-[54:13:09.413] Browser ERROR   Erreur chargement données : {}
-[54:13:09.413] Browser ERROR   Erreur chargement données : {}
-[54:13:42.074] Server  LOG      ✓ Compiled in 1748ms
-[54:14:08.066] Browser ERROR   Erreur chargement données : {}
-[54:14:08.066] Browser ERROR   Erreur chargement données : {}
-[67:30:14.066] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765801389909}
-[67:30:14.066] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[67:30:16.371] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[67:30:16.618] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[67:30:16.618] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/auth/login","route":"/auth/login"}
-[67:30:16.618] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765801392570}
-[67:30:30.327] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765801406282}
-[67:30:30.629] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[67:30:40.162] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765801416119}
-[67:30:43.769] Browser ERROR   Erreur chargement données : {}
-[67:30:43.769] Browser ERROR   Erreur chargement données : {}
-[67:30:49.533] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[67:30:49.533] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[67:31:28.942] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[67:31:29.409] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[67:31:29.409] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[67:31:29.409] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765801465348}
-[67:31:34.786] Browser ERROR   Erreur chargement données : {}
-[67:31:34.786] Browser ERROR   Erreur chargement données : {}
-[67:36:18.103] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[67:36:18.600] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[67:36:18.600] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[67:36:18.601] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765801754553}
-[67:36:29.208] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[67:36:29.691] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[67:36:29.691] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[67:36:29.691] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765801765645}
-[67:36:44.859] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[67:36:44.859] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[67:36:49.506] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[67:36:49.506] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[67:41:11.503] Server  LOG      ✓ Compiled in 3.3s
-[67:41:19.576] Server  LOG      ✓ Compiled in 1911ms
-[67:42:00.218] Server  LOG      ✓ Compiled in 1701ms
-[67:58:40.886] Server  LOG      ✓ Compiled in 1221ms
-[67:59:02.944] Server  LOG      ✓ Compiled in 1410ms
-[67:59:55.401] Server  LOG      ✓ Compiled in 1733ms
-[68:00:01.201] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:00:01.593] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:00:01.593] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[68:00:01.593] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765803177546}
-[68:00:05.347] Browser LOG     {"__v":0,"_id":"693ffde81dded62a5be4c206","createdAt":"2025-12-15T12:24:08.078Z","createdBy":{"_id":"693dfd523cfd4aadfb49402e","username":"leonie"},"nom":"OINI","notes":"SALUT","prenom":"LEONIE","salonId":"693dfc733cfd4aadfb49400a","telephone":"0456378900","updatedAt":"2025-12-15T12:24:08.078Z"}
-[68:00:05.347] Browser LOG     {"__v":0,"_id":"693ffde81dded62a5be4c206","createdAt":"2025-12-15T12:24:08.078Z","createdBy":{"_id":"693dfd523cfd4aadfb49402e","username":"leonie"},"nom":"OINI","notes":"SALUT","prenom":"LEONIE","salonId":"693dfc733cfd4aadfb49400a","telephone":"0456378900","updatedAt":"2025-12-15T12:24:08.078Z"}
-[68:02:10.717] Server  LOG      ✓ Compiled in 3.3s
-[68:02:12.753] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:02:13.031] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:02:13.031] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[68:02:13.031] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765803308950}
-[68:02:23.072] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:02:23.072] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:04:25.742] Server  LOG      ○ Compiling /manager ...
-[68:04:27.146] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:04:27.476] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:04:27.476] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
-[68:04:27.476] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765803443424}
-[68:05:21.407] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:05:21.407] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:05:40.139] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:05:40.139] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:06:15.794] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:06:15.794] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:06:22.650] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:06:22.650] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:06:55.389] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765803591336}
-[68:06:55.687] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[68:09:09.789] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765803725742}
-[68:09:14.464] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765803730423}
-[68:17:45.215] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765804241172}
-[68:18:16.161] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/categories color: rgb(120, 120, 120) color: inherit {"dp":"/categories","o":"http://localhost:3000/categories","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765804272119}
-[68:18:24.650] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/services color: rgb(120, 120, 120) color: inherit {"dp":"/services","o":"http://localhost:3000/services","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765804280601}
-[68:18:39.149] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765804295056}
-[68:18:44.335] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765804300132}
-[68:18:57.678] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:18:57.678] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[68:19:49.656] Server  LOG      ✓ Compiled in 320ms
-[68:19:50.432] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. users
-[68:19:57.812] Server  LOG      ✓ Compiled in 318ms
-[68:19:58.438] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. users
-[68:22:15.939] Server  LOG      ✓ Compiled in 286ms
-[68:22:30.081] Server  LOG      ✓ Compiled in 224ms
-[68:22:31.265] Server  LOG      ✓ Compiled in 364ms
-[68:22:31.433] Browser ERROR   ./components/superadmin/sidebar.tsx:73:13
-Parsing ecmascript source code failed
-  71 |             { id: "services", label: "Prestation", icon: Building2 },
-  72 |             client
-> 73 |             { id: "staff", label: "Personnel", icon: UsersRound },
-     |             ^
-  74 |             { id: "products", label: "Boutique", icon: ShoppingBag },
-  75 |             { id: "bookings", label: "Réservations", icon: Calendar },
-  76 |             { id: "logs", label: "Logs système", icon: Activity },
-
-Expected '</', got '{'
-
-Import traces:
-  Client Component Browser:
-    ./components/superadmin/sidebar.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./components/superadmin/sidebar.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[68:22:35.433] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. users
-[68:22:35.433] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. users
-[68:22:59.472] Server  LOG      ✓ Compiled in 219ms
-[68:23:04.017] Server  LOG      ✓ Compiled in 215ms
-[68:23:10.734] Server  LOG      ✓ Compiled in 289ms
-[68:23:11.797] Server  LOG      ✓ Compiled in 258ms
-[68:26:54.498] Server  LOG      ✓ Compiled in 413ms
-[68:27:01.805] Server  LOG      ✓ Compiled in 823ms
-[68:27:03.432] Browser ERROR   uncaughtError: ReferenceError: active is not defined
-[68:27:03.770] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[68:27:04.749] Server  LOG      ✓ Compiled in 452ms
-[68:27:04.751] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765804799863}
-[68:27:04.751] Browser ERROR   uncaughtError: ReferenceError: activeTba is not defined
-[68:27:05.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:27:06.436] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:27:06.436] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:27:06.436] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765804801919}
-[68:27:06.436] Browser ERROR   uncaughtError: ReferenceError: activeTba is not defined
-[68:27:11.431] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[68:27:12.085] Server  LOG      ✓ Compiled in 220ms
-[68:27:12.280] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:27:13.439] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:27:13.439] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:27:13.439] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765804808449}
-[68:27:16.607] Server  LOG      ✓ Compiled in 253ms
-[68:27:17.440] Browser ERROR   ./app/admin/page.tsx:233:39
-Parsing ecmascript source code failed
-  231 |             {activeTab === "services" && <ServicesTab />}
-  232 |             {activeTab === "staff" && <StaffTab/>}
-> 233 |             {activeTab === "staff" && }
-      |                                       ^
-  234 |
-  235 |             {activeTab === "bookings" && <BookingsTab bookings={bookings} onUpdateStatus={() => { }} />}
-  236 |             {activeTab === "logs" && <LogsTab logs={logs} />}
-
-Expected '</', got '}'
-
-Import traces:
-  Client Component Browser:
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
-
-  Client Component SSR:
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[68:27:27.578] Server  LOG      ✓ Compiled in 418ms
-[68:27:32.010] Server  LOG      ✓ Compiled in 307ms
-[68:27:32.427] Browser ERROR   ./app/admin/page.tsx:233:39
-Parsing ecmascript source code failed
-  231 |             {activeTab === "services" && <ServicesTab />}
-  232 |             {activeTab === "staff" && <StaffTab/>}
-> 233 |             {activeTab === "staff" && </> }
-      |                                       ^
-  234 |
-  235 |             {activeTab === "bookings" && <BookingsTab bookings={bookings} onUpdateStatus={() => { }} />}
-  236 |             {activeTab === "logs" && <LogsTab logs={logs} />}
+  146 |
+  147 |   loadSlots()
+> 148 | }, [rdvForm.date, user?.salonId])
+      |  ^
+  149 |
+  150 |
+  151 |
 
 Expression expected
 
 Import traces:
   Client Component Browser:
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
 
   Client Component SSR:
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[68:27:32.427] Browser ERROR   ./app/admin/page.tsx:233:40
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[00:08:32.776] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:08:32.776] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:08:35.961] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:36.247] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:08:36.247] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
+[00:08:36.247] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765984708794}
+[00:08:36.382] Browser ERROR   Erreur chargement RDV {}
+[00:08:36.492] Browser ERROR   Erreur chargement RDV {}
+[00:08:37.671] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:08:37.671] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:08:44.196] Browser ERROR   Erreur slots {}
+[00:08:48.801] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:08:49.022] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:08:49.022] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
+[00:08:49.022] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765984721545}
+[00:08:49.283] Browser ERROR   Erreur chargement RDV {}
+[00:08:49.283] Browser ERROR   Erreur chargement RDV {}
+[00:08:50.362] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:08:50.362] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:09:07.457] Browser ERROR   Erreur slots {}
+[00:11:24.902] Server  LOG      ✓ Compiled in 1561ms
+[00:11:34.704] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:35.247] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:11:35.247] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
+[00:11:35.247] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765984887817}
+[00:11:35.531] Browser ERROR   Erreur chargement RDV {}
+[00:11:35.641] Browser ERROR   Erreur chargement RDV {}
+[00:11:40.645] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:11:40.645] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:13:44.547] Browser ERROR   Erreur chargement RDV {}
+[00:13:44.672] Browser ERROR   Erreur chargement RDV {}
+[00:13:47.104] Browser ERROR   Erreur chargement RDV {}
+[00:13:47.104] Browser ERROR   Erreur chargement RDV {}
+[00:13:48.328] Browser ERROR   Erreur chargement RDV {}
+[00:13:48.437] Browser ERROR   Erreur chargement RDV {}
+[00:13:55.307] Browser ERROR   Erreur chargement RDV {}
+[00:13:55.307] Browser ERROR   Erreur chargement RDV {}
+[00:13:58.963] Browser ERROR   Erreur chargement RDV {}
+[00:13:58.963] Browser ERROR   Erreur chargement RDV {}
+[00:14:17.276] Server  LOG      ○ Compiling /auth/login ...
+[00:14:18.835] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:19.113] Browser ERROR   Erreur chargement données : {}
+[00:14:19.113] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:14:19.113] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
+[00:14:19.113] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765985051674}
+[00:14:19.236] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765985051804}
+[00:14:19.550] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:14:40.994] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765985073575}
+[00:14:52.629] Server  LOG      ○ Compiling /admin ...
+[00:14:53.021] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765985085596}
+[00:15:15.077] Browser ERROR   Erreur chargement données : {}
+[00:15:15.077] Browser ERROR   Erreur chargement données : {}
+[01:08:05.297] Browser WARN    Select is changing from controlled to uncontrolled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.
+[01:14:20.370] Browser WARN    Select is changing from uncontrolled to controlled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.
+[01:21:34.247] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:21:34.963] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:21:34.963] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:21:34.963] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765989087295}
+[01:27:59.229] Server  LOG      ✓ Compiled in 1759ms
+[01:30:19.703] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:30:20.446] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:30:20.446] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:30:20.446] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765989613019}
+[01:34:34.137] Browser ERROR   uncaughtError: TypeError: categories.filt is not a function
+[01:34:35.257] Server  LOG      ✓ Compiled in 2s
+[01:34:35.892] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:34:37.986] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:34:38.386] Server  LOG      ✓ Compiled in 2.9s
+[01:34:39.123] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:34:39.123] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:34:39.123] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765989871609}
+[01:35:04.499] Server  LOG      ✓ Compiled in 1519ms
+[01:35:05.090] Browser ERROR   ./components/superadmin/service-tab.tsx:225:1
 Parsing ecmascript source code failed
-  231 |             {activeTab === "services" && <ServicesTab />}
-  232 |             {activeTab === "staff" && <StaffTab/>}
-> 233 |             {activeTab === "staff" && </> }
-      |                                        ^^^^
-  234 |
-  235 |             {activeTab === "bookings" && <BookingsTab bookings={bookings} onUpdateStatus={() => { }} />}
-  236 |             {activeTab === "logs" && <LogsTab logs={logs} />}
+  223 |     {"use client"
+  224 |
+> 225 | import { useState, useEffect } from "react"
+      | ^^^^^^
+  226 | import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+  227 | import { Button } from "@/components/ui/button"
+  228 | import { Input } from "@/components/ui/input"
+
+Expected '</', got 'import'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[01:35:07.556] Server  LOG      ✓ Compiled in 1679ms
+[01:35:08.091] Browser ERROR   ./components/superadmin/service-tab.tsx:223:7
+Parsing ecmascript source code failed
+  221 |   </SelectTrigger>
+  222 |   <SelectContent>
+> 223 |     { => (
+      |       ^^
+  224 |       <SelectItem key={cat._id} value={cat._id!}>
+  225 |         {cat.name}
+  226 |       </SelectItem>
+
+Expected '</', got '=>'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[01:35:21.299] Server  LOG      ✓ Compiled in 1910ms
+[01:40:57.334] Server  LOG      ✓ Compiled in 1927ms
+[01:42:19.493] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:42:19.795] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:42:19.795] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:42:19.795] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765990332373}
+[01:53:58.207] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:53:59.157] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:53:59.157] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[01:53:59.157] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765991031369}
+[07:08:09.469] Server  LOG      ✓ Compiled in 1424ms
+[07:08:32.613] Server  LOG      ✓ Compiled in 1504ms
+[07:08:40.552] Server  LOG      ✓ Compiled in 1376ms
+[07:11:05.092] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:11:05.856] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[07:11:05.856] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[07:11:05.856] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766010046641}
+[07:11:13.389] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:11:13.489] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:17:27.085] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:17:27.274] Server  LOG      ✓ Compiled in 1608ms
+[07:17:37.087] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:17:37.087] Browser ERROR   uncaughtError: ReferenceError: newCategoryName is not defined
+[07:17:37.846] Server  LOG      ✓ Compiled in 1717ms
+[07:17:42.641] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[07:17:43.661] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766010443828}
+[07:17:45.166] Server  LOG      ✓ Compiled in 2.8s
+[07:17:45.306] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:17:47.442] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[07:17:47.442] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[07:17:47.442] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766010447191}
+[07:17:54.436] Server  LOG      ✓ Compiled in 1945ms
+[07:18:01.034] Server  LOG      ✓ Compiled in 4.4s
+[07:18:15.664] Server  LOG      ✓ Compiled in 1745ms
+[07:18:19.029] Server  LOG      ✓ Compiled in 1889ms
+[07:18:39.122] Server  LOG      ✓ Compiled in 1786ms
+[07:18:47.230] Server  LOG      ✓ Compiled in 1701ms
+[07:19:01.145] Server  LOG      ✓ Compiled in 1766ms
+[07:19:03.302] Server  LOG      ✓ Compiled in 1527ms
+[07:19:09.123] Server  LOG      ✓ Compiled in 1704ms
+[07:19:18.362] Server  LOG      ✓ Compiled in 1683ms
+[07:19:25.863] Server  LOG      ✓ Compiled in 1834ms
+[07:19:32.462] Server  LOG      ✓ Compiled in 1929ms
+[07:19:48.731] Server  LOG      ✓ Compiled in 2.6s
+[07:19:51.337] Server  LOG      ✓ Compiled in 2s
+[07:19:55.896] Server  LOG      ✓ Compiled in 2.6s
+[07:19:59.918] Server  LOG      ✓ Compiled in 1869ms
+[07:20:06.022] Server  LOG      ✓ Compiled in 1885ms
+[07:20:09.869] Server  LOG      ✓ Compiled in 1633ms
+[07:20:14.938] Server  LOG      ✓ Compiled in 1908ms
+[07:20:20.108] Server  LOG      ✓ Compiled in 3.1s
+[07:20:25.764] Server  LOG      ✓ Compiled in 1817ms
+[07:20:31.207] Server  LOG      ✓ Compiled in 2s
+[07:20:41.328] Server  LOG      ✓ Compiled in 1725ms
+[07:20:46.128] Server  LOG      ✓ Compiled in 1687ms
+[07:20:48.545] Server  LOG      ✓ Compiled in 1967ms
+[07:20:54.644] Server  LOG      ✓ Compiled in 1869ms
+[07:20:59.608] Server  LOG      ✓ Compiled in 1711ms
+[07:21:06.341] Server  LOG      ✓ Compiled in 3.7s
+[07:21:15.046] Server  LOG      ✓ Compiled in 1712ms
+[07:21:19.632] Server  LOG      ✓ Compiled in 1976ms
+[07:21:27.325] Server  LOG      ✓ Compiled in 1684ms
+[07:21:30.774] Server  LOG      ✓ Compiled in 1988ms
+[07:21:39.301] Server  LOG      ✓ Compiled in 2.4s
+[07:22:03.274] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'name')
+[07:22:03.274] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:22:03.274] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:23:19.377] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[07:23:21.668] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:23:23.089] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[07:23:23.089] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[07:23:23.089] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766010783450}
+[07:23:24.322] Server  LOG      ✓ Compiled in 5.1s
+[07:23:52.824] Server  LOG      ✓ Compiled in 1834ms
+[07:24:03.345] Server  LOG      ✓ Compiled in 1595ms
+[07:24:34.732] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'name')
+[07:24:34.732] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:24:34.732] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:26:21.677] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:26:22.505] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[07:26:22.505] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[07:26:22.505] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766010963204}
+[07:26:30.234] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'name')
+[07:26:30.234] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:26:30.234] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:27:52.374] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:27:53.036] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[07:27:53.036] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[07:27:53.036] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766011053810}
+[07:27:57.189] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:27:57.189] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:39:40.007] Server  LOG      ✓ Compiled in 1614ms
+[07:39:45.592] Server  LOG      ✓ Compiled in 1707ms
+[07:39:47.409] Server  LOG      ✓ Compiled in 1416ms
+[07:39:59.135] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[07:39:59.953] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[07:39:59.953] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[07:39:59.953] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766011780711}
+[07:40:05.177] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[07:40:05.177] Browser LOG     ✅ Catégories reçues : [{"__v":0,"_id":"6934bcb9884ce4b44717349c","createdAt":"2025-12-06T23:31:05.778Z","nom":"Enfants","updatedAt":"2025-12-06T23:31:05.778Z"},{"__v":0,"_id":"69377d2a2faa3309e3290fc1","createdAt":"2025-12-09T01:36:42.689Z","nom":"Femmes","updatedAt":"2025-12-09T01:36:42.689Z"},{"__v":0,"_id":"69378bb22faa3309e3291014","createdAt":"2025-12-09T02:38:42.398Z","nom":"Hommes","updatedAt":"2025-12-09T02:38:42.398Z"},{"__v":0,"_id":"69378bd72faa3309e3291018","createdAt":"2025-12-09T02:39:19.857Z","nom":"Produits de cheveux","updatedAt":"2025-12-09T02:39:19.857Z"},{"__v":0,"_id":"69378bf22faa3309e329101c","createdAt":"2025-12-09T02:39:46.006Z","nom":"Accessoires de cheveux","updatedAt":"2025-12-09T02:39:46.006Z"},{"__v":0,"_id":"69378c032faa3309e3291020","createdAt":"2025-12-09T02:40:03.227Z","nom":"Produits de peau","updatedAt":"2025-12-09T02:40:03.227Z"}]
+[18:18:42.085] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:18:42.833] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[18:18:42.833] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[18:18:42.833] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766050093399}
+[18:18:49.925] Browser LOG     ✅ Catégories reçues : []
+[18:18:49.925] Browser LOG     ✅ Catégories reçues : []
+[18:25:46.806] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766050517594}
+[18:25:46.806] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[18:26:01.918] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766050532785}
+[18:26:07.441] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766050537921}
+[18:26:14.278] Browser LOG     ✅ Catégories reçues : []
+[18:26:14.278] Browser LOG     ✅ Catégories reçues : []
+[18:26:32.893] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:26:33.923] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[18:26:33.923] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[18:26:33.923] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766050564799}
+[18:26:37.456] Browser LOG     ✅ Catégories reçues : []
+[18:26:37.456] Browser LOG     ✅ Catégories reçues : []
+[18:34:27.365] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:34:28.103] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[18:34:28.103] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[18:34:28.103] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766051038711}
+[18:34:32.650] Browser LOG     ✅ Catégories reçues : []
+[18:34:32.650] Browser LOG     ✅ Catégories reçues : []
+[18:50:06.376] Server  LOG      ✓ Compiled in 1285ms
+[18:52:29.883] Server  LOG      ✓ Compiled in 1767ms
+[18:52:30.086] Browser ERROR   ./components/superadmin/service-tab.tsx:242:7
+Parsing ecmascript source code failed
+  240 |         {cat.name}
+  241 |       </SelectItem>
+> 242 |     ))}
+      |       ^
+  243 |   </SelectContent>
+  244 | </Select>
+  245 |
+
+Expected '</', got '}'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[18:53:05.084] Browser ERROR   ./components/superadmin/service-tab.tsx:242:7
+Parsing ecmascript source code failed
+  240 |         {cat.name}
+  241 |       </SelectItem>
+> 242 |     ))}
+      |       ^
+  243 |   </SelectContent>
+  244 | </Select>
+  245 |
+
+Expected '</', got '}'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[18:53:17.084] Browser ERROR   ./components/superadmin/service-tab.tsx:242:7
+Parsing ecmascript source code failed
+  240 |         Aucune catégorie disponible
+  241 |       </SelectItem>
+> 242 |     ))}
+      |       ^
+  243 |   </SelectContent>
+  244 | </Select>
+  245 |
+
+Expected '</', got '}'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[18:53:33.716] Server  LOG      ✓ Compiled in 1409ms
+[18:53:34.089] Browser ERROR   ./components/superadmin/service-tab.tsx:242:6
+Parsing ecmascript source code failed
+  240 |         Aucune catégorie disponible
+  241 |       </SelectItem>
+> 242 |     ))}
+      |      ^
+  243 |   </SelectContent>
+  244 | </Select>
+  245 |
+
+Expected '</', got ')'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[18:53:48.090] Browser ERROR   ./components/superadmin/service-tab.tsx:242:6
+Parsing ecmascript source code failed
+  240 |         Aucune catégorie disponible
+  241 |       </SelectItem>) : (
+> 242 |     ))}
+      |      ^
+  243 |   </SelectContent>
+  244 | </Select>
+  245 |
+
+Expected '</', got ')'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[18:54:06.083] Browser ERROR   ./components/superadmin/service-tab.tsx:243:6
+Parsing ecmascript source code failed
+  241 |       </SelectItem>) : (
+  242 |         categoriesprestation.map((cat) => (
+> 243 |     ))}
+      |      ^
+  244 |   </SelectContent>
+  245 | </Select>
+  246 |
+
+Expected '</', got ')'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[18:54:16.049] Server  LOG      ✓ Compiled in 1450ms
+[18:54:17.080] Browser ERROR   ./components/superadmin/service-tab.tsx:246:7
+Parsing ecmascript source code failed
+  244 |       {cat.name}
+  245 |     </SelectItem>
+> 246 |     ))}
+      |       ^
+  247 |   </SelectContent>
+  248 | </Select>
+  249 |
+
+Expected '</', got '}'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[18:54:23.939] Server  LOG      ✓ Compiled in 1258ms
+[18:54:24.091] Browser ERROR   ./components/superadmin/service-tab.tsx:247:6
+Parsing ecmascript source code failed
+  245 |     </SelectItem>
+  246 |     ))
+> 247 |     ))}
+      |      ^
+  248 |   </SelectContent>
+  249 | </Select>
+  250 |
+
+Expected '</', got ')'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/service-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/service-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[18:54:28.642] Server  LOG      ✓ Compiled in 1419ms
+[18:54:29.093] Browser ERROR   uncaughtError: Error: A <Select.Item /> must have a value prop that is not an empty string. This is because the Select value can be set to an empty string to clear the selection and show the placeholder.
+[18:56:08.049] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:56:08.382] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[18:56:08.382] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[18:56:08.382] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766052339182}
+[18:56:10.785] Browser ERROR   uncaughtError: Error: A <Select.Item /> must have a value prop that is not an empty string. This is because the Select value can be set to an empty string to clear the selection and show the placeholder.
+[18:56:10.785] Browser LOG     ✅ Catégories reçues : []
+[18:56:10.785] Browser LOG     ✅ Catégories reçues : []
+[19:02:49.310] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[19:02:50.313] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:02:51.298] Server  LOG      ✓ Compiled in 2.3s
+[19:02:51.327] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:02:51.327] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:02:51.327] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766052741838}
+[19:04:09.732] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:04:10.527] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:04:10.527] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:04:10.527] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766052821397}
+[19:04:23.222] Browser LOG     ✅ Catégories reçues : []
+[19:04:23.326] Browser LOG     ✅ Catégories reçues : []
+[19:05:05.451] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:05:06.151] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:05:06.151] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:05:06.151] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766052877014}
+[19:05:14.133] Browser LOG     ✅ Catégories reçues : []
+[19:05:14.248] Browser LOG     ✅ Catégories reçues : []
+[19:05:31.591] Browser LOG     ✅ Catégories reçues : []
+[19:05:48.354] Browser LOG     ✅ Catégories reçues : []
+[19:30:42.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:30:43.079] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:30:43.079] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:30:43.079] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766054413644}
+[19:30:49.657] Browser LOG     ✅ Catégories reçues : []
+[19:30:49.657] Browser LOG     ✅ Catégories reçues : []
+[19:31:56.196] Browser ERROR   Erreur chargement données : {}
+[19:31:56.197] Browser ERROR   Erreur chargement données : {}
+[19:31:59.967] Browser LOG     ✅ Catégories reçues : []
+[19:31:59.967] Browser LOG     ✅ Catégories reçues : []
+[19:32:11.623] Browser ERROR   Erreur chargement données : {}
+[19:32:11.623] Browser ERROR   Erreur chargement données : {}
+[19:33:29.113] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:33:29.582] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[19:33:29.582] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[19:33:29.582] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766054580325}
+[19:33:34.207] Browser ERROR   Erreur chargement données : {}
+[19:33:34.207] Browser ERROR   Erreur chargement données : {}
+[19:35:06.160] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766054677028}
+[19:35:06.479] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[19:35:18.754] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766054689628}
+[19:35:23.898] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766054694774}
+[19:35:24.437] Browser ERROR   Erreur chargement RDV {}
+[19:35:24.437] Browser ERROR   Erreur chargement RDV {}
+[19:44:10.195] Server  LOG      ✓ Compiled in 1587ms
+[19:44:46.806] Server  LOG      ✓ Compiled in 1497ms
+[19:45:32.215] Server  LOG      ✓ Compiled in 2s
+[19:45:52.762] Server  LOG      ✓ Compiled in 3.9s
+[19:46:03.398] Server  LOG      ✓ Compiled in 1485ms
+[19:46:07.053] Server  LOG      ✓ Compiled in 1335ms
+[19:46:08.086] Browser ERROR   ./components/manager/clients-tab.tsx:368:12
+Parsing ecmascript source code failed
+  366 |               </div>
+  367 |             </div>
+> 368 |           </div>
+      |            ^^^^^
+  369 |         ))}
+  370 |       </div>
+  371 |
 
 Unterminated regexp literal
 
 Import traces:
   Client Component Browser:
-    ./app/admin/page.tsx [Client Component Browser]
-    ./app/admin/page.tsx [Server Component]
+    ./components/manager/clients-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
 
   Client Component SSR:
-    ./app/admin/page.tsx [Client Component SSR]
-    ./app/admin/page.tsx [Server Component]
-[68:27:36.009] Server  LOG      ✓ Compiled in 192ms
-[68:27:41.798] Server  LOG      ✓ Compiled in 1121ms
-[68:29:50.419] Server  LOG      ✓ Compiled in 322ms
-[68:33:23.159] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:33:23.690] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:33:23.690] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:33:23.690] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765805179488}
-[68:33:28.637] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:33:28.907] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:33:28.907] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:33:28.907] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765805184726}
-[68:34:24.347] Server  LOG      ✓ Compiled in 290ms
-[68:34:25.437] Browser ERROR   Erreur chargement données : {}
-[68:34:25.437] Browser ERROR   Erreur chargement données : {}
-[68:34:58.506] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:34:58.916] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:34:58.916] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:34:58.916] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765805274746}
-[68:35:01.496] Browser ERROR   Erreur chargement données : {}
-[68:35:01.496] Browser ERROR   Erreur chargement données : {}
-[68:37:13.222] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:37:13.429] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:37:13.429] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:37:13.429] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765805409373}
-[68:37:15.149] Browser ERROR   Erreur chargement données : {}
-[68:37:15.149] Browser ERROR   Erreur chargement données : {}
-[68:37:38.568] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:37:38.890] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:37:38.890] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:37:38.890] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765805434742}
-[68:37:41.326] Browser ERROR   Erreur chargement données : {}
-[68:37:41.326] Browser ERROR   Erreur chargement données : {}
-[68:37:44.237] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:37:44.535] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:37:44.535] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:37:44.535] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765805440392}
-[68:37:46.746] Browser ERROR   Erreur chargement données : {}
-[68:37:46.746] Browser ERROR   Erreur chargement données : {}
-[68:41:26.305] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:41:26.751] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:41:26.751] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:41:26.751] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765805662574}
-[68:41:28.618] Browser ERROR   Erreur chargement données : {}
-[68:41:28.618] Browser ERROR   Erreur chargement données : {}
-[68:41:40.877] Browser ERROR   Erreur chargement données : {}
-[68:41:40.877] Browser ERROR   Erreur chargement données : {}
-[68:52:00.217] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[68:52:00.660] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[68:52:00.660] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[68:52:00.660] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765806296444}
-[68:52:02.483] Browser ERROR   Erreur chargement données : {}
-[68:52:02.483] Browser ERROR   Erreur chargement données : {}
-[69:01:39.039] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[69:01:39.580] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[69:01:39.580] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[69:01:39.580] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765806875355}
-[69:01:41.568] Browser ERROR   Erreur chargement données : {}
-[69:01:41.568] Browser ERROR   Erreur chargement données : {}
-[69:12:02.777] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[69:12:03.242] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[69:12:03.242] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[69:12:03.242] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765807499023}
-[69:12:05.295] Browser ERROR   Erreur chargement données : {}
-[69:12:05.295] Browser ERROR   Erreur chargement données : {}
-[69:16:23.209] Server  LOG      ✓ Compiled in 5.4s
-[69:16:23.565] Browser ERROR   Erreur chargement données : {}
-[69:16:33.814] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[69:16:34.881] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[69:16:34.882] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[69:16:34.882] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765807770797}
-[69:16:42.195] Browser ERROR   Erreur chargement données : {}
-[69:16:42.195] Browser ERROR   Erreur chargement données : {}
-[69:20:58.644] Server  LOG      ✓ Compiled in 465ms
-[69:20:59.429] Browser ERROR   Erreur chargement données : {}
-[69:22:37.685] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[69:22:38.539] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[69:22:38.539] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
-[69:22:38.539] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765808134489}
-[69:22:44.916] Browser ERROR   Erreur chargement données : {}
-[69:22:44.916] Browser ERROR   Erreur chargement données : {}
+    ./components/manager/clients-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[19:46:12.777] Server  LOG      ✓ Compiled in 1326ms
+[19:46:13.087] Browser ERROR   ./components/manager/clients-tab.tsx:359:20
+Parsing ecmascript source code failed
+  357 |   </div>
+  358 |   </div>
+> 359 |               <div className="flex gap-3">
+      |                    ^^^^^^^^^
+  360 |                 <Button size="sm" variant="outline" onClick={() => openEditModal(client)}>
+  361 |                   <Edit2 className="w-4 h-4 mr-2" />
+  362 |                   Modifier
+
+Expected '</', got 'className'
+
+Import traces:
+  Client Component Browser:
+    ./components/manager/clients-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/manager/clients-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[19:46:28.126] Server  LOG      ✓ Compiled in 1439ms
+[19:46:29.083] Browser ERROR   ./components/manager/clients-tab.tsx:369:11
+Parsing ecmascript source code failed
+  367 |             </div>
+  368 |           </div>
+> 369 |         ))}
+      |           ^
+  370 |       </div>
+  371 |
+  372 |       {/* Tableau Desktop */}
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./components/manager/clients-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/manager/clients-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[19:46:36.913] Server  LOG      ✓ Compiled in 1664ms
+[19:46:37.089] Browser ERROR   ./components/manager/clients-tab.tsx:350:42
+Parsing ecmascript source code failed
+  348 |             <div className="mt-5 flex items-center justify-between">
+  349 |               <div className="text-xs text-muted-foreground space-y-1">
+> 350 |                eatedBy.username}` : "—"}
+      |                                          ^
+  351 |               
+  352 |                <div>
+  353 |     {client.createdBy ? `Par ${client.createdBy.username}` : "—"}
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./components/manager/clients-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/manager/clients-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[19:47:12.528] Server  LOG      ✓ Compiled in 2s
+[19:47:16.301] Server  LOG      ✓ Compiled in 1939ms
+[19:50:24.043] Server  LOG      ✓ Compiled in 1484ms
+[19:50:27.500] Server  LOG      ✓ Compiled in 1836ms
+[19:51:20.101] Browser ERROR   In HTML, %s cannot be a child of <%s>.%s
+This will cause a hydration error.%s <span> tr  
+
+  ...
+    <SegmentViewNode type="page" pagePath="manager/pa...">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function ManagerDashboard} serverProvidedParams={{...}}>
+        <ManagerDashboard params={Promise} searchParams={Promise}>
+          <div className="flex h-scr...">
+            <ManagerSidebar>
+            <div className="flex-1 fle...">
+              <header>
+              <Dialog>
+              <Dialog>
+              <main className="flex-1 ove...">
+                <div className="max-w-7xl ...">
+                  <ClientsTab>
+                    <div className="space-y-8">
+                      <div>
+                      <div>
+                      <div>
+                      <div className="hidden md:...">
+                        <div className="overflow-x...">
+                          <table className="w-full">
+                            <thead>
+                            <tbody className="divide-y">
+>                             <tr className="hover:bg-muted/40 transition-colors">
+                                <td>
+                                <td>
+                                <td>
+                                <td>
+>                               <span className="text-xs text-muted-foreground">
+                                ...
+                              ...
+                      ...
+    ...
+
+[19:51:20.478] Server  LOG      ✓ Compiled in 1657ms
+[19:51:35.365] Server  LOG      ✓ Compiled in 1596ms
+[20:05:39.330] Server  LOG      ✓ Compiled in 3.4s
+[20:10:46.196] Server  LOG      ✓ Compiled in 1824ms
+[20:12:10.551] Server  LOG      ✓ Compiled in 2.7s
+[20:12:34.083] Server  LOG      ✓ Compiled in 1886ms
+[20:12:35.722] Server  LOG      ✓ Compiled in 1549ms
+[20:12:36.091] Browser ERROR   ./components/superadmin/staff-tab.tsx:161:1
+Parsing ecmascript source code failed
+  159 | };
+  160 |
+> 161 | await addEmployee(newEmployee);
+      | ^^^^^
+  162 |
+  163 |
+  164 |   const openEditDialog = (employee: Employee) => {
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:12:42.083] Browser ERROR   ./components/superadmin/staff-tab.tsx:161:1
+Parsing ecmascript source code failed
+  159 | };
+  160 |
+> 161 | await addEmployee(newEmployee);
+      | ^^^^^
+  162 |
+  163 | if (!selectedSalon) {
+  164 |   return toast({
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:14:59.081] Browser ERROR   ./components/superadmin/staff-tab.tsx:163:1
+Parsing ecmascript source code failed
+  161 | };
+  162 |
+> 163 | await addEmployee(newEmployee);
+      | ^^^^^
+  164 |
+  165 | if (!selectedSalon) {
+  166 |   return toast({
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:15:15.088] Browser ERROR   ./components/superadmin/staff-tab.tsx:164:1
+Parsing ecmascript source code failed
+  162 | };
+  163 |
+> 164 | await addEmployee(newEmployee);
+      | ^^^^^
+  165 |
+  166 | if (!selectedSalon) {
+  167 |   return toast({
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:16:05.093] Browser ERROR   ./components/superadmin/staff-tab.tsx:170:1
+Parsing ecmascript source code failed
+  168 | };
+  169 |
+> 170 | await addEmployee(newEmployee);
+      | ^^^^^
+  171 |
+  172 | if (!selectedSalon) {
+  173 |   return toast({
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:16:42.083] Browser ERROR   ./components/superadmin/staff-tab.tsx:174:1
+Parsing ecmascript source code failed
+  172 | };
+  173 |
+> 174 | await addEmployee(newEmployee);
+      | ^^^^^
+  175 |
+  176 | if (!selectedSalon) {
+  177 |   return toast({
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:20:30.872] Server  LOG      ✓ Compiled in 1832ms
+[20:20:31.083] Browser ERROR   ./components/superadmin/staff-tab.tsx:449:2
+Parsing ecmascript source code failed
+  447 |     </div>
+  448 |   );
+> 449 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:20:31.084] Browser ERROR   ./components/superadmin/staff-tab.tsx:151:4
+Parsing ecmascript source code failed
+  149 |     resetForm();
+  150 |     loadEmployees();
+> 151 |   };
+      |    ^
+  152 |
+  153 |   const handleEditEmployee = async () => {
+  154 |     if (!editingEmployee) return;
+
+Expected a semicolon
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:20:42.905] Server  LOG      ✓ Compiled in 1523ms
+[20:20:43.087] Browser ERROR   ./components/superadmin/staff-tab.tsx:455:2
+Parsing ecmascript source code failed
+  453 |     </div>
+  454 |   );
+> 455 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:20:51.484] Server  LOG      ✓ Compiled in 2.1s
+[20:20:52.084] Browser ERROR   ./components/superadmin/staff-tab.tsx:185:1
+Parsing ecmascript source code failed
+  183 | };
+  184 |
+> 185 | await addEmployee(newEmployee);
+      | ^^^^^
+  186 |
+  187 | if (!selectedSalon) {
+  188 |   return toast({
+
+await isn't allowed in non-async function
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:21:07.275] Server  LOG      ✓ Compiled in 2.5s
+[20:21:20.975] Server  LOG      ✓ Compiled in 1887ms
+[20:21:49.553] Server  LOG      ✓ Compiled in 1766ms
+[20:22:00.261] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:22:00.591] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[20:22:00.591] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
+[20:22:00.591] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766057491458}
+[20:22:00.924] Browser ERROR   Erreur chargement RDV {}
+[20:22:00.924] Browser ERROR   Erreur chargement RDV {}
+[20:22:07.602] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766057498466}
+[20:22:07.896] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[20:22:26.712] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766057517582}
+[20:22:30.536] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766057521410}
+[20:22:33.719] Browser ERROR   Erreur API fetchEmployees: Internal Server Error
+[20:22:33.719] Browser ERROR   Erreur API fetchEmployees: Internal Server Error
+[20:22:36.334] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:22:36.724] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[20:22:36.724] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[20:22:36.724] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766057527434}
+[20:22:38.826] Browser ERROR   Erreur API fetchEmployees: Internal Server Error
+[20:22:38.826] Browser ERROR   Erreur API fetchEmployees: Internal Server Error
+[20:23:04.389] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:23:04.638] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[20:23:04.638] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[20:23:04.638] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766057555424}
+[20:28:14.756] Server  LOG      ✓ Compiled in 1506ms
+[20:28:27.206] Server  LOG      ✓ Compiled in 2.7s
+[20:28:28.078] Browser ERROR   ./components/superadmin/staff-tab.tsx:60:17
+Parsing ecmascript source code failed
+  58 |
+  59 |   const [formData, setFormData] = useState<{
+> 60 |     name: string;
+     |                 ^
+  61 |     email: string;
+  62 |     phone: string;
+  63 |     role: string;
+
+Expected ',', got ';'
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[20:28:31.047] Server  LOG      ✓ Compiled in 2.1s
+[20:28:46.547] Server  LOG      ✓ Compiled in 6.5s
+[20:29:07.519] Server  LOG      ✓ Compiled in 3.8s
+[20:29:12.159] Server  LOG      ✓ Compiled in 4.4s
+[20:29:25.566] Server  LOG      ✓ Compiled in 1768ms
+[20:29:39.562] Server  LOG      ✓ Compiled in 2.4s
+[20:29:45.716] Server  LOG      ✓ Compiled in 5.3s
+[20:29:56.670] Server  LOG      ✓ Compiled in 10.8s
+[20:30:14.498] Server  LOG      ✓ Compiled in 14.3s
+[20:30:21.932] Server  LOG      ✓ Compiled in 1943ms
+[20:34:32.350] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:34:32.772] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[20:34:32.772] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[20:34:32.772] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766058243501}
+[20:38:01.679] Server  LOG      ✓ Compiled in 1941ms
+[20:54:33.617] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[20:54:34.089] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[20:54:34.090] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[20:54:34.090] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766059444804}
+[21:03:04.823] Server  LOG      ✓ Compiled in 1854ms
+[21:26:58.134] Server  LOG      ✓ Compiled in 1846ms
+[21:27:14.095] Browser ERROR   uncaughtError: ReferenceError: fetchSalons is not defined
+[21:27:14.868] Server  LOG      ✓ Compiled in 1758ms
+[21:28:02.164] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[21:28:03.578] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766061453176}
+[21:28:04.498] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:28:05.095] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[21:28:05.095] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[21:28:05.095] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766061455888}
+[21:28:06.761] Server  LOG      ✓ Compiled in 4.9s
+[21:28:11.942] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:28:12.300] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[21:28:12.300] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[21:28:12.300] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766061463048}
+[22:02:31.954] Server  LOG      ✓ Compiled in 1917ms
+[22:02:48.216] Server  LOG      ✓ Compiled in 1616ms
+[22:02:51.648] Server  LOG      ✓ Compiled in 1579ms
+[22:02:55.143] Server  LOG      ✓ Compiled in 1861ms
+[22:02:56.091] Browser ERROR   ./components/superadmin/staff-tab.tsx:145:82
+Parsing ecmascript source code failed
+  143 |     });
+  144 |     // Pré-sélectionner le salon (gère les cas populated ou non)
+> 145 |     const salonId = typeof employee.salonId === "object" ? employee.salonId._id? : employee.salonId;
+      |                                                                                  ^
+  146 |     setSelectedSalon(salonId || "");
+  147 |     setIsDialogOpen(true);
+  148 |   };
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[22:02:58.459] Server  LOG      ✓ Compiled in 1603ms
+[22:07:18.470] Server  LOG      ✓ Compiled in 1570ms
+[22:07:47.842] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:07:48.479] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:07:48.479] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[22:07:48.479] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766063839014}
+[22:08:43.359] Server  LOG      ✓ Compiled in 2.2s
+[22:08:46.868] Server  LOG      ✓ Compiled in 1724ms
+[22:09:14.691] Server  LOG      ✓ Compiled in 1616ms
+[22:09:19.137] Server  LOG      ✓ Compiled in 1677ms
+[22:09:26.349] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:09:27.198] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:09:27.198] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[22:09:27.198] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766063937671}
+[22:16:06.072] Server  LOG      ✓ Compiled in 1892ms
+[22:16:13.239] Server  LOG      ✓ Compiled in 3.3s
+[22:17:21.887] Server  LOG      ✓ Compiled in 1977ms
+[22:17:30.351] Server  LOG      ✓ Compiled in 5.4s
+[22:17:31.093] Browser ERROR   ./components/superadmin/staff-tab.tsx:146:17
+Parsing ecmascript source code failed
+  144 |       status: employee.status,
+  145 |       specialties: employee.specialties.join(", "),
+> 146 |       joinDate: ,
+      |                 ^
+  147 |     });
+  148 |
+  149 |     // Correction sûre de l'accès à _id (résout l'erreur TypeScript "never")
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[22:17:34.184] Server  LOG      ✓ Compiled in 3.8s
+[22:17:37.685] Server  LOG      ✓ Compiled in 3.4s
+[22:17:38.085] Browser ERROR   ./components/superadmin/staff-tab.tsx:146:26
+Parsing ecmascript source code failed
+  144 |       status: employee.status,
+  145 |       specialties: employee.specialties.join(", "),
+> 146 |       joinDate: employee.,
+      |                          ^
+  147 |     });
+  148 |
+  149 |     // Correction sûre de l'accès à _id (résout l'erreur TypeScript "never")
+
+Expected ident
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[22:17:41.417] Server  LOG      ✓ Compiled in 2.1s
+[22:17:46.537] Server  LOG      ✓ Compiled in 1718ms
+[22:17:55.338] Server  LOG      ✓ Compiled in 2.2s
+[22:18:20.043] Server  LOG      ✓ Compiled in 1888ms
+[22:18:23.902] Server  LOG      ✓ Compiled in 3.8s
+[22:18:32.524] Server  LOG      ✓ Compiled in 1808ms
+[22:19:22.437] Server  LOG      ✓ Compiled in 1730ms
+[22:19:28.388] Server  LOG      ✓ Compiled in 2.2s
+[22:19:32.248] Server  LOG      ✓ Compiled in 1842ms
+[22:19:57.774] Server  LOG      ✓ Compiled in 3.6s
+[22:20:17.260] Server  LOG      ✓ Compiled in 1668ms
+[22:20:18.079] Browser ERROR   ./components/superadmin/staff-tab.tsx:195:11
+Ecmascript file had an error
+  193 |
+  194 |
+> 195 |     const newEmployee = {
+      |           ^^^^^^^^^^^
+  196 |       ...formData,
+  197 |       salonId: selectedSalon,
+  198 |       specialties: formData.specialties
+
+the name `newEmployee` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./components/superadmin/staff-tab.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/superadmin/staff-tab.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[22:20:20.403] Server  LOG      ✓ Compiled in 1940ms
+[22:20:23.042] Server  LOG      ✓ Compiled in 1841ms
+[22:20:48.928] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:20:49.925] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:20:49.925] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[22:20:49.925] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766064620474}
+[22:22:20.572] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:22:20.960] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:22:20.960] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/admin","route":"/admin"}
+[22:22:20.960] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/admin color: rgb(120, 120, 120) color: inherit {"dp":"/admin","o":"http://localhost:3000/admin","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766064711736}
+[22:22:38.219] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[22:22:40.915] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/auth/login color: rgb(120, 120, 120) color: inherit {"dp":"/auth/login","o":"http://localhost:3000/auth/login","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766064731783}
+[22:22:55.409] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/account color: rgb(120, 120, 120) color: inherit {"dp":"/account","o":"http://localhost:3000/account","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766064746283}
+[22:23:02.088] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766064752963}
+[22:23:02.651] Browser ERROR   Erreur chargement RDV {}
+[22:23:02.651] Browser ERROR   Erreur chargement RDV {}
+[22:23:27.049] Browser ERROR   Erreur chargement RDV {}
+[22:23:27.049] Browser ERROR   Erreur chargement RDV {}
+[22:23:32.182] Browser ERROR   Erreur chargement RDV {}
+[22:23:32.182] Browser ERROR   Erreur chargement RDV {}
+[22:23:44.056] Browser ERROR   Erreur chargement RDV {}
+[22:23:44.056] Browser ERROR   Erreur chargement RDV {}
+[22:28:44.255] Server  LOG      ✓ Compiled in 1822ms
+[22:28:45.089] Browser ERROR   ./app/manager/page.tsx:17:1
+Export StaffPlanning doesn't exist in target module
+  15 | import { AppointmentsList } from "@/components/manager/appointments-list"
+  16 | import { PopularServices } from "@/components/manager/popular-services"
+> 17 | import { StaffPlanning } from "@/components/manager/staff-planning"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  18 | import { AnalyticsTab } from "@/components/manager/analytics-tab"
+  19 | import { ClientsTab } from "@/components/manager/clients-tab"
+  20 | import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+The export StaffPlanning was not found in module [project]/components/manager/staff-planning.tsx [app-client] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[22:28:45.089] Browser ERROR   ./app/manager/page.tsx:17:1
+Export StaffPlanning doesn't exist in target module
+  15 | import { AppointmentsList } from "@/components/manager/appointments-list"
+  16 | import { PopularServices } from "@/components/manager/popular-services"
+> 17 | import { StaffPlanning } from "@/components/manager/staff-planning"
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  18 | import { AnalyticsTab } from "@/components/manager/analytics-tab"
+  19 | import { ClientsTab } from "@/components/manager/clients-tab"
+  20 | import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
+The export StaffPlanning was not found in module [project]/components/manager/staff-planning.tsx [app-ssr] (ecmascript).
+The module has no exports at all.
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./app/manager/page.tsx [Client Component Browser]
+    ./app/manager/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/manager/page.tsx [Client Component SSR]
+    ./app/manager/page.tsx [Server Component]
+[22:28:48.091] Browser ERROR   Erreur lors du chargement du planning: {}
+[22:31:15.259] Server  LOG      ✓ Compiled in 1741ms
+[22:31:16.089] Browser ERROR   The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
+
+Previous: %s
+Incoming: %s useEffect [0] [, 0]
+[22:31:27.151] Server  LOG      ✓ Compiled in 5.2s
+[22:31:39.855] Server  LOG      ✓ Compiled in 1537ms
+[22:31:58.435] Server  LOG      ✓ Compiled in 3.6s
+[22:32:26.800] Server  LOG      ✓ Compiled in 1628ms
+[22:32:31.293] Server  LOG      ✓ Compiled in 3.4s
+[22:36:13.136] Server  LOG      ✓ Compiled in 1659ms
+[22:36:26.797] Server  LOG      ✓ Compiled in 2.5s
+[22:39:08.559] Server  LOG      ✓ Compiled in 2000ms
+[22:39:13.908] Server  LOG      ✓ Compiled in 1611ms
+[22:40:20.063] Server  LOG      ✓ Compiled in 3.6s
+[22:40:50.935] Server  LOG      ✓ Compiled in 2.8s
+[22:40:52.078] Browser ERROR   {}
+[22:41:20.636] Server  LOG      ✓ Compiled in 2.5s
+[22:41:38.377] Server  LOG      ✓ Compiled in 1686ms
+[22:41:56.137] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:41:56.524] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[22:41:56.524] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/manager","route":"/manager"}
+[22:41:56.524] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/manager color: rgb(120, 120, 120) color: inherit {"dp":"/manager","o":"http://localhost:3000/manager","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1766065887361}
+[22:41:56.659] Browser ERROR   {}
+[22:41:56.781] Browser ERROR   {}
+[22:41:56.781] Browser ERROR   Erreur chargement RDV {}
+[22:41:56.781] Browser ERROR   Erreur chargement RDV {}
+[22:43:52.292] Server  LOG      ✓ Compiled in 1713ms
+[22:43:55.867] Server  LOG      ✓ Compiled in 1475ms
+[22:44:01.221] Server  LOG      ✓ Compiled in 5.1s
+[22:44:07.820] Server  LOG      ✓ Compiled in 2.6s
+[22:44:11.932] Server  LOG      ✓ Compiled in 1939ms
+[22:44:30.495] Server  LOG      ✓ Compiled in 8s
+[22:44:43.172] Server  LOG      ✓ Compiled in 6.9s
+[22:44:45.810] Server  LOG      ✓ Compiled in 1729ms
+[22:44:56.553] Server  LOG      ✓ Compiled in 1822ms
+[22:44:58.761] Server  LOG      ✓ Compiled in 1674ms
+[22:45:05.308] Server  LOG      ✓ Compiled in 3.5s
+[22:45:11.162] Server  LOG      ✓ Compiled in 5.7s
+[22:45:14.268] Server  LOG      ✓ Compiled in 1723ms
+[22:45:19.487] Server  LOG      ✓ Compiled in 3.5s
+[22:45:32.169] Browser ERROR   Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `StaffPlanning`. 
+[22:45:32.169] Browser ERROR   Erreur chargement RDV {}
+[22:45:32.169] Browser ERROR   Erreur chargement RDV {}

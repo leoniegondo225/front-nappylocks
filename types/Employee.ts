@@ -7,6 +7,7 @@
   role: string;
   status: "active" | "inactive" | "vacation";
   joinDate: string;
+  salonId: string; 
   specialties: string[];
   avatar?: string;
 }

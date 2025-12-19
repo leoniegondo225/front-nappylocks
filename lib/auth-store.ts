@@ -11,6 +11,7 @@ export interface User {
   role: UserRole
   createdAt: string
   avatar?: string
+  salonId?: string
 }
 
 interface AuthState {

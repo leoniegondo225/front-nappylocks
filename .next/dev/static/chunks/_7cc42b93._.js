@@ -1292,69 +1292,26 @@ __turbopack_context__.s([
     "AppointmentsList",
     ()=>AppointmentsList
 ]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = /*#__PURE__*/ __turbopack_context__.i("[project]/node_modules/next/dist/build/polyfills/process.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/card.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/badge.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$globe$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Globe$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/globe.js [app-client] (ecmascript) <export default as Globe>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Store$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/store.js [app-client] (ecmascript) <export default as Store>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
 ;
-const appointments = [
-    {
-        id: "1",
-        time: "09:00",
-        client: "Marie Dubois",
-        service: "Tresses Africaines",
-        stylist: "Amina",
-        status: "confirmed",
-        origin: "online"
-    },
-    {
-        id: "2",
-        time: "10:30",
-        client: "Julien Martin",
-        service: "Coupe Homme",
-        stylist: "Fatou",
-        status: "arrived",
-        origin: "instore"
-    },
-    {
-        id: "3",
-        time: "11:00",
-        client: "Carole Lefebvre",
-        service: "Soin Profond",
-        stylist: "Amina",
-        status: "confirmed",
-        origin: "online"
-    },
-    {
-        id: "4",
-        time: "12:30",
-        client: "David Bernard",
-        service: "Défrisage",
-        stylist: "Yasmine",
-        status: "inprogress",
-        origin: "online"
-    },
-    {
-        id: "5",
-        time: "14:00",
-        client: "Sophie Petit",
-        service: "Coloration",
-        stylist: "Fatou",
-        status: "confirmed",
-        origin: "instore"
-    }
-];
 const statusConfig = {
     confirmed: {
         label: "Confirmé",
         color: "bg-blue-100 text-blue-800"
     },
     arrived: {
-        label: "Arrivé",
+        label: "En attente",
         color: "bg-green-100 text-green-800"
     },
     inprogress: {
@@ -1366,7 +1323,66 @@ const statusConfig = {
         color: "bg-gray-100 text-gray-800"
     }
 };
+const mapStatus = (status)=>{
+    switch(status){
+        case "CONFIRMED":
+            return "confirmed";
+        case "PENDING":
+            return "arrived";
+        case "CANCELLED":
+            return "completed";
+        default:
+            return "confirmed";
+    }
+};
+const mapOrigin = (source)=>source === "ONLINE" ? "online" : "instore";
 function AppointmentsList() {
+    _s();
+    const [appointments, setAppointments] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AppointmentsList.useEffect": ()=>{
+            const fetchRdvs = {
+                "AppointmentsList.useEffect.fetchRdvs": async ()=>{
+                    try {
+                        const res = await fetch(`${__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$polyfills$2f$process$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].env.NEXT_PUBLIC_API_URL}/rdv/gerant`, {
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem("token")}`
+                            }
+                        });
+                        const data = await res.json();
+                        const formatted = data.map({
+                            "AppointmentsList.useEffect.fetchRdvs.formatted": (rdv)=>({
+                                    id: rdv._id,
+                                    time: rdv.time,
+                                    client: `${rdv.clientId?.prenom} ${rdv.clientId?.nom}`,
+                                    service: rdv.service,
+                                    stylist: rdv.coiffeur || "-",
+                                    status: mapStatus(rdv.status),
+                                    origin: mapOrigin(rdv.source)
+                                })
+                        }["AppointmentsList.useEffect.fetchRdvs.formatted"]);
+                        setAppointments(formatted);
+                    } catch (error) {
+                        console.error("Erreur chargement RDV", error);
+                    } finally{
+                        setLoading(false);
+                    }
+                }
+            }["AppointmentsList.useEffect.fetchRdvs"];
+            fetchRdvs();
+        }
+    }["AppointmentsList.useEffect"], []);
+    if (loading) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+            className: "text-sm text-muted-foreground",
+            children: "Chargement..."
+        }, void 0, false, {
+            fileName: "[project]/components/manager/appointments-list.tsx",
+            lineNumber: 82,
+            columnNumber: 12
+        }, this);
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
@@ -1375,12 +1391,12 @@ function AppointmentsList() {
                     children: "Liste des rendez-vous"
                 }, void 0, false, {
                     fileName: "[project]/components/manager/appointments-list.tsx",
-                    lineNumber: 75,
+                    lineNumber: 89,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/manager/appointments-list.tsx",
-                lineNumber: 74,
+                lineNumber: 88,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -1399,7 +1415,7 @@ function AppointmentsList() {
                                                 children: "HEURE"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 82,
+                                                lineNumber: 96,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1407,7 +1423,7 @@ function AppointmentsList() {
                                                 children: "CLIENT"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 83,
+                                                lineNumber: 97,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1415,7 +1431,7 @@ function AppointmentsList() {
                                                 children: "SERVICE"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 84,
+                                                lineNumber: 98,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1423,7 +1439,7 @@ function AppointmentsList() {
                                                 children: "COIFFEUR/SE"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 85,
+                                                lineNumber: 99,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1431,7 +1447,7 @@ function AppointmentsList() {
                                                 children: "STATUT"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 86,
+                                                lineNumber: 100,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1439,18 +1455,18 @@ function AppointmentsList() {
                                                 children: "ORIGINE"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 87,
+                                                lineNumber: 101,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                        lineNumber: 81,
+                                        lineNumber: 95,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                    lineNumber: 80,
+                                    lineNumber: 94,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1462,7 +1478,7 @@ function AppointmentsList() {
                                                     children: apt.time
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 93,
+                                                    lineNumber: 107,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1470,7 +1486,7 @@ function AppointmentsList() {
                                                     children: apt.client
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 94,
+                                                    lineNumber: 108,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1478,7 +1494,7 @@ function AppointmentsList() {
                                                     children: apt.service
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 95,
+                                                    lineNumber: 109,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1486,7 +1502,7 @@ function AppointmentsList() {
                                                     children: apt.stylist
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 96,
+                                                    lineNumber: 110,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1497,12 +1513,12 @@ function AppointmentsList() {
                                                         children: statusConfig[apt.status].label
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                                        lineNumber: 98,
+                                                        lineNumber: 112,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 97,
+                                                    lineNumber: 111,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1511,40 +1527,40 @@ function AppointmentsList() {
                                                         className: "w-5 h-5 text-blue-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                                        lineNumber: 104,
+                                                        lineNumber: 118,
                                                         columnNumber: 23
                                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$store$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Store$3e$__["Store"], {
                                                         className: "w-5 h-5 text-gray-600"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                                        lineNumber: 106,
+                                                        lineNumber: 120,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 102,
+                                                    lineNumber: 116,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, apt.id, true, {
                                             fileName: "[project]/components/manager/appointments-list.tsx",
-                                            lineNumber: 92,
+                                            lineNumber: 106,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                    lineNumber: 90,
+                                    lineNumber: 104,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/manager/appointments-list.tsx",
-                            lineNumber: 79,
+                            lineNumber: 93,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/manager/appointments-list.tsx",
-                        lineNumber: 78,
+                        lineNumber: 92,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1562,7 +1578,7 @@ function AppointmentsList() {
                                                         children: apt.client
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                                        lineNumber: 120,
+                                                        lineNumber: 134,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1570,13 +1586,13 @@ function AppointmentsList() {
                                                         children: apt.service
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                                        lineNumber: 121,
+                                                        lineNumber: 135,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 119,
+                                                lineNumber: 133,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -1585,13 +1601,13 @@ function AppointmentsList() {
                                                 children: statusConfig[apt.status].label
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 123,
+                                                lineNumber: 137,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                        lineNumber: 118,
+                                        lineNumber: 132,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1602,7 +1618,7 @@ function AppointmentsList() {
                                                 children: apt.time
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 142,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1610,13 +1626,13 @@ function AppointmentsList() {
                                                 children: apt.stylist
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                                lineNumber: 129,
+                                                lineNumber: 143,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                        lineNumber: 127,
+                                        lineNumber: 141,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1628,20 +1644,20 @@ function AppointmentsList() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 134,
+                                                    lineNumber: 148,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: "En ligne"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 135,
+                                                    lineNumber: 149,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/manager/appointments-list.tsx",
-                                            lineNumber: 133,
+                                            lineNumber: 147,
                                             columnNumber: 19
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex items-center gap-1 text-xs text-gray-600",
@@ -1650,51 +1666,52 @@ function AppointmentsList() {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 139,
+                                                    lineNumber: 153,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     children: "Sur place"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/appointments-list.tsx",
-                                                    lineNumber: 140,
+                                                    lineNumber: 154,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/manager/appointments-list.tsx",
-                                            lineNumber: 138,
+                                            lineNumber: 152,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/manager/appointments-list.tsx",
-                                        lineNumber: 131,
+                                        lineNumber: 145,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, apt.id, true, {
                                 fileName: "[project]/components/manager/appointments-list.tsx",
-                                lineNumber: 117,
+                                lineNumber: 131,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/components/manager/appointments-list.tsx",
-                        lineNumber: 115,
+                        lineNumber: 129,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/manager/appointments-list.tsx",
-                lineNumber: 77,
+                lineNumber: 91,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/manager/appointments-list.tsx",
-        lineNumber: 73,
+        lineNumber: 87,
         columnNumber: 5
     }, this);
 }
+_s(AppointmentsList, "SC/8TMxs51DlsvS6TaWs1IZo4Q8=");
 _c = AppointmentsList;
 var _c;
 __turbopack_context__.k.register(_c, "AppointmentsList");
@@ -3613,6 +3630,13 @@ function ClientsTab() {
         price: "",
         notes: ""
     });
+    const formatDateTime = (date)=>{
+        if (!date) return "—";
+        return new Date(date).toLocaleString("fr-FR", {
+            dateStyle: "short",
+            timeStyle: "short"
+        });
+    };
     const employees = [
         "Amina",
         "Fatou",
@@ -3839,7 +3863,7 @@ function ClientsTab() {
             children: "⭐ VIP"
         }, void 0, false, {
             fileName: "[project]/components/manager/clients-tab.tsx",
-            lineNumber: 268,
+            lineNumber: 278,
             columnNumber: 30
         }, this);
         if (visits >= 10) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -3847,7 +3871,7 @@ function ClientsTab() {
             children: "💎 Fidèle"
         }, void 0, false, {
             fileName: "[project]/components/manager/clients-tab.tsx",
-            lineNumber: 269,
+            lineNumber: 279,
             columnNumber: 30
         }, this);
         if (visits >= 3) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -3855,7 +3879,7 @@ function ClientsTab() {
             children: "✓ Habitué"
         }, void 0, false, {
             fileName: "[project]/components/manager/clients-tab.tsx",
-            lineNumber: 270,
+            lineNumber: 280,
             columnNumber: 29
         }, this);
         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -3863,7 +3887,7 @@ function ClientsTab() {
             children: "✨ Nouveau"
         }, void 0, false, {
             fileName: "[project]/components/manager/clients-tab.tsx",
-            lineNumber: 271,
+            lineNumber: 281,
             columnNumber: 12
         }, this);
     };
@@ -3875,7 +3899,7 @@ function ClientsTab() {
                     className: "animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500"
                 }, void 0, false, {
                     fileName: "[project]/components/manager/clients-tab.tsx",
-                    lineNumber: 277,
+                    lineNumber: 287,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3883,13 +3907,13 @@ function ClientsTab() {
                     children: "Chargement des clients..."
                 }, void 0, false, {
                     fileName: "[project]/components/manager/clients-tab.tsx",
-                    lineNumber: 278,
+                    lineNumber: 288,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/manager/clients-tab.tsx",
-            lineNumber: 276,
+            lineNumber: 286,
             columnNumber: 7
         }, this);
     }
@@ -3906,7 +3930,7 @@ function ClientsTab() {
                                 children: "Gestion des Clients"
                             }, void 0, false, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 288,
+                                lineNumber: 298,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3920,13 +3944,13 @@ function ClientsTab() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 289,
+                                lineNumber: 299,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/manager/clients-tab.tsx",
-                        lineNumber: 287,
+                        lineNumber: 297,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -3937,20 +3961,20 @@ function ClientsTab() {
                                 className: "w-4 h-4 mr-2"
                             }, void 0, false, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 292,
+                                lineNumber: 302,
                                 columnNumber: 11
                             }, this),
                             " Nouveau client"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/manager/clients-tab.tsx",
-                        lineNumber: 291,
+                        lineNumber: 301,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/manager/clients-tab.tsx",
-                lineNumber: 286,
+                lineNumber: 296,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3960,7 +3984,7 @@ function ClientsTab() {
                         className: "absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground"
                     }, void 0, false, {
                         fileName: "[project]/components/manager/clients-tab.tsx",
-                        lineNumber: 298,
+                        lineNumber: 308,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3970,13 +3994,13 @@ function ClientsTab() {
                         onChange: (e)=>setSearchTerm(e.target.value)
                     }, void 0, false, {
                         fileName: "[project]/components/manager/clients-tab.tsx",
-                        lineNumber: 299,
+                        lineNumber: 309,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/manager/clients-tab.tsx",
-                lineNumber: 297,
+                lineNumber: 307,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3998,7 +4022,7 @@ function ClientsTab() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 313,
+                                                lineNumber: 323,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4013,7 +4037,7 @@ function ClientsTab() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                                        lineNumber: 317,
+                                                        lineNumber: 327,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4023,14 +4047,14 @@ function ClientsTab() {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                lineNumber: 321,
+                                                                lineNumber: 331,
                                                                 columnNumber: 21
                                                             }, this),
                                                             client.telephone
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                                        lineNumber: 320,
+                                                        lineNumber: 330,
                                                         columnNumber: 19
                                                     }, this),
                                                     client.email && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4040,26 +4064,26 @@ function ClientsTab() {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                lineNumber: 326,
+                                                                lineNumber: 336,
                                                                 columnNumber: 23
                                                             }, this),
                                                             client.email
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                                        lineNumber: 325,
+                                                        lineNumber: 335,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 316,
+                                                lineNumber: 326,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                        lineNumber: 312,
+                                        lineNumber: 322,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4075,30 +4099,48 @@ function ClientsTab() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 334,
+                                                lineNumber: 344,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                        lineNumber: 332,
+                                        lineNumber: 342,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 311,
+                                lineNumber: 321,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "mt-5 flex items-center justify-between",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-xs text-muted-foreground",
-                                        children: client.createdBy ? `Par ${client.createdBy.username}` : "—"
-                                    }, void 0, false, {
+                                        className: "text-xs text-muted-foreground space-y-1",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: client.createdBy ? `Par ${client.createdBy.username}` : "—"
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/manager/clients-tab.tsx",
+                                                lineNumber: 352,
+                                                columnNumber: 16
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                children: [
+                                                    "Créé le ",
+                                                    formatDateTime(client.createdAt)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/components/manager/clients-tab.tsx",
+                                                lineNumber: 355,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                        lineNumber: 339,
+                                        lineNumber: 349,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4113,14 +4155,14 @@ function ClientsTab() {
                                                         className: "w-4 h-4 mr-2"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                                        lineNumber: 344,
+                                                        lineNumber: 361,
                                                         columnNumber: 19
                                                     }, this),
                                                     "Modifier"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 343,
+                                                lineNumber: 360,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -4130,30 +4172,30 @@ function ClientsTab() {
                                                 children: "Nouvelle prestation"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 347,
+                                                lineNumber: 364,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                        lineNumber: 342,
+                                        lineNumber: 359,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 338,
+                                lineNumber: 348,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, client._id, true, {
                         fileName: "[project]/components/manager/clients-tab.tsx",
-                        lineNumber: 310,
+                        lineNumber: 320,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/components/manager/clients-tab.tsx",
-                lineNumber: 308,
+                lineNumber: 318,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4172,7 +4214,7 @@ function ClientsTab() {
                                             children: "Client"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 362,
+                                            lineNumber: 379,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -4180,7 +4222,7 @@ function ClientsTab() {
                                             children: "Contact"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 363,
+                                            lineNumber: 380,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -4188,7 +4230,7 @@ function ClientsTab() {
                                             children: "Statut"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 364,
+                                            lineNumber: 381,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -4196,7 +4238,15 @@ function ClientsTab() {
                                             children: "Créé par"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 365,
+                                            lineNumber: 382,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                            className: "text-left px-6 py-4 font-medium",
+                                            children: "Créé le"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 383,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -4204,18 +4254,18 @@ function ClientsTab() {
                                             children: "Actions"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 366,
+                                            lineNumber: 384,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 361,
+                                    lineNumber: 378,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 360,
+                                lineNumber: 377,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -4236,7 +4286,7 @@ function ClientsTab() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 374,
+                                                            lineNumber: 392,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4249,23 +4299,23 @@ function ClientsTab() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                lineNumber: 378,
+                                                                lineNumber: 396,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 377,
+                                                            lineNumber: 395,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 373,
+                                                    lineNumber: 391,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 372,
+                                                lineNumber: 390,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -4280,14 +4330,14 @@ function ClientsTab() {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                    lineNumber: 385,
+                                                                    lineNumber: 403,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 client.telephone
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 384,
+                                                            lineNumber: 402,
                                                             columnNumber: 23
                                                         }, this),
                                                         client.email && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4297,25 +4347,25 @@ function ClientsTab() {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                    lineNumber: 390,
+                                                                    lineNumber: 408,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 client.email
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 389,
+                                                            lineNumber: 407,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 383,
+                                                    lineNumber: 401,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 382,
+                                                lineNumber: 400,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -4333,18 +4383,18 @@ function ClientsTab() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 399,
+                                                            lineNumber: 417,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 397,
+                                                    lineNumber: 415,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 396,
+                                                lineNumber: 414,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -4352,7 +4402,15 @@ function ClientsTab() {
                                                 children: client.createdBy ? client.createdBy.username : "—"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 402,
+                                                lineNumber: 420,
+                                                columnNumber: 19
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                className: "px-6 py-5 text-muted-foreground text-sm",
+                                                children: formatDateTime(client.createdAt)
+                                            }, void 0, false, {
+                                                fileName: "[project]/components/manager/clients-tab.tsx",
+                                                lineNumber: 423,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -4369,14 +4427,14 @@ function ClientsTab() {
                                                                     className: "w-4 h-4 mr-2"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                    lineNumber: 408,
+                                                                    lineNumber: 430,
                                                                     columnNumber: 25
                                                                 }, this),
                                                                 "Modifier"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 407,
+                                                            lineNumber: 429,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -4386,45 +4444,45 @@ function ClientsTab() {
                                                             children: "Nouvelle prestation"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 411,
+                                                            lineNumber: 433,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 406,
+                                                    lineNumber: 428,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                lineNumber: 405,
+                                                lineNumber: 427,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, client._id, true, {
                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                        lineNumber: 371,
+                                        lineNumber: 389,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 369,
+                                lineNumber: 387,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/manager/clients-tab.tsx",
-                        lineNumber: 359,
+                        lineNumber: 376,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/manager/clients-tab.tsx",
-                    lineNumber: 358,
+                    lineNumber: 375,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/manager/clients-tab.tsx",
-                lineNumber: 357,
+                lineNumber: 374,
                 columnNumber: 7
             }, this),
             filteredClients.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4434,20 +4492,20 @@ function ClientsTab() {
                         className: "w-16 h-16 mx-auto mb-4 opacity-30"
                     }, void 0, false, {
                         fileName: "[project]/components/manager/clients-tab.tsx",
-                        lineNumber: 425,
+                        lineNumber: 447,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: searchTerm ? "Aucun client ne correspond à votre recherche" : "Aucun client enregistré pour le moment"
                     }, void 0, false, {
                         fileName: "[project]/components/manager/clients-tab.tsx",
-                        lineNumber: 426,
+                        lineNumber: 448,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/manager/clients-tab.tsx",
-                lineNumber: 424,
+                lineNumber: 446,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -4461,12 +4519,12 @@ function ClientsTab() {
                                 children: "Ajouter un nouveau client"
                             }, void 0, false, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 433,
+                                lineNumber: 455,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/manager/clients-tab.tsx",
-                            lineNumber: 433,
+                            lineNumber: 455,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4481,7 +4539,7 @@ function ClientsTab() {
                                                     children: "Prénom"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 437,
+                                                    lineNumber: 459,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4489,13 +4547,13 @@ function ClientsTab() {
                                                     onChange: (e)=>handleClientChange("prenom", e.target.value)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 438,
+                                                    lineNumber: 460,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 436,
+                                            lineNumber: 458,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4504,7 +4562,7 @@ function ClientsTab() {
                                                     children: "Nom"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 441,
+                                                    lineNumber: 463,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4512,19 +4570,19 @@ function ClientsTab() {
                                                     onChange: (e)=>handleClientChange("nom", e.target.value)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 442,
+                                                    lineNumber: 464,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 440,
+                                            lineNumber: 462,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 435,
+                                    lineNumber: 457,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4533,7 +4591,7 @@ function ClientsTab() {
                                             children: "Téléphone"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 446,
+                                            lineNumber: 468,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4541,13 +4599,13 @@ function ClientsTab() {
                                             onChange: (e)=>handleClientChange("telephone", e.target.value)
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 447,
+                                            lineNumber: 469,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 445,
+                                    lineNumber: 467,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4556,7 +4614,7 @@ function ClientsTab() {
                                             children: "Email (facultatif)"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 450,
+                                            lineNumber: 472,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -4565,13 +4623,13 @@ function ClientsTab() {
                                             onChange: (e)=>handleClientChange("email", e.target.value)
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 451,
+                                            lineNumber: 473,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 449,
+                                    lineNumber: 471,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4580,7 +4638,7 @@ function ClientsTab() {
                                             children: "Notes"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 454,
+                                            lineNumber: 476,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -4589,19 +4647,19 @@ function ClientsTab() {
                                             onChange: (e)=>handleClientChange("notes", e.target.value)
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 455,
+                                            lineNumber: 477,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 453,
+                                    lineNumber: 475,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/manager/clients-tab.tsx",
-                            lineNumber: 434,
+                            lineNumber: 456,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -4612,217 +4670,12 @@ function ClientsTab() {
                                     children: "Annuler"
                                 }, void 0, false, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 459,
+                                    lineNumber: 481,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                     onClick: handleAddClient,
                                     children: "Enregistrer le client"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 460,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/manager/clients-tab.tsx",
-                            lineNumber: 458,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/components/manager/clients-tab.tsx",
-                    lineNumber: 432,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/components/manager/clients-tab.tsx",
-                lineNumber: 431,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
-                open: isEditDialogOpen,
-                onOpenChange: setIsEditDialogOpen,
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
-                    className: "sm:max-w-xl",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
-                                children: "Modifier le client"
-                            }, void 0, false, {
-                                fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 468,
-                                columnNumber: 25
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/components/manager/clients-tab.tsx",
-                            lineNumber: 468,
-                            columnNumber: 11
-                        }, this),
-                        selectedClient && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "grid gap-5 py-4",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "grid grid-cols-2 gap-4",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                    children: "Prénom"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 472,
-                                                    columnNumber: 22
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                    value: selectedClient.prenom,
-                                                    onChange: (e)=>setSelectedClient({
-                                                            ...selectedClient,
-                                                            prenom: e.target.value
-                                                        })
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 472,
-                                                    columnNumber: 43
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 472,
-                                            columnNumber: 17
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                    children: "Nom"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 473,
-                                                    columnNumber: 22
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                    value: selectedClient.nom,
-                                                    onChange: (e)=>setSelectedClient({
-                                                            ...selectedClient,
-                                                            nom: e.target.value
-                                                        })
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 473,
-                                                    columnNumber: 40
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 473,
-                                            columnNumber: 17
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 471,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                            children: "Téléphone"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 475,
-                                            columnNumber: 20
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                            value: selectedClient.telephone,
-                                            onChange: (e)=>setSelectedClient({
-                                                    ...selectedClient,
-                                                    telephone: e.target.value
-                                                })
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 475,
-                                            columnNumber: 44
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 475,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                            children: "Email (facultatif)"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 476,
-                                            columnNumber: 20
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                            type: "email",
-                                            value: selectedClient.email || "",
-                                            onChange: (e)=>setSelectedClient({
-                                                    ...selectedClient,
-                                                    email: e.target.value || undefined
-                                                })
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 476,
-                                            columnNumber: 53
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 476,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                            children: "Notes"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 477,
-                                            columnNumber: 20
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
-                                            className: "min-h-32",
-                                            value: selectedClient.notes || "",
-                                            onChange: (e)=>setSelectedClient({
-                                                    ...selectedClient,
-                                                    notes: e.target.value || undefined
-                                                })
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 477,
-                                            columnNumber: 40
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 477,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/manager/clients-tab.tsx",
-                            lineNumber: 470,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                    variant: "outline",
-                                    onClick: ()=>setIsEditDialogOpen(false),
-                                    children: "Annuler"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 481,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                    onClick: handleUpdateClient,
-                                    children: "Mettre à jour"
                                 }, void 0, false, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
                                     lineNumber: 482,
@@ -4837,12 +4690,217 @@ function ClientsTab() {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/manager/clients-tab.tsx",
-                    lineNumber: 467,
+                    lineNumber: 454,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/manager/clients-tab.tsx",
-                lineNumber: 466,
+                lineNumber: 453,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
+                open: isEditDialogOpen,
+                onOpenChange: setIsEditDialogOpen,
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
+                    className: "sm:max-w-xl",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
+                                children: "Modifier le client"
+                            }, void 0, false, {
+                                fileName: "[project]/components/manager/clients-tab.tsx",
+                                lineNumber: 490,
+                                columnNumber: 25
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/components/manager/clients-tab.tsx",
+                            lineNumber: 490,
+                            columnNumber: 11
+                        }, this),
+                        selectedClient && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "grid gap-5 py-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "grid grid-cols-2 gap-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    children: "Prénom"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                                    lineNumber: 494,
+                                                    columnNumber: 22
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    value: selectedClient.prenom,
+                                                    onChange: (e)=>setSelectedClient({
+                                                            ...selectedClient,
+                                                            prenom: e.target.value
+                                                        })
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                                    lineNumber: 494,
+                                                    columnNumber: 43
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 494,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    children: "Nom"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                                    lineNumber: 495,
+                                                    columnNumber: 22
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    value: selectedClient.nom,
+                                                    onChange: (e)=>setSelectedClient({
+                                                            ...selectedClient,
+                                                            nom: e.target.value
+                                                        })
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                                    lineNumber: 495,
+                                                    columnNumber: 40
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 495,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                    lineNumber: 493,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            children: "Téléphone"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 497,
+                                            columnNumber: 20
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                            value: selectedClient.telephone,
+                                            onChange: (e)=>setSelectedClient({
+                                                    ...selectedClient,
+                                                    telephone: e.target.value
+                                                })
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 497,
+                                            columnNumber: 44
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                    lineNumber: 497,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            children: "Email (facultatif)"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 498,
+                                            columnNumber: 20
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                            type: "email",
+                                            value: selectedClient.email || "",
+                                            onChange: (e)=>setSelectedClient({
+                                                    ...selectedClient,
+                                                    email: e.target.value || undefined
+                                                })
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 498,
+                                            columnNumber: 53
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                    lineNumber: 498,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            children: "Notes"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 499,
+                                            columnNumber: 20
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
+                                            className: "min-h-32",
+                                            value: selectedClient.notes || "",
+                                            onChange: (e)=>setSelectedClient({
+                                                    ...selectedClient,
+                                                    notes: e.target.value || undefined
+                                                })
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/manager/clients-tab.tsx",
+                                            lineNumber: 499,
+                                            columnNumber: 40
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                    lineNumber: 499,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/manager/clients-tab.tsx",
+                            lineNumber: 492,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    variant: "outline",
+                                    onClick: ()=>setIsEditDialogOpen(false),
+                                    children: "Annuler"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                    lineNumber: 503,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                    onClick: handleUpdateClient,
+                                    children: "Mettre à jour"
+                                }, void 0, false, {
+                                    fileName: "[project]/components/manager/clients-tab.tsx",
+                                    lineNumber: 504,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/manager/clients-tab.tsx",
+                            lineNumber: 502,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/manager/clients-tab.tsx",
+                    lineNumber: 489,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/components/manager/clients-tab.tsx",
+                lineNumber: 488,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -4861,12 +4919,12 @@ function ClientsTab() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                lineNumber: 491,
+                                lineNumber: 513,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/manager/clients-tab.tsx",
-                            lineNumber: 490,
+                            lineNumber: 512,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4878,7 +4936,7 @@ function ClientsTab() {
                                             children: "Prestation"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 495,
+                                            lineNumber: 517,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
@@ -4893,12 +4951,12 @@ function ClientsTab() {
                                                         placeholder: "Choisir une prestation..."
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                                        lineNumber: 497,
+                                                        lineNumber: 519,
                                                         columnNumber: 32
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 497,
+                                                    lineNumber: 519,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4911,7 +4969,7 @@ function ClientsTab() {
                                                                         children: service.name
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                        lineNumber: 502,
+                                                                        lineNumber: 524,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -4922,35 +4980,35 @@ function ClientsTab() {
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                        lineNumber: 503,
+                                                                        lineNumber: 525,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/manager/clients-tab.tsx",
-                                                                lineNumber: 501,
+                                                                lineNumber: 523,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, service._id, false, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 500,
+                                                            lineNumber: 522,
                                                             columnNumber: 21
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 498,
+                                                    lineNumber: 520,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 496,
+                                            lineNumber: 518,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 494,
+                                    lineNumber: 516,
                                     columnNumber: 13
                                 }, this),
                                 selectedService && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4964,7 +5022,7 @@ function ClientsTab() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 513,
+                                            lineNumber: 535,
                                             columnNumber: 35
                                         }, this),
                                         " • Durée : ",
@@ -4975,13 +5033,13 @@ function ClientsTab() {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 513,
+                                            lineNumber: 535,
                                             columnNumber: 87
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 512,
+                                    lineNumber: 534,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4990,7 +5048,7 @@ function ClientsTab() {
                                             children: "Coiffeur/se"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 518,
+                                            lineNumber: 540,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
@@ -5005,12 +5063,12 @@ function ClientsTab() {
                                                         placeholder: "Sélectionner..."
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/manager/clients-tab.tsx",
-                                                        lineNumber: 520,
+                                                        lineNumber: 542,
                                                         columnNumber: 32
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 520,
+                                                    lineNumber: 542,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -5019,24 +5077,24 @@ function ClientsTab() {
                                                             children: e
                                                         }, e, false, {
                                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                                            lineNumber: 522,
+                                                            lineNumber: 544,
                                                             columnNumber: 41
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                                    lineNumber: 521,
+                                                    lineNumber: 543,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 519,
+                                            lineNumber: 541,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 517,
+                                    lineNumber: 539,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5045,7 +5103,7 @@ function ClientsTab() {
                                             children: "Prix facturé (€)"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 528,
+                                            lineNumber: 550,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -5058,7 +5116,7 @@ function ClientsTab() {
                                             placeholder: "Prix automatique"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 529,
+                                            lineNumber: 551,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5066,13 +5124,13 @@ function ClientsTab() {
                                             children: "Vous pouvez modifier pour une remise ou un supplément"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 535,
+                                            lineNumber: 557,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 527,
+                                    lineNumber: 549,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5081,7 +5139,7 @@ function ClientsTab() {
                                             children: "Notes"
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 539,
+                                            lineNumber: 561,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -5093,19 +5151,19 @@ function ClientsTab() {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/manager/clients-tab.tsx",
-                                            lineNumber: 540,
+                                            lineNumber: 562,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 538,
+                                    lineNumber: 560,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/manager/clients-tab.tsx",
-                            lineNumber: 493,
+                            lineNumber: 515,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -5116,7 +5174,7 @@ function ClientsTab() {
                                     children: "Annuler"
                                 }, void 0, false, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 548,
+                                    lineNumber: 570,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -5124,30 +5182,30 @@ function ClientsTab() {
                                     children: "Enregistrer la prestation"
                                 }, void 0, false, {
                                     fileName: "[project]/components/manager/clients-tab.tsx",
-                                    lineNumber: 549,
+                                    lineNumber: 571,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/manager/clients-tab.tsx",
-                            lineNumber: 547,
+                            lineNumber: 569,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/manager/clients-tab.tsx",
-                    lineNumber: 489,
+                    lineNumber: 511,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/manager/clients-tab.tsx",
-                lineNumber: 488,
+                lineNumber: 510,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/manager/clients-tab.tsx",
-        lineNumber: 284,
+        lineNumber: 294,
         columnNumber: 5
     }, this);
 }
@@ -5636,31 +5694,30 @@ function ServicesTab() {
     _s();
     const { toast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"])();
     const [prestations, setPrestations] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const [categories, setCategories] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [categoriesprestation, setCategoriesprestation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     // Formulaire nouvelle prestation
     const [newService, setNewService] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         name: "",
-        categoryId: "",
+        categoryprestationId: "",
         prices: [
             ""
         ],
         description: ""
     });
     // Formulaire nouvelle catégorie
-    const [newCategoryName, setNewCategoryName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [isCategoryDialogOpen, setIsCategoryDialogOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [newCategoryprestationName, setNewCategoryprestationName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [isCategoryprestationDialogOpen, setIsCategoryprestationDialogOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     // Chargement initial
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ServicesTab.useEffect": ()=>{
             fetchPrestations();
-            fetchCategories();
+            fetchCategoriesprestation();
         }
     }["ServicesTab.useEffect"], []);
     const fetchPrestations = async ()=>{
         try {
-            const res = await fetch("http://localhost:3500/api/allprestations") // ajuste le chemin selon ta route
-            ;
+            const res = await fetch("http://localhost:3500/api/allprestations");
             if (res.ok) {
                 const data = await res.json();
                 setPrestations(data);
@@ -5675,23 +5732,40 @@ function ServicesTab() {
             setLoading(false);
         }
     };
-    const fetchCategories = async ()=>{
+    const fetchCategoriesprestation = async ()=>{
         try {
-            const res = await fetch("http://localhost:3500/api/allcategory") // tu devras créer cette route (GET toutes les catégories)
-            ;
+            const res = await fetch("http://localhost:3500/api/allcategory");
             if (res.ok) {
                 const data = await res.json();
-                setCategories(data);
+                console.log("✅ Catégories reçues :", data);
+                // Nettoyage strict : on garde seulement les catégories valides
+                const cleaned = data.filter((cat)=>cat && typeof cat._id === "string" && cat._id.trim() !== "" && typeof cat.name === "string" && cat.name.trim() !== "").map((cat)=>({
+                        _id: cat._id,
+                        name: cat.name
+                    }));
+                setCategoriesprestation(cleaned);
+            } else {
+                console.error("❌ Erreur HTTP :", res.status, await res.text());
+                toast({
+                    title: "Erreur",
+                    description: "Impossible de charger les catégories",
+                    variant: "destructive"
+                });
             }
         } catch (err) {
-            console.error(err);
+            console.error("🌐 Erreur réseau :", err);
+            toast({
+                title: "Erreur",
+                description: "Problème de connexion",
+                variant: "destructive"
+            });
         }
     };
     const handleAddService = async ()=>{
-        if (!newService.name || !newService.categoryId || newService.prices.length === 0) {
+        if (!newService.name || !newService.categoryprestationId || newService.prices.some((p)=>p === "")) {
             toast({
                 title: "Erreur",
-                description: "Champs obligatoires manquants",
+                description: "Champs obligatoires manquants ou prix invalide",
                 variant: "destructive"
             });
             return;
@@ -5704,7 +5778,7 @@ function ServicesTab() {
                 },
                 body: JSON.stringify({
                     name: newService.name,
-                    categoryId: newService.categoryId,
+                    categoryprestationId: newService.categoryprestationId,
                     prices: newService.prices.map((p)=>Number(p)),
                     description: newService.description || undefined
                 })
@@ -5721,7 +5795,7 @@ function ServicesTab() {
                 });
                 setNewService({
                     name: "",
-                    categoryId: "",
+                    categoryprestationId: "",
                     prices: [
                         ""
                     ],
@@ -5731,7 +5805,7 @@ function ServicesTab() {
                 const error = await res.json();
                 toast({
                     title: "Erreur",
-                    description: error.error || "Échec de l'ajout",
+                    description: error.error || error.message || "Échec de l'ajout",
                     variant: "destructive"
                 });
             }
@@ -5745,9 +5819,10 @@ function ServicesTab() {
     };
     const handleDeleteService = async (id)=>{
         try {
-            const res = await fetch(`http://localhost:3500/api/putprestation/${id}`, {
+            const res = await fetch(`http://localhost:3500/api/delete/${id}`, {
                 method: "DELETE"
-            });
+            }) // Correction de l'URL
+            ;
             if (res.ok) {
                 setPrestations(prestations.filter((p)=>p._id !== id));
                 toast({
@@ -5780,8 +5855,16 @@ function ServicesTab() {
             });
         }
     };
-    const handleCreateCategory = async ()=>{
-        if (!newCategoryName.trim()) return;
+    const handleCreateCategoryprestation = async ()=>{
+        const name = newCategoryprestationName.trim();
+        if (!name) {
+            toast({
+                title: "Erreur",
+                description: "Le nom est obligatoire",
+                variant: "destructive"
+            });
+            return;
+        }
         try {
             const res = await fetch("http://localhost:3500/api/addcategory", {
                 method: "POST",
@@ -5789,30 +5872,34 @@ function ServicesTab() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    name: newCategoryName.trim()
+                    name
                 })
             });
             if (res.ok) {
                 const created = await res.json();
-                setCategories([
-                    ...categories,
-                    created
-                ]);
-                toast({
-                    title: "Catégorie créée",
-                    description: newCategoryName
+                // Recharge complet depuis le serveur → synchronisation parfaite
+                await fetchCategoriesprestation();
+                // Pré-sélectionne la nouvelle catégorie
+                setNewService({
+                    ...newService,
+                    categoryprestationId: created._id
                 });
-                setNewCategoryName("");
-                setIsCategoryDialogOpen(false);
+                toast({
+                    title: "Succès",
+                    description: `Catégorie "${name}" créée !`
+                });
+                setNewCategoryprestationName("");
+                setIsCategoryprestationDialogOpen(false);
             } else {
                 const error = await res.json();
                 toast({
                     title: "Erreur",
-                    description: error.error || "Échec création catégorie",
+                    description: error.message || "Échec création",
                     variant: "destructive"
                 });
             }
         } catch (err) {
+            console.error(err);
             toast({
                 title: "Erreur",
                 description: "Problème de connexion",
@@ -5826,7 +5913,7 @@ function ServicesTab() {
             children: "Chargement..."
         }, void 0, false, {
             fileName: "[project]/components/superadmin/service-tab.tsx",
-            lineNumber: 182,
+            lineNumber: 208,
             columnNumber: 12
         }, this);
     }
@@ -5840,7 +5927,7 @@ function ServicesTab() {
                         children: "Gestion des Prestations"
                     }, void 0, false, {
                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                        lineNumber: 189,
+                        lineNumber: 215,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5852,13 +5939,13 @@ function ServicesTab() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                        lineNumber: 190,
+                        lineNumber: 216,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                lineNumber: 188,
+                lineNumber: 214,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -5872,27 +5959,27 @@ function ServicesTab() {
                                         className: "w-5 h-5"
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                        lineNumber: 199,
+                                        lineNumber: 225,
                                         columnNumber: 13
                                     }, this),
                                     "Nouvelle prestation"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                lineNumber: 198,
+                                lineNumber: 224,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
                                 children: "Ajoutez un service à votre catalogue"
                             }, void 0, false, {
                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                lineNumber: 202,
+                                lineNumber: 228,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                        lineNumber: 197,
+                        lineNumber: 223,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -5907,7 +5994,7 @@ function ServicesTab() {
                                             children: "Nom *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 207,
+                                            lineNumber: 233,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -5920,13 +6007,13 @@ function ServicesTab() {
                                             placeholder: "Ex: Tresses Africaines"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 208,
+                                            lineNumber: 234,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                    lineNumber: 206,
+                                    lineNumber: 232,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5935,14 +6022,14 @@ function ServicesTab() {
                                             children: "Catégorie *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 217,
+                                            lineNumber: 243,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
-                                            value: newService.categoryId,
+                                            value: newService.categoryprestationId,
                                             onValueChange: (v)=>setNewService({
                                                     ...newService,
-                                                    categoryId: v
+                                                    categoryprestationId: v
                                                 }),
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
@@ -5950,37 +6037,45 @@ function ServicesTab() {
                                                         placeholder: "Choisir..."
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 220,
+                                                        lineNumber: 249,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 219,
+                                                    lineNumber: 248,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
-                                                    children: categories.map((cat, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                            value: cat.name,
+                                                    children: categoriesprestation.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                        value: "no-categories",
+                                                        disabled: true,
+                                                        children: "Aucune catégorie disponible"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/superadmin/service-tab.tsx",
+                                                        lineNumber: 253,
+                                                        columnNumber: 21
+                                                    }, this) : categoriesprestation.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                            value: cat._id,
                                                             children: cat.name
-                                                        }, cat._id || `cat-${index}`, false, {
+                                                        }, cat._id, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 224,
-                                                            columnNumber: 21
+                                                            lineNumber: 258,
+                                                            columnNumber: 23
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 222,
+                                                    lineNumber: 251,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 218,
+                                            lineNumber: 244,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
-                                            open: isCategoryDialogOpen,
-                                            onOpenChange: setIsCategoryDialogOpen,
+                                            open: isCategoryprestationDialogOpen,
+                                            onOpenChange: setIsCategoryprestationDialogOpen,
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTrigger"], {
                                                     asChild: true,
@@ -5993,19 +6088,19 @@ function ServicesTab() {
                                                                 className: "w-4 h-4 mr-1"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 233,
+                                                                lineNumber: 269,
                                                                 columnNumber: 21
                                                             }, this),
                                                             "Créer une nouvelle catégorie"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 232,
+                                                        lineNumber: 268,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 231,
+                                                    lineNumber: 267,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
@@ -6016,20 +6111,20 @@ function ServicesTab() {
                                                                     children: "Nouvelle catégorie"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                    lineNumber: 239,
+                                                                    lineNumber: 275,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                                                     children: "Créez une catégorie qui pourra être utilisée pour les prestations"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                    lineNumber: 240,
+                                                                    lineNumber: 276,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 238,
+                                                            lineNumber: 274,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6041,60 +6136,60 @@ function ServicesTab() {
                                                                         children: "Nom de la catégorie"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                        lineNumber: 244,
+                                                                        lineNumber: 282,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                                                                         id: "catname",
-                                                                        value: newCategoryName,
-                                                                        onChange: (e)=>setNewCategoryName(e.target.value),
+                                                                        value: newCategoryprestationName,
+                                                                        onChange: (e)=>setNewCategoryprestationName(e.target.value),
                                                                         placeholder: "Ex: Extensions"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                        lineNumber: 245,
+                                                                        lineNumber: 283,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 243,
+                                                                lineNumber: 281,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 242,
+                                                            lineNumber: 280,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                                onClick: handleCreateCategory,
+                                                                onClick: handleCreateCategoryprestation,
                                                                 children: "Créer"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 254,
+                                                                lineNumber: 292,
                                                                 columnNumber: 21
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 253,
+                                                            lineNumber: 291,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 237,
+                                                    lineNumber: 273,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 230,
+                                            lineNumber: 266,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                    lineNumber: 216,
+                                    lineNumber: 242,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6103,8 +6198,8 @@ function ServicesTab() {
                                             children: "Prix (€) *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 262,
-                                            columnNumber: 3
+                                            lineNumber: 299,
+                                            columnNumber: 15
                                         }, this),
                                         newService.prices.map((p, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex items-center gap-2 mb-2",
@@ -6116,8 +6211,8 @@ function ServicesTab() {
                                                                 className: "absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 266,
-                                                                columnNumber: 9
+                                                                lineNumber: 303,
+                                                                columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                                                                 type: "number",
@@ -6137,36 +6232,35 @@ function ServicesTab() {
                                                                 placeholder: "50.00"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 267,
-                                                                columnNumber: 9
+                                                                lineNumber: 304,
+                                                                columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 265,
-                                                        columnNumber: 7
+                                                        lineNumber: 302,
+                                                        columnNumber: 19
                                                     }, this),
                                                     newService.prices.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                         variant: "destructive",
                                                         size: "sm",
                                                         onClick: ()=>{
-                                                            const newPrices = newService.prices.filter((_, idx)=>idx !== i);
                                                             setNewService({
                                                                 ...newService,
-                                                                prices: newPrices
+                                                                prices: newService.prices.filter((_, idx)=>idx !== i)
                                                             });
                                                         },
                                                         children: "Supprimer"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 281,
-                                                        columnNumber: 9
+                                                        lineNumber: 318,
+                                                        columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, i, true, {
                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                lineNumber: 264,
-                                                columnNumber: 5
+                                                lineNumber: 301,
+                                                columnNumber: 17
                                             }, this)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                             size: "sm",
@@ -6181,13 +6275,13 @@ function ServicesTab() {
                                             children: "Ajouter un prix"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 294,
-                                            columnNumber: 3
+                                            lineNumber: 333,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                    lineNumber: 261,
+                                    lineNumber: 298,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6198,7 +6292,7 @@ function ServicesTab() {
                                             children: "Description"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 307,
+                                            lineNumber: 343,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -6211,13 +6305,13 @@ function ServicesTab() {
                                             rows: 2
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 308,
+                                            lineNumber: 344,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                    lineNumber: 306,
+                                    lineNumber: 342,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6228,29 +6322,29 @@ function ServicesTab() {
                                         children: "Enregistrer"
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                        lineNumber: 317,
+                                        lineNumber: 353,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                    lineNumber: 316,
+                                    lineNumber: 352,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                            lineNumber: 205,
+                            lineNumber: 231,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                        lineNumber: 204,
+                        lineNumber: 230,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                lineNumber: 196,
+                lineNumber: 222,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -6260,12 +6354,12 @@ function ServicesTab() {
                             children: "Liste des prestations"
                         }, void 0, false, {
                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                            lineNumber: 328,
+                            lineNumber: 364,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                        lineNumber: 327,
+                        lineNumber: 363,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -6281,35 +6375,28 @@ function ServicesTab() {
                                                         children: "Prestation"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 335,
+                                                        lineNumber: 372,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                                         children: "Catégorie"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 336,
-                                                        columnNumber: 19
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
-                                                        children: "Durée"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 337,
+                                                        lineNumber: 373,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                                         children: "Prix"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 338,
+                                                        lineNumber: 374,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
                                                         children: "Statut"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 339,
+                                                        lineNumber: 375,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableHead"], {
@@ -6317,22 +6404,22 @@ function ServicesTab() {
                                                         children: "Actions"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 340,
+                                                        lineNumber: 376,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                lineNumber: 334,
+                                                lineNumber: 371,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 333,
+                                            lineNumber: 370,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableBody"], {
-                                            children: prestations.map((service, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableRow"], {
+                                            children: prestations.map((service)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableRow"], {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6342,7 +6429,7 @@ function ServicesTab() {
                                                                         children: service.name
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                        lineNumber: 348,
+                                                                        lineNumber: 384,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     service.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6350,32 +6437,32 @@ function ServicesTab() {
                                                                         children: service.description
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                        lineNumber: 349,
+                                                                        lineNumber: 385,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 347,
+                                                                lineNumber: 383,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 346,
+                                                            lineNumber: 382,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
                                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
                                                                 variant: "outline",
-                                                                children: service.categoryId.name
+                                                                children: service.categoryPrestationId.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 353,
+                                                                lineNumber: 389,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 352,
+                                                            lineNumber: 388,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -6387,12 +6474,12 @@ function ServicesTab() {
                                                                     ]
                                                                 }, idx, true, {
                                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                    lineNumber: 358,
-                                                                    columnNumber: 5
+                                                                    lineNumber: 393,
+                                                                    columnNumber: 25
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 356,
+                                                            lineNumber: 391,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -6402,12 +6489,12 @@ function ServicesTab() {
                                                                 children: service.isActive ? "Active" : "Inactive"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 363,
+                                                                lineNumber: 397,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 362,
+                                                            lineNumber: 396,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$table$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TableCell"], {
@@ -6419,32 +6506,16 @@ function ServicesTab() {
                                                                         variant: "ghost",
                                                                         size: "icon",
                                                                         onClick: ()=>handleToggleActive(service._id),
-                                                                        children: [
-                                                                            service.isActive ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
-                                                                                className: "w-4 h-4"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                                lineNumber: 370,
-                                                                                columnNumber: 47
-                                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
-                                                                                className: "w-4 h-4"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                                lineNumber: 370,
-                                                                                columnNumber: 78
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                                                className: "sr-only",
-                                                                                children: "Activer/Désactiver"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                                lineNumber: 371,
-                                                                                columnNumber: 27
-                                                                            }, this)
-                                                                        ]
-                                                                    }, void 0, true, {
+                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
+                                                                            className: "w-4 h-4"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/superadmin/service-tab.tsx",
+                                                                            lineNumber: 404,
+                                                                            columnNumber: 27
+                                                                        }, this)
+                                                                    }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                        lineNumber: 369,
+                                                                        lineNumber: 403,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -6455,50 +6526,50 @@ function ServicesTab() {
                                                                             className: "w-4 h-4 text-destructive"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                            lineNumber: 374,
+                                                                            lineNumber: 407,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                        lineNumber: 373,
+                                                                        lineNumber: 406,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 368,
+                                                                lineNumber: 402,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 367,
+                                                            lineNumber: 401,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
-                                                }, service._id || `service-${index}`, true, {
+                                                }, service._id, true, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 345,
+                                                    lineNumber: 381,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 343,
+                                            lineNumber: 379,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                    lineNumber: 332,
+                                    lineNumber: 369,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                lineNumber: 331,
+                                lineNumber: 368,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "md:hidden space-y-4",
-                                children: prestations.map((service, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                                children: prestations.map((service)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
                                             className: "p-4",
                                             children: [
@@ -6512,22 +6583,22 @@ function ServicesTab() {
                                                                     children: service.name
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                    lineNumber: 391,
+                                                                    lineNumber: 424,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
                                                                     variant: "outline",
                                                                     className: "mt-1",
-                                                                    children: service.categoryId.name
+                                                                    children: service.categoryPrestationId.name
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                    lineNumber: 392,
+                                                                    lineNumber: 425,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 390,
+                                                            lineNumber: 423,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -6536,13 +6607,13 @@ function ServicesTab() {
                                                             children: service.isActive ? "Active" : "Inactive"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 394,
+                                                            lineNumber: 427,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 389,
+                                                    lineNumber: 422,
                                                     columnNumber: 19
                                                 }, this),
                                                 service.description && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -6550,31 +6621,24 @@ function ServicesTab() {
                                                     children: service.description
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 398,
+                                                    lineNumber: 431,
                                                     columnNumber: 43
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex justify-between mb-4",
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex flex-wrap gap-1",
-                                                        children: service.prices.map((p, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
-                                                                children: [
-                                                                    "€",
-                                                                    p
-                                                                ]
-                                                            }, idx, true, {
-                                                                fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 403,
-                                                                columnNumber: 5
-                                                            }, this))
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                        lineNumber: 401,
-                                                        columnNumber: 21
-                                                    }, this)
+                                                    className: "flex flex-wrap gap-1 mb-4",
+                                                    children: service.prices.map((p, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
+                                                            children: [
+                                                                "€",
+                                                                p
+                                                            ]
+                                                        }, idx, true, {
+                                                            fileName: "[project]/components/superadmin/service-tab.tsx",
+                                                            lineNumber: 434,
+                                                            columnNumber: 23
+                                                        }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 399,
+                                                    lineNumber: 432,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -6590,14 +6654,14 @@ function ServicesTab() {
                                                                     className: "w-4 h-4 mr-2"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                    lineNumber: 410,
+                                                                    lineNumber: 439,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 service.isActive ? "Désactiver" : "Activer"
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 409,
+                                                            lineNumber: 438,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -6609,56 +6673,56 @@ function ServicesTab() {
                                                                 className: "w-4 h-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                                lineNumber: 414,
+                                                                lineNumber: 443,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                            lineNumber: 413,
+                                                            lineNumber: 442,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/superadmin/service-tab.tsx",
-                                                    lineNumber: 408,
+                                                    lineNumber: 437,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/service-tab.tsx",
-                                            lineNumber: 388,
+                                            lineNumber: 421,
                                             columnNumber: 17
                                         }, this)
-                                    }, service._id || `service-mobile-${index}`, false, {
+                                    }, service._id, false, {
                                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                                        lineNumber: 387,
+                                        lineNumber: 420,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                                lineNumber: 385,
+                                lineNumber: 418,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/superadmin/service-tab.tsx",
-                        lineNumber: 330,
+                        lineNumber: 366,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/superadmin/service-tab.tsx",
-                lineNumber: 326,
+                lineNumber: 362,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/superadmin/service-tab.tsx",
-        lineNumber: 186,
+        lineNumber: 212,
         columnNumber: 5
     }, this);
 }
-_s(ServicesTab, "0jSoskZUJnFf85d5vxUNwimjnck=", false, function() {
+_s(ServicesTab, "QBYRRfRrvQCah1C8HH6tzxpc608=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"]
     ];
@@ -6746,7 +6810,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/button.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/input.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/label.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/avatar.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/avatar.tsx [app-client] (ecmascript)"); // AvatarImage retiré
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/badge.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/dialog.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/select.tsx [app-client] (ecmascript)");
@@ -6758,9 +6822,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/phone.js [app-client] (ecmascript) <export default as Phone>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/calendar.js [app-client] (ecmascript) <export default as Calendar>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/hooks/use-toast.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth-store.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -6779,6 +6845,8 @@ function StaffTab() {
     const { toast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"])();
     const [employees, setEmployees] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [salons, setSalons] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [selectedSalon, setSelectedSalon] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [isDialogOpen, setIsDialogOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [editingEmployee, setEditingEmployee] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
@@ -6787,9 +6855,18 @@ function StaffTab() {
         phone: "",
         role: "",
         status: "active",
+        salonId: "",
         specialties: ""
     });
-    // 📌 Charger depuis le backend
+    const token = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"])({
+        "StaffTab.useAuthStore[token]": (state)=>state.token
+    }["StaffTab.useAuthStore[token]"]);
+    // Charger tous les salons
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "StaffTab.useEffect": ()=>{
+            fetchSalon().then(setSalons);
+        }
+    }["StaffTab.useEffect"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "StaffTab.useEffect": ()=>{
             loadEmployees();
@@ -6808,11 +6885,12 @@ function StaffTab() {
             phone: "",
             role: "",
             status: "active",
+            salonId: "",
             specialties: ""
         });
+        setSelectedSalon("");
         setEditingEmployee(null);
     };
-    // 📌 Ajouter
     const handleAddEmployee = async ()=>{
         if (!formData.name || !formData.email || !formData.phone || !formData.role) {
             return toast({
@@ -6821,22 +6899,38 @@ function StaffTab() {
                 variant: "destructive"
             });
         }
+        if (!selectedSalon) {
+            return toast({
+                title: "Erreur",
+                description: "Veuillez sélectionner un salon",
+                variant: "destructive"
+            });
+        }
         const newEmployee = {
             ...formData,
-            specialties: formData.specialties.split(",").map((s)=>s.trim())
+            salonId: selectedSalon,
+            specialties: formData.specialties.split(",").map((s)=>s.trim()).filter(Boolean)
         };
-        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$apiEmployees$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addEmployee"])(newEmployee);
-        toast({
-            title: "Succès",
-            description: "Employé ajouté avec succès"
-        });
-        setIsDialogOpen(false);
-        resetForm();
-        loadEmployees();
+        try {
+            await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$apiEmployees$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["addEmployee"])(newEmployee);
+            toast({
+                title: "Succès",
+                description: "Employé ajouté avec succès"
+            });
+            setIsDialogOpen(false);
+            resetForm();
+            setSelectedSalon("");
+            loadEmployees();
+        } catch (err) {
+            toast({
+                title: "Erreur",
+                description: "Erreur lors de l'ajout de l'employé",
+                variant: "destructive"
+            });
+        }
     };
-    // 📌 Modifier
     const handleEditEmployee = async ()=>{
-        if (!editingEmployee) return; // 🚀 empêche les erreurs
+        if (!editingEmployee) return;
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$apiEmployees$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["updateEmployee"])(editingEmployee._id, {
             ...formData,
             specialties: formData.specialties.split(",").map((s)=>s.trim())
@@ -6848,7 +6942,6 @@ function StaffTab() {
         setIsDialogOpen(false);
         loadEmployees();
     };
-    // 📌 Supprimer
     const handleDeleteEmployee = async (_id)=>{
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$apiEmployees$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["deleteEmployee"])(_id);
         toast({
@@ -6865,6 +6958,7 @@ function StaffTab() {
             phone: employee.phone,
             role: employee.role,
             status: employee.status,
+            salonId: employee.salonId,
             specialties: employee.specialties.join(", ")
         });
         setIsDialogOpen(true);
@@ -6877,26 +6971,33 @@ function StaffTab() {
                 return "bg-gray-100 text-gray-800";
             case "vacation":
                 return "bg-orange-100 text-orange-800";
+            default:
+                return "bg-gray-100 text-gray-800";
         }
     };
     const getStatusLabel = (status)=>{
         return status === "active" ? "Actif" : status === "inactive" ? "Inactif" : "En congé";
     };
-    if (loading) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "text-center py-10 text-muted-foreground",
-        children: "Chargement du personnel..."
-    }, void 0, false, {
-        fileName: "[project]/components/superadmin/staff-tab.tsx",
-        lineNumber: 178,
-        columnNumber: 7
-    }, this);
+    const getInitials = (name)=>{
+        return name.split(" ").map((n)=>n[0]).join("").toUpperCase().slice(0, 2);
+    };
+    if (loading) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "text-center py-10 text-muted-foreground",
+            children: "Chargement du personnel..."
+        }, void 0, false, {
+            fileName: "[project]/components/superadmin/staff-tab.tsx",
+            lineNumber: 218,
+            columnNumber: 7
+        }, this);
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "space-y-4 md:space-y-6",
+        className: "space-y-6",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col sm:flex-row sm:justify-between",
+                        className: "flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
@@ -6904,20 +7005,20 @@ function StaffTab() {
                                         children: "Gestion du Personnel"
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                        lineNumber: 190,
+                                        lineNumber: 231,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardDescription"], {
                                         children: "Ajoutez et gérez votre équipe"
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                        lineNumber: 191,
+                                        lineNumber: 232,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                lineNumber: 189,
+                                lineNumber: 230,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -6930,167 +7031,312 @@ function StaffTab() {
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTrigger"], {
                                         asChild: true,
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                            className: "bg-cyan-500 hover:bg-cyan-600 mt-4 sm:mt-0",
+                                            className: "bg-cyan-500 hover:bg-cyan-600",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UserPlus$3e$__["UserPlus"], {
                                                     className: "w-4 h-4 mr-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                    lineNumber: 203,
+                                                    lineNumber: 244,
                                                     columnNumber: 19
                                                 }, this),
                                                 "Ajouter un employé"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                            lineNumber: 202,
+                                            lineNumber: 243,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                        lineNumber: 201,
+                                        lineNumber: 242,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
+                                        className: "max-w-2xl",
                                         children: [
+                                            "  ",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
                                                         children: editingEmployee ? "Modifier l'employé" : "Ajouter un employé"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 210,
-                                                        columnNumber: 19
+                                                        lineNumber: 253,
+                                                        columnNumber: 5
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogDescription"], {
-                                                        children: "Remplissez les informations"
+                                                        children: "Remplissez les informations de l'employé"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 213,
-                                                        columnNumber: 19
+                                                        lineNumber: 256,
+                                                        columnNumber: 5
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 209,
-                                                columnNumber: 17
+                                                lineNumber: 252,
+                                                columnNumber: 3
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "space-y-3 py-3",
+                                                className: "py-4",
                                                 children: [
-                                                    [
-                                                        "name",
-                                                        "email",
-                                                        "phone",
-                                                        "role"
-                                                    ].map((field)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: "space-y-1",
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                                    children: field.toUpperCase()
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                    lineNumber: 221,
-                                                                    columnNumber: 7
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                                    value: formData[field],
-                                                                    onChange: (e)=>setFormData({
-                                                                            ...formData,
-                                                                            [field]: e.target.value
-                                                                        })
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                    lineNumber: 222,
-                                                                    columnNumber: 7
-                                                                }, this)
-                                                            ]
-                                                        }, field, true, {
-                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                            lineNumber: 220,
-                                                            columnNumber: 5
-                                                        }, this)),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "space-y-1",
+                                                        className: "grid grid-cols-1 md:grid-cols-2 gap-4",
                                                         children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                                children: "Statut"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 234,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
-                                                                value: formData.status,
-                                                                onValueChange: (value)=>setFormData({
-                                                                        ...formData,
-                                                                        status: value
-                                                                    }),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "space-y-1",
                                                                 children: [
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
-                                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
-                                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                            lineNumber: 242,
-                                                                            columnNumber: 25
-                                                                        }, this)
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                        children: "Nom"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                        lineNumber: 241,
-                                                                        columnNumber: 23
+                                                                        lineNumber: 266,
+                                                                        columnNumber: 9
                                                                     }, this),
-                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
-                                                                        children: [
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                                value: "active",
-                                                                                children: "Actif"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                                lineNumber: 245,
-                                                                                columnNumber: 25
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                                value: "inactive",
-                                                                                children: "Inactif"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                                lineNumber: 246,
-                                                                                columnNumber: 25
-                                                                            }, this),
-                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                                value: "vacation",
-                                                                                children: "En congé"
-                                                                            }, void 0, false, {
-                                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                                lineNumber: 247,
-                                                                                columnNumber: 25
-                                                                            }, this)
-                                                                        ]
-                                                                    }, void 0, true, {
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                        value: formData.name,
+                                                                        onChange: (e)=>setFormData({
+                                                                                ...formData,
+                                                                                name: e.target.value
+                                                                            }),
+                                                                        placeholder: "Jean Dupont"
+                                                                    }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                        lineNumber: 244,
-                                                                        columnNumber: 23
+                                                                        lineNumber: 267,
+                                                                        columnNumber: 9
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 235,
-                                                                columnNumber: 21
+                                                                lineNumber: 265,
+                                                                columnNumber: 7
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "space-y-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                        children: "Email"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 276,
+                                                                        columnNumber: 9
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                        value: formData.email,
+                                                                        onChange: (e)=>setFormData({
+                                                                                ...formData,
+                                                                                email: e.target.value
+                                                                            }),
+                                                                        type: "email",
+                                                                        placeholder: "jean@example.com"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 277,
+                                                                        columnNumber: 9
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                lineNumber: 275,
+                                                                columnNumber: 7
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "space-y-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                        children: "Téléphone"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 287,
+                                                                        columnNumber: 9
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                        value: formData.phone,
+                                                                        onChange: (e)=>setFormData({
+                                                                                ...formData,
+                                                                                phone: e.target.value
+                                                                            }),
+                                                                        placeholder: "06 12 34 56 78"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 288,
+                                                                        columnNumber: 9
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                lineNumber: 286,
+                                                                columnNumber: 7
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "space-y-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                        children: "Poste"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 297,
+                                                                        columnNumber: 9
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                        value: formData.role,
+                                                                        onChange: (e)=>setFormData({
+                                                                                ...formData,
+                                                                                role: e.target.value
+                                                                            }),
+                                                                        placeholder: "Coiffeur, Esthéticienne..."
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 298,
+                                                                        columnNumber: 9
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                lineNumber: 296,
+                                                                columnNumber: 7
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "space-y-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                        children: "Statut"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 307,
+                                                                        columnNumber: 9
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
+                                                                        value: formData.status,
+                                                                        onValueChange: (value)=>setFormData({
+                                                                                ...formData,
+                                                                                status: value
+                                                                            }),
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
+                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
+                                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                    lineNumber: 315,
+                                                                                    columnNumber: 13
+                                                                                }, this)
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                lineNumber: 314,
+                                                                                columnNumber: 11
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
+                                                                                children: [
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                                        value: "active",
+                                                                                        children: "Actif"
+                                                                                    }, void 0, false, {
+                                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                        lineNumber: 318,
+                                                                                        columnNumber: 13
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                                        value: "inactive",
+                                                                                        children: "Inactif"
+                                                                                    }, void 0, false, {
+                                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                        lineNumber: 319,
+                                                                                        columnNumber: 13
+                                                                                    }, this),
+                                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                                        value: "vacation",
+                                                                                        children: "En congé"
+                                                                                    }, void 0, false, {
+                                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                        lineNumber: 320,
+                                                                                        columnNumber: 13
+                                                                                    }, this)
+                                                                                ]
+                                                                            }, void 0, true, {
+                                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                lineNumber: 317,
+                                                                                columnNumber: 11
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 308,
+                                                                        columnNumber: 9
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                lineNumber: 306,
+                                                                columnNumber: 7
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "space-y-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                        children: "Salon"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 327,
+                                                                        columnNumber: 9
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
+                                                                        value: selectedSalon,
+                                                                        onValueChange: setSelectedSalon,
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
+                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {
+                                                                                    placeholder: "Sélectionner un salon"
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                    lineNumber: 330,
+                                                                                    columnNumber: 13
+                                                                                }, this)
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                lineNumber: 329,
+                                                                                columnNumber: 11
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
+                                                                                children: salons.map((salon)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                                        value: salon._id,
+                                                                                        children: salon.name
+                                                                                    }, salon._id, false, {
+                                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                        lineNumber: 334,
+                                                                                        columnNumber: 15
+                                                                                    }, this))
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                                lineNumber: 332,
+                                                                                columnNumber: 11
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 328,
+                                                                        columnNumber: 9
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                lineNumber: 326,
+                                                                columnNumber: 7
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 233,
-                                                        columnNumber: 19
+                                                        lineNumber: 263,
+                                                        columnNumber: 5
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "space-y-1",
+                                                        className: "mt-4 space-y-1",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                                                children: "Spécialités"
+                                                                children: "Spécialités (séparées par des virgules)"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 253,
-                                                                columnNumber: 21
+                                                                lineNumber: 345,
+                                                                columnNumber: 7
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
                                                                 rows: 3,
@@ -7099,23 +7345,24 @@ function StaffTab() {
                                                                         ...formData,
                                                                         specialties: e.target.value
                                                                     }),
-                                                                placeholder: "Tresses, Coloration..."
+                                                                placeholder: "Tresses, Coloration, Soins visage, Manucure...",
+                                                                className: "resize-none"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 254,
-                                                                columnNumber: 21
+                                                                lineNumber: 346,
+                                                                columnNumber: 7
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 252,
-                                                        columnNumber: 19
+                                                        lineNumber: 344,
+                                                        columnNumber: 5
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 217,
-                                                columnNumber: 17
+                                                lineNumber: 261,
+                                                columnNumber: 3
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
                                                 children: [
@@ -7125,8 +7372,8 @@ function StaffTab() {
                                                         children: "Annuler"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 266,
-                                                        columnNumber: 19
+                                                        lineNumber: 359,
+                                                        columnNumber: 5
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                                         className: "bg-cyan-500 hover:bg-cyan-600",
@@ -7134,256 +7381,400 @@ function StaffTab() {
                                                         children: editingEmployee ? "Modifier" : "Ajouter"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 270,
-                                                        columnNumber: 19
+                                                        lineNumber: 362,
+                                                        columnNumber: 5
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 265,
-                                                columnNumber: 17
+                                                lineNumber: 358,
+                                                columnNumber: 3
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                        lineNumber: 208,
-                                        columnNumber: 15
+                                        lineNumber: 251,
+                                        columnNumber: 1
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                lineNumber: 194,
+                                lineNumber: 235,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                        lineNumber: 188,
+                        lineNumber: 229,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/superadmin/staff-tab.tsx",
-                    lineNumber: 187,
+                    lineNumber: 228,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                lineNumber: 186,
+                lineNumber: 227,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "grid gap-4",
-                children: employees.map((employee)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
-                            className: "p-4",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex gap-4",
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardHeader"], {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardTitle"], {
+                            children: [
+                                "Liste du personnel (",
+                                employees.length,
+                                ")"
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                            lineNumber: 380,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                        lineNumber: 379,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "overflow-x-auto",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
+                                className: "w-full text-sm",
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Avatar"], {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarImage"], {
-                                                src: employee.avatar || "/placeholder.svg"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 290,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
-                                                children: employee.name.split(" ").map((n)=>n[0]).join("")
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 291,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                            className: "border-b",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "text-left py-3 px-4 font-medium",
+                                                    children: "Employé"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                    lineNumber: 387,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "text-left py-3 px-4 font-medium",
+                                                    children: "Poste"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                    lineNumber: 388,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "text-left py-3 px-4 font-medium",
+                                                    children: "Contact"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                    lineNumber: 389,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "text-left py-3 px-4 font-medium",
+                                                    children: "Embauche"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                    lineNumber: 390,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "text-left py-3 px-4 font-medium",
+                                                    children: "Statut"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                    lineNumber: 391,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "text-left py-3 px-4 font-medium",
+                                                    children: "Spécialités"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                    lineNumber: 392,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                                    className: "text-center py-3 px-4 font-medium",
+                                                    children: "Actions"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                    lineNumber: 393,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                            lineNumber: 386,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                        lineNumber: 289,
-                                        columnNumber: 17
+                                        lineNumber: 385,
+                                        columnNumber: 15
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex-1",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex justify-between",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                        className: "font-semibold",
-                                                        children: employee.name
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 301,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
-                                                        className: getStatusColor(employee.status),
-                                                        children: getStatusLabel(employee.status)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 302,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 300,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                className: "text-sm text-muted-foreground",
-                                                children: employee.role
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
+                                        children: employees.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                colSpan: 7,
+                                                className: "text-center py-8 text-muted-foreground",
+                                                children: "Aucun employé enregistré pour le moment."
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 307,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "mt-2 text-sm text-muted-foreground space-y-1",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex gap-2 items-center",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mail$3e$__["Mail"], {
-                                                                className: "w-4 h-4"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 311,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            employee.email
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 310,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex gap-2 items-center",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
-                                                                className: "w-4 h-4"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 316,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            employee.phone
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 315,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "flex gap-2 items-center",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
-                                                                className: "w-4 h-4"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 321,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            "Embauché le",
-                                                            " ",
-                                                            new Date(employee.joinDate).toLocaleDateString("fr-FR")
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 320,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 309,
-                                                columnNumber: 19
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "flex gap-2 mt-3",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                        variant: "outline",
-                                                        size: "sm",
-                                                        onClick: ()=>openEditDialog(employee),
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
-                                                                className: "w-4 h-4 mr-2"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 333,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            " Modifier"
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 328,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                                        variant: "outline",
-                                                        size: "sm",
-                                                        className: "text-red-500",
-                                                        onClick: ()=>handleDeleteEmployee(employee._id),
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
-                                                                className: "w-4 h-4 mr-2"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                                lineNumber: 342,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            " Supprimer"
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                        lineNumber: 336,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                                lineNumber: 327,
-                                                columnNumber: 19
+                                                lineNumber: 399,
+                                                columnNumber: 21
                                             }, this)
-                                        ]
-                                    }, void 0, true, {
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                            lineNumber: 398,
+                                            columnNumber: 19
+                                        }, this) : employees.map((employee)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                                className: "border-b hover:bg-muted/50",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "py-4 px-4",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex items-center gap-3",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Avatar"], {
+                                                                    className: "h-10 w-10",
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$avatar$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AvatarFallback"], {
+                                                                        className: "bg-cyan-100 text-cyan-800 font-medium",
+                                                                        children: getInitials(employee.name)
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 409,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                    lineNumber: 408,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                        className: "font-medium",
+                                                                        children: employee.name
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 414,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                    lineNumber: 413,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                            lineNumber: 407,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                        lineNumber: 406,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "py-4 px-4",
+                                                        children: employee.role
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                        lineNumber: 418,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "py-4 px-4",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "space-y-1 text-muted-foreground",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex items-center gap-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$mail$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Mail$3e$__["Mail"], {
+                                                                            className: "w-3 h-3"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                            lineNumber: 422,
+                                                                            columnNumber: 29
+                                                                        }, this),
+                                                                        employee.email
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                    lineNumber: 421,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex items-center gap-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
+                                                                            className: "w-3 h-3"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                            lineNumber: 426,
+                                                                            columnNumber: 29
+                                                                        }, this),
+                                                                        employee.phone
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                    lineNumber: 425,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                            lineNumber: 420,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                        lineNumber: 419,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "py-4 px-4 text-muted-foreground",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex items-center gap-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__["Calendar"], {
+                                                                    className: "w-3 h-3"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                    lineNumber: 433,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                new Date(employee.joinDate).toLocaleDateString("fr-FR")
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                            lineNumber: 432,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                        lineNumber: 431,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "py-4 px-4",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
+                                                            className: getStatusColor(employee.status),
+                                                            children: getStatusLabel(employee.status)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                            lineNumber: 438,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                        lineNumber: 437,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "py-4 px-4 text-muted-foreground",
+                                                        children: employee.specialties.join(", ")
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                        lineNumber: 442,
+                                                        columnNumber: 23
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "py-4 px-4",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "flex justify-center gap-2",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                    variant: "outline",
+                                                                    size: "sm",
+                                                                    onClick: ()=>openEditDialog(employee),
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$square$2d$pen$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit$3e$__["Edit"], {
+                                                                        className: "w-4 h-4"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 452,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                    lineNumber: 447,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                                                    variant: "outline",
+                                                                    size: "sm",
+                                                                    className: "text-red-600 hover:text-red-700 hover:border-red-300",
+                                                                    onClick: ()=>handleDeleteEmployee(employee._id),
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trash$2d$2$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Trash2$3e$__["Trash2"], {
+                                                                        className: "w-4 h-4"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                        lineNumber: 460,
+                                                                        columnNumber: 29
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                                    lineNumber: 454,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                            lineNumber: 446,
+                                                            columnNumber: 25
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                        lineNumber: 445,
+                                                        columnNumber: 23
+                                                    }, this)
+                                                ]
+                                            }, employee._id, true, {
+                                                fileName: "[project]/components/superadmin/staff-tab.tsx",
+                                                lineNumber: 405,
+                                                columnNumber: 21
+                                            }, this))
+                                    }, void 0, false, {
                                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                        lineNumber: 299,
-                                        columnNumber: 17
+                                        lineNumber: 396,
+                                        columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                                lineNumber: 288,
-                                columnNumber: 15
+                                lineNumber: 384,
+                                columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/superadmin/staff-tab.tsx",
-                            lineNumber: 287,
-                            columnNumber: 13
+                            lineNumber: 383,
+                            columnNumber: 11
                         }, this)
-                    }, employee._id, false, {
+                    }, void 0, false, {
                         fileName: "[project]/components/superadmin/staff-tab.tsx",
-                        lineNumber: 286,
-                        columnNumber: 11
-                    }, this))
-            }, void 0, false, {
+                        lineNumber: 382,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/components/superadmin/staff-tab.tsx",
-                lineNumber: 284,
+                lineNumber: 378,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/superadmin/staff-tab.tsx",
-        lineNumber: 184,
+        lineNumber: 225,
         columnNumber: 5
     }, this);
 }
-_s(StaffTab, "UZBTWaCYHx7IOyznr6ex7RR/7ng=", false, function() {
+_s(StaffTab, "lmggmujeSH+h6ZQR1ikv8FBiGGI=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"]
     ];
 });
 _c = StaffTab;
@@ -7657,9 +8048,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$staff$2d$tab$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/superadmin/staff-tab.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/use-toast.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useAuthSafe$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/hooks/useAuthSafe.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/auth-store.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -7689,9 +8082,21 @@ function ManagerDashboard() {
     const [sidebarOpen, setSidebarOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("dashboard");
     const { toast } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$use$2d$toast$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useToast"])();
+    const [clients, setClients] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
+    const [services, setServices] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [rdvForm, setRdvForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        clientId: "",
+        date: "",
+        time: "",
+        service: "",
+        coiffeur: "",
+        notes: ""
+    });
     // États des modals
     const [openClientModal, setOpenClientModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [openRdvModal, setOpenRdvModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [availableSlots, setAvailableSlots] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [clientForm, setClientForm] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
         prenom: "",
         nom: "",
@@ -7699,6 +8104,12 @@ function ManagerDashboard() {
         email: "",
         notes: ""
     });
+    const updateRdvForm = (key, value)=>{
+        setRdvForm((prev)=>({
+                ...prev,
+                [key]: value
+            }));
+    };
     const handleClientChange = (key, value)=>{
         setClientForm((prev)=>({
                 ...prev,
@@ -7718,22 +8129,78 @@ function ManagerDashboard() {
         router,
         isLoading
     ]);
-    if (isLoading) {
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex h-screen items-center justify-center",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                children: "Chargement..."
-            }, void 0, false, {
-                fileName: "[project]/app/manager/page.tsx",
-                lineNumber: 58,
-                columnNumber: 7
-            }, this)
-        }, void 0, false, {
-            fileName: "[project]/app/manager/page.tsx",
-            lineNumber: 57,
-            columnNumber: 5
-        }, this);
-    }
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ManagerDashboard.useEffect": ()=>{
+            const fetchData = {
+                "ManagerDashboard.useEffect.fetchData": async ()=>{
+                    setLoading(true);
+                    try {
+                        const token = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$store$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"].getState().token;
+                        if (!token) throw new Error("Utilisateur non authentifié");
+                        const [clientsRes, servicesRes] = await Promise.all([
+                            fetch("http://localhost:3500/api/allclient", {
+                                headers: {
+                                    Authorization: `Bearer ${token}`
+                                }
+                            }),
+                            fetch("http://localhost:3500/api/getAllservice", {
+                                headers: {
+                                    Authorization: `Bearer ${token}`
+                                }
+                            })
+                        ]);
+                        if (!clientsRes.ok || !servicesRes.ok) {
+                            throw new Error("Erreur lors du chargement des données");
+                        }
+                        const clientsData = await clientsRes.json();
+                        const servicesData = await servicesRes.json();
+                        setClients(Array.isArray(clientsData) ? clientsData : []);
+                        setServices(Array.isArray(servicesData) ? servicesData.filter({
+                            "ManagerDashboard.useEffect.fetchData": (s)=>s.isActive
+                        }["ManagerDashboard.useEffect.fetchData"]) : []);
+                    } catch (error) {
+                        console.error("Erreur chargement données :", error);
+                        toast({
+                            title: "Erreur de chargement",
+                            description: error.message || "Impossible de récupérer les données.",
+                            variant: "destructive"
+                        });
+                        setClients([]);
+                        setServices([]);
+                    } finally{
+                        setLoading(false);
+                    }
+                }
+            }["ManagerDashboard.useEffect.fetchData"];
+            fetchData();
+        }
+    }["ManagerDashboard.useEffect"], [
+        toast
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ManagerDashboard.useEffect": ()=>{
+            if (!rdvForm.date || !user?.salonId) {
+                setAvailableSlots([]);
+                return;
+            }
+            const loadSlots = {
+                "ManagerDashboard.useEffect.loadSlots": async ()=>{
+                    try {
+                        const res = await fetch(`http://localhost:3500/api/slots?date=${rdvForm.date}&salonId=${user.salonId}`);
+                        const data = await res.json();
+                        setAvailableSlots(data.availableSlots || []);
+                    } catch (e) {
+                        console.error("Erreur slots", e);
+                        setAvailableSlots([]);
+                    }
+                }
+            }["ManagerDashboard.useEffect.loadSlots"];
+            loadSlots();
+        }
+    }["ManagerDashboard.useEffect"], [
+        rdvForm.date,
+        user?.salonId
+    ]);
     if (!isAuthenticated || user?.role !== "gerant" && user?.role !== "admin") {
         return null;
     }
@@ -7768,6 +8235,52 @@ function ManagerDashboard() {
             });
         }
     };
+    const handleCreateRdv = async ()=>{
+        try {
+            const token = localStorage.getItem("token");
+            const res = await fetch("http://localhost:3500/api/rdv/salon", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    ...rdvForm,
+                    salonId: user?.salonId
+                })
+            });
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.message);
+            }
+            toast({
+                title: "Rendez-vous créé avec succès"
+            });
+            setOpenRdvModal(false);
+        } catch (e) {
+            toast({
+                title: "Erreur",
+                description: e.message,
+                variant: "destructive"
+            });
+        }
+    };
+    if (isLoading) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex h-screen items-center justify-center",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                children: "Chargement..."
+            }, void 0, false, {
+                fileName: "[project]/app/manager/page.tsx",
+                lineNumber: 231,
+                columnNumber: 7
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/app/manager/page.tsx",
+            lineNumber: 230,
+            columnNumber: 5
+        }, this);
+    }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "flex h-screen bg-gray-50 dark:bg-gray-950",
         children: [
@@ -7778,7 +8291,7 @@ function ManagerDashboard() {
                 onTabChange: setActiveTab
             }, void 0, false, {
                 fileName: "[project]/app/manager/page.tsx",
-                lineNumber: 103,
+                lineNumber: 238,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7799,12 +8312,12 @@ function ManagerDashboard() {
                                             className: "w-5 h-5"
                                         }, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 115,
+                                            lineNumber: 250,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/manager/page.tsx",
-                                        lineNumber: 114,
+                                        lineNumber: 249,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -7812,13 +8325,13 @@ function ManagerDashboard() {
                                         children: "Tableau de bord"
                                     }, void 0, false, {
                                         fileName: "[project]/app/manager/page.tsx",
-                                        lineNumber: 117,
+                                        lineNumber: 252,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/manager/page.tsx",
-                                lineNumber: 113,
+                                lineNumber: 248,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -7833,7 +8346,7 @@ function ManagerDashboard() {
                                                 className: "w-4 h-4 mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/manager/page.tsx",
-                                                lineNumber: 126,
+                                                lineNumber: 261,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7841,7 +8354,7 @@ function ManagerDashboard() {
                                                 children: "Enregistrer un client"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/manager/page.tsx",
-                                                lineNumber: 127,
+                                                lineNumber: 262,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7849,13 +8362,13 @@ function ManagerDashboard() {
                                                 children: "Client"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/manager/page.tsx",
-                                                lineNumber: 128,
+                                                lineNumber: 263,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/manager/page.tsx",
-                                        lineNumber: 121,
+                                        lineNumber: 256,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -7866,7 +8379,7 @@ function ManagerDashboard() {
                                                 className: "w-4 h-4 mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/manager/page.tsx",
-                                                lineNumber: 136,
+                                                lineNumber: 271,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7874,7 +8387,7 @@ function ManagerDashboard() {
                                                 children: "Ajouter un rendez-vous"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/manager/page.tsx",
-                                                lineNumber: 137,
+                                                lineNumber: 272,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -7882,13 +8395,13 @@ function ManagerDashboard() {
                                                 children: "RDV"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/manager/page.tsx",
-                                                lineNumber: 138,
+                                                lineNumber: 273,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/manager/page.tsx",
-                                        lineNumber: 132,
+                                        lineNumber: 267,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -7899,50 +8412,51 @@ function ManagerDashboard() {
                                             className: "w-5 h-5"
                                         }, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 277,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/manager/page.tsx",
-                                        lineNumber: 141,
+                                        lineNumber: 276,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/manager/page.tsx",
-                                lineNumber: 119,
+                                lineNumber: 254,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/manager/page.tsx",
-                        lineNumber: 112,
+                        lineNumber: 247,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
                         open: openClientModal,
                         onOpenChange: setOpenClientModal,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
-                            className: "sm:max-w-xl",
+                            className: "sm:max-w-xl rounded-2xl shadow-xl p-6 bg-white dark:bg-gray-900",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
+                                        className: "text-2xl font-bold text-gray-800 dark:text-gray-100",
                                         children: "Nouveau client"
                                     }, void 0, false, {
                                         fileName: "[project]/app/manager/page.tsx",
-                                        lineNumber: 151,
-                                        columnNumber: 15
+                                        lineNumber: 286,
+                                        columnNumber: 7
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 150,
-                                    columnNumber: 13
+                                    lineNumber: 285,
+                                    columnNumber: 5
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "grid gap-4 py-4",
+                                    className: "grid gap-5 py-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "grid grid-cols-2 gap-4",
+                                            className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
@@ -7950,23 +8464,24 @@ function ManagerDashboard() {
                                                             children: "Prénom"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 156,
-                                                            columnNumber: 19
+                                                            lineNumber: 293,
+                                                            columnNumber: 11
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                                                             placeholder: "Marie",
                                                             value: clientForm.prenom,
-                                                            onChange: (e)=>handleClientChange("prenom", e.target.value)
+                                                            onChange: (e)=>handleClientChange("prenom", e.target.value),
+                                                            className: "border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 157,
-                                                            columnNumber: 19
+                                                            lineNumber: 294,
+                                                            columnNumber: 11
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 155,
-                                                    columnNumber: 17
+                                                    lineNumber: 292,
+                                                    columnNumber: 9
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
@@ -7974,29 +8489,30 @@ function ManagerDashboard() {
                                                             children: "Nom"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 161,
-                                                            columnNumber: 19
+                                                            lineNumber: 302,
+                                                            columnNumber: 11
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                                                             placeholder: "Dubois",
                                                             value: clientForm.nom,
-                                                            onChange: (e)=>handleClientChange("nom", e.target.value)
+                                                            onChange: (e)=>handleClientChange("nom", e.target.value),
+                                                            className: "border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 162,
-                                                            columnNumber: 19
+                                                            lineNumber: 303,
+                                                            columnNumber: 11
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 160,
-                                                    columnNumber: 17
+                                                    lineNumber: 301,
+                                                    columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 154,
-                                            columnNumber: 15
+                                            lineNumber: 291,
+                                            columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
@@ -8004,23 +8520,24 @@ function ManagerDashboard() {
                                                     children: "Téléphone"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 167,
-                                                    columnNumber: 17
+                                                    lineNumber: 312,
+                                                    columnNumber: 9
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                    placeholder: "06 12 34 56 78 ",
+                                                    placeholder: "06 12 34 56 78",
                                                     value: clientForm.telephone,
-                                                    onChange: (e)=>handleClientChange("telephone", e.target.value)
+                                                    onChange: (e)=>handleClientChange("telephone", e.target.value),
+                                                    className: "border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 168,
-                                                    columnNumber: 17
+                                                    lineNumber: 313,
+                                                    columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 166,
-                                            columnNumber: 15
+                                            lineNumber: 311,
+                                            columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
@@ -8028,24 +8545,25 @@ function ManagerDashboard() {
                                                     children: "Email (facultatif)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 172,
-                                                    columnNumber: 17
+                                                    lineNumber: 321,
+                                                    columnNumber: 9
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
                                                     type: "email",
                                                     placeholder: "marie@example.com",
                                                     value: clientForm.email,
-                                                    onChange: (e)=>handleClientChange("email", e.target.value)
+                                                    onChange: (e)=>handleClientChange("email", e.target.value),
+                                                    className: "border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 173,
-                                                    columnNumber: 17
+                                                    lineNumber: 322,
+                                                    columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 171,
-                                            columnNumber: 15
+                                            lineNumber: 320,
+                                            columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
@@ -8053,91 +8571,95 @@ function ManagerDashboard() {
                                                     children: "Notes"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 177,
-                                                    columnNumber: 17
+                                                    lineNumber: 331,
+                                                    columnNumber: 9
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
                                                     placeholder: "Allergies, préférences...",
-                                                    className: "min-h-24",
+                                                    className: "min-h-24 border-gray-300 dark:border-gray-700 focus:ring-cyan-400",
                                                     value: clientForm.notes,
                                                     onChange: (e)=>handleClientChange("notes", e.target.value)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 178,
-                                                    columnNumber: 17
+                                                    lineNumber: 332,
+                                                    columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 176,
-                                            columnNumber: 15
+                                            lineNumber: 330,
+                                            columnNumber: 7
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 153,
-                                    columnNumber: 13
+                                    lineNumber: 290,
+                                    columnNumber: 5
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
+                                    className: "flex justify-end gap-3",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: "outline",
+                                            className: "border-gray-300 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800",
                                             onClick: ()=>setOpenClientModal(false),
                                             children: "Annuler"
                                         }, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 183,
-                                            columnNumber: 15
+                                            lineNumber: 341,
+                                            columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
+                                            className: "bg-cyan-500 hover:bg-cyan-600 text-white",
                                             onClick: handleCreateClient,
                                             children: "Enregistrer"
                                         }, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 184,
-                                            columnNumber: 15
+                                            lineNumber: 348,
+                                            columnNumber: 7
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 182,
-                                    columnNumber: 13
+                                    lineNumber: 340,
+                                    columnNumber: 5
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/manager/page.tsx",
-                            lineNumber: 149,
-                            columnNumber: 11
+                            lineNumber: 284,
+                            columnNumber: 3
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/manager/page.tsx",
-                        lineNumber: 148,
-                        columnNumber: 9
+                        lineNumber: 283,
+                        columnNumber: 1
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
                         open: openRdvModal,
                         onOpenChange: setOpenRdvModal,
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
-                            className: "sm:max-w-2xl max-h-[90vh] overflow-y-auto",
+                            className: "sm:max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-xl p-6 bg-white dark:bg-gray-900",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogHeader"], {
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogTitle"], {
+                                        className: "text-2xl font-bold text-gray-800 dark:text-gray-100",
                                         children: "Ajouter un rendez-vous"
                                     }, void 0, false, {
                                         fileName: "[project]/app/manager/page.tsx",
-                                        lineNumber: 193,
-                                        columnNumber: 15
+                                        lineNumber: 359,
+                                        columnNumber: 7
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 192,
-                                    columnNumber: 13
+                                    lineNumber: 358,
+                                    columnNumber: 5
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "grid gap-4 py-4",
+                                    className: "grid gap-5 py-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "grid grid-cols-2 gap-4",
+                                            className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
@@ -8145,38 +8667,75 @@ function ManagerDashboard() {
                                                             children: "Client"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 198,
-                                                            columnNumber: 19
+                                                            lineNumber: 366,
+                                                            columnNumber: 11
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "relative",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
-                                                                    className: "absolute left-3 top-3 h-4 w-4 text-muted-foreground"
+                                                                    className: "absolute left-3 top-3 h-4 w-4 text-gray-400 dark:text-gray-500"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 200,
-                                                                    columnNumber: 21
+                                                                    lineNumber: 368,
+                                                                    columnNumber: 13
                                                                 }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                                    className: "pl-10",
-                                                                    placeholder: "Rechercher un client..."
-                                                                }, void 0, false, {
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
+                                                                    value: rdvForm.clientId,
+                                                                    onValueChange: (v)=>updateRdvForm("clientId", v),
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
+                                                                            className: "pl-9 border-gray-300 dark:border-gray-700 focus:ring-cyan-400",
+                                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {
+                                                                                placeholder: "Choisir un client"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/app/manager/page.tsx",
+                                                                                lineNumber: 374,
+                                                                                columnNumber: 17
+                                                                            }, this)
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/manager/page.tsx",
+                                                                            lineNumber: 373,
+                                                                            columnNumber: 15
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
+                                                                            children: (Array.isArray(clients) ? clients : []).map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                                    value: c._id,
+                                                                                    children: [
+                                                                                        c.prenom,
+                                                                                        " ",
+                                                                                        c.nom,
+                                                                                        " (",
+                                                                                        c.telephone,
+                                                                                        ")"
+                                                                                    ]
+                                                                                }, c._id, true, {
+                                                                                    fileName: "[project]/app/manager/page.tsx",
+                                                                                    lineNumber: 378,
+                                                                                    columnNumber: 19
+                                                                                }, this))
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/manager/page.tsx",
+                                                                            lineNumber: 376,
+                                                                            columnNumber: 15
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
                                                                     fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 201,
-                                                                    columnNumber: 21
+                                                                    lineNumber: 369,
+                                                                    columnNumber: 13
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 199,
-                                                            columnNumber: 19
+                                                            lineNumber: 367,
+                                                            columnNumber: 11
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 197,
-                                                    columnNumber: 17
+                                                    lineNumber: 365,
+                                                    columnNumber: 9
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
@@ -8184,30 +8743,36 @@ function ManagerDashboard() {
                                                             children: "Date"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 205,
-                                                            columnNumber: 19
+                                                            lineNumber: 387,
+                                                            columnNumber: 11
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                            type: "date"
+                                                            type: "date",
+                                                            value: rdvForm.date,
+                                                            onChange: (e)=>{
+                                                                updateRdvForm("date", e.target.value);
+                                                                updateRdvForm("time", "");
+                                                            },
+                                                            className: "border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 206,
-                                                            columnNumber: 19
+                                                            lineNumber: 388,
+                                                            columnNumber: 11
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 204,
-                                                    columnNumber: 17
+                                                    lineNumber: 386,
+                                                    columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 196,
-                                            columnNumber: 15
+                                            lineNumber: 364,
+                                            columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "grid grid-cols-2 gap-4",
+                                            className: "grid grid-cols-1 sm:grid-cols-2 gap-4",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
@@ -8215,21 +8780,63 @@ function ManagerDashboard() {
                                                             children: "Heure"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 212,
-                                                            columnNumber: 19
+                                                            lineNumber: 399,
+                                                            columnNumber: 11
                                                         }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                            type: "time"
-                                                        }, void 0, false, {
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
+                                                            value: rdvForm.time,
+                                                            disabled: !rdvForm.date || availableSlots.length === 0,
+                                                            onValueChange: (v)=>updateRdvForm("time", v),
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
+                                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {
+                                                                        placeholder: !rdvForm.date ? "Choisissez d'abord une date" : availableSlots.length === 0 ? "Aucun créneau disponible" : "Heure disponible"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/app/manager/page.tsx",
+                                                                        lineNumber: 406,
+                                                                        columnNumber: 5
+                                                                    }, this)
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/app/manager/page.tsx",
+                                                                    lineNumber: 405,
+                                                                    columnNumber: 3
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
+                                                                    children: [
+                                                                        availableSlots.length === 0 && rdvForm.date && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                            disabled: true,
+                                                                            value: "none",
+                                                                            children: "Aucun créneau disponible ce jour"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/app/manager/page.tsx",
+                                                                            lineNumber: 418,
+                                                                            columnNumber: 7
+                                                                        }, this),
+                                                                        availableSlots.map((slot)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                                value: slot,
+                                                                                children: slot
+                                                                            }, slot, false, {
+                                                                                fileName: "[project]/app/manager/page.tsx",
+                                                                                lineNumber: 423,
+                                                                                columnNumber: 7
+                                                                            }, this))
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/app/manager/page.tsx",
+                                                                    lineNumber: 416,
+                                                                    columnNumber: 3
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 213,
-                                                            columnNumber: 19
+                                                            lineNumber: 400,
+                                                            columnNumber: 11
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 211,
-                                                    columnNumber: 17
+                                                    lineNumber: 398,
+                                                    columnNumber: 9
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     children: [
@@ -8237,81 +8844,63 @@ function ManagerDashboard() {
                                                             children: "Service"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 216,
-                                                            columnNumber: 19
+                                                            lineNumber: 432,
+                                                            columnNumber: 11
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
+                                                            value: rdvForm.service,
+                                                            onValueChange: (v)=>updateRdvForm("service", v),
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
+                                                                    className: "border-gray-300 dark:border-gray-700 focus:ring-cyan-400",
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {
                                                                         placeholder: "Choisir un service"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/app/manager/page.tsx",
-                                                                        lineNumber: 219,
-                                                                        columnNumber: 23
+                                                                        lineNumber: 438,
+                                                                        columnNumber: 15
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 218,
-                                                                    columnNumber: 21
+                                                                    lineNumber: 437,
+                                                                    columnNumber: 13
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
-                                                                    children: [
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                            value: "coupe",
-                                                                            children: "Coupe"
-                                                                        }, void 0, false, {
+                                                                    children: services.map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                            value: s._id,
+                                                                            children: [
+                                                                                s.name,
+                                                                                " – ",
+                                                                                s.price,
+                                                                                " FCFA"
+                                                                            ]
+                                                                        }, s._id, true, {
                                                                             fileName: "[project]/app/manager/page.tsx",
-                                                                            lineNumber: 222,
-                                                                            columnNumber: 23
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                            value: "couleur",
-                                                                            children: "Couleur"
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/app/manager/page.tsx",
-                                                                            lineNumber: 223,
-                                                                            columnNumber: 23
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                            value: "tresses",
-                                                                            children: "Tresses Africaines"
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/app/manager/page.tsx",
-                                                                            lineNumber: 224,
-                                                                            columnNumber: 23
-                                                                        }, this),
-                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                            value: "soin",
-                                                                            children: "Soin"
-                                                                        }, void 0, false, {
-                                                                            fileName: "[project]/app/manager/page.tsx",
-                                                                            lineNumber: 225,
-                                                                            columnNumber: 23
-                                                                        }, this)
-                                                                    ]
-                                                                }, void 0, true, {
+                                                                            lineNumber: 442,
+                                                                            columnNumber: 17
+                                                                        }, this))
+                                                                }, void 0, false, {
                                                                     fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 221,
-                                                                    columnNumber: 21
+                                                                    lineNumber: 440,
+                                                                    columnNumber: 13
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 217,
-                                                            columnNumber: 19
+                                                            lineNumber: 433,
+                                                            columnNumber: 11
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 215,
-                                                    columnNumber: 17
+                                                    lineNumber: 431,
+                                                    columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 210,
-                                            columnNumber: 15
+                                            lineNumber: 397,
+                                            columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
@@ -8319,67 +8908,23 @@ function ManagerDashboard() {
                                                     children: "Coiffeur/se"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 232,
-                                                    columnNumber: 17
+                                                    lineNumber: 452,
+                                                    columnNumber: 9
                                                 }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {
-                                                                placeholder: "Choisir un employé"
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/manager/page.tsx",
-                                                                lineNumber: 235,
-                                                                columnNumber: 21
-                                                            }, this)
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 234,
-                                                            columnNumber: 19
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
-                                                            children: [
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                    value: "amina",
-                                                                    children: "Amina"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 238,
-                                                                    columnNumber: 21
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                    value: "fatou",
-                                                                    children: "Fatou"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 239,
-                                                                    columnNumber: 21
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                                    value: "yasmine",
-                                                                    children: "Yasmine"
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 240,
-                                                                    columnNumber: 21
-                                                                }, this)
-                                                            ]
-                                                        }, void 0, true, {
-                                                            fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 237,
-                                                            columnNumber: 19
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                    disabled: true,
+                                                    placeholder: "Assigné automatiquement",
+                                                    className: "border-gray-300 dark:border-gray-700"
+                                                }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 233,
-                                                    columnNumber: 17
+                                                    lineNumber: 453,
+                                                    columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 231,
-                                            columnNumber: 15
+                                            lineNumber: 451,
+                                            columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             children: [
@@ -8387,68 +8932,68 @@ function ManagerDashboard() {
                                                     children: "Notes"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 246,
-                                                    columnNumber: 17
+                                                    lineNumber: 457,
+                                                    columnNumber: 9
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
-                                                    placeholder: "Détails supplémentaires..."
+                                                    value: rdvForm.notes,
+                                                    onChange: (e)=>updateRdvForm("notes", e.target.value),
+                                                    className: "min-h-24 border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 247,
-                                                    columnNumber: 17
+                                                    lineNumber: 458,
+                                                    columnNumber: 9
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 245,
-                                            columnNumber: 15
+                                            lineNumber: 456,
+                                            columnNumber: 7
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 195,
-                                    columnNumber: 13
+                                    lineNumber: 363,
+                                    columnNumber: 5
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
+                                    className: "flex justify-end gap-3",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
                                             variant: "outline",
+                                            className: "border-gray-300 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800",
                                             onClick: ()=>setOpenRdvModal(false),
                                             children: "Annuler"
                                         }, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 251,
-                                            columnNumber: 15
+                                            lineNumber: 466,
+                                            columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
-                                            onClick: ()=>{
-                                                toast({
-                                                    title: "Rendez-vous ajouté !"
-                                                });
-                                                setOpenRdvModal(false);
-                                            },
+                                            className: "bg-cyan-500 hover:bg-cyan-600 text-white",
+                                            onClick: handleCreateRdv,
                                             children: "Créer le rendez-vous"
                                         }, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 252,
-                                            columnNumber: 15
+                                            lineNumber: 473,
+                                            columnNumber: 7
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 250,
-                                    columnNumber: 13
+                                    lineNumber: 465,
+                                    columnNumber: 5
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/manager/page.tsx",
-                            lineNumber: 191,
-                            columnNumber: 11
+                            lineNumber: 357,
+                            columnNumber: 3
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/manager/page.tsx",
-                        lineNumber: 190,
-                        columnNumber: 9
+                        lineNumber: 356,
+                        columnNumber: 1
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
                         className: "flex-1 overflow-y-auto p-4 md:p-6",
@@ -8459,7 +9004,7 @@ function ManagerDashboard() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$dashboard$2d$stats$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DashboardStats"], {}, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 265,
+                                            lineNumber: 486,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tabs"], {
@@ -8475,7 +9020,7 @@ function ManagerDashboard() {
                                                             children: "Vue d'ensemble"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 269,
+                                                            lineNumber: 490,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
@@ -8484,7 +9029,7 @@ function ManagerDashboard() {
                                                             children: "Rendez-vous"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 272,
+                                                            lineNumber: 493,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
@@ -8493,13 +9038,13 @@ function ManagerDashboard() {
                                                             children: "Planning"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 275,
+                                                            lineNumber: 496,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 268,
+                                                    lineNumber: 489,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -8513,45 +9058,45 @@ function ManagerDashboard() {
                                                                     className: "lg:col-span-2",
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$employee$2d$perfomance$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["EmployeePerformance"], {}, void 0, false, {
                                                                         fileName: "[project]/app/manager/page.tsx",
-                                                                        lineNumber: 283,
+                                                                        lineNumber: 504,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 282,
+                                                                    lineNumber: 503,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$popular$2d$services$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PopularServices"], {}, void 0, false, {
                                                                         fileName: "[project]/app/manager/page.tsx",
-                                                                        lineNumber: 286,
+                                                                        lineNumber: 507,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/app/manager/page.tsx",
-                                                                    lineNumber: 285,
+                                                                    lineNumber: 506,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 281,
+                                                            lineNumber: 502,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$staff$2d$planning$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["StaffPlanning"], {}, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 289,
+                                                            lineNumber: 510,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$appointments$2d$list$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AppointmentsList"], {}, void 0, false, {
                                                             fileName: "[project]/app/manager/page.tsx",
-                                                            lineNumber: 290,
+                                                            lineNumber: 511,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 280,
+                                                    lineNumber: 501,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -8559,12 +9104,12 @@ function ManagerDashboard() {
                                                     className: "mt-4 md:mt-6",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$appointments$2d$list$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AppointmentsList"], {}, void 0, false, {
                                                         fileName: "[project]/app/manager/page.tsx",
-                                                        lineNumber: 294,
+                                                        lineNumber: 515,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 293,
+                                                    lineNumber: 514,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -8572,18 +9117,18 @@ function ManagerDashboard() {
                                                     className: "mt-4 md:mt-6",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$staff$2d$planning$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["StaffPlanning"], {}, void 0, false, {
                                                         fileName: "[project]/app/manager/page.tsx",
-                                                        lineNumber: 298,
+                                                        lineNumber: 519,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/manager/page.tsx",
-                                                    lineNumber: 297,
+                                                    lineNumber: 518,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 267,
+                                            lineNumber: 488,
                                             columnNumber: 17
                                         }, this)
                                     ]
@@ -8593,38 +9138,38 @@ function ManagerDashboard() {
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$staff$2d$planning$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["StaffPlanning"], {}, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 306,
+                                            lineNumber: 527,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$appointments$2d$list$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AppointmentsList"], {}, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 307,
+                                            lineNumber: 528,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 305,
+                                    lineNumber: 526,
                                     columnNumber: 15
                                 }, this),
                                 activeTab === "clients" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$clients$2d$tab$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ClientsTab"], {}, void 0, false, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 311,
+                                    lineNumber: 532,
                                     columnNumber: 41
                                 }, this),
                                 activeTab === "staff" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$staff$2d$tab$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["StaffTab"], {}, void 0, false, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 312,
+                                    lineNumber: 533,
                                     columnNumber: 39
                                 }, this),
                                 activeTab === "services" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$service$2d$tab$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ServicesTab"], {}, void 0, false, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 313,
+                                    lineNumber: 534,
                                     columnNumber: 42
                                 }, this),
                                 activeTab === "analytics" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$analytics$2d$tab$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnalyticsTab"], {}, void 0, false, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 314,
+                                    lineNumber: 535,
                                     columnNumber: 43
                                 }, this),
                                 activeTab === "settings" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -8635,7 +9180,7 @@ function ManagerDashboard() {
                                             children: "Paramètres"
                                         }, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 318,
+                                            lineNumber: 539,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -8643,40 +9188,40 @@ function ManagerDashboard() {
                                             children: "Cette section sera bientôt disponible"
                                         }, void 0, false, {
                                             fileName: "[project]/app/manager/page.tsx",
-                                            lineNumber: 319,
+                                            lineNumber: 540,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/manager/page.tsx",
-                                    lineNumber: 317,
+                                    lineNumber: 538,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/manager/page.tsx",
-                            lineNumber: 262,
+                            lineNumber: 483,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/manager/page.tsx",
-                        lineNumber: 261,
+                        lineNumber: 482,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/manager/page.tsx",
-                lineNumber: 110,
+                lineNumber: 245,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/manager/page.tsx",
-        lineNumber: 102,
+        lineNumber: 237,
         columnNumber: 5
     }, this);
 }
-_s(ManagerDashboard, "G4I0SexLSBCHezdia8p5IpDUX1A=", false, function() {
+_s(ManagerDashboard, "cRCoplEnByUtLEcLk1Wa55H9zSU=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useAuthSafe$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthSafe"],

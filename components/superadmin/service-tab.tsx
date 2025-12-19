@@ -24,18 +24,18 @@ import {
 } from "@/components/ui/dialog"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-import { Edit, Trash2, Scissors, Clock, Euro, Plus } from "lucide-react"
+import { Edit, Trash2, Scissors, Euro, Plus } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
-interface Category {
-  _id?: string
+interface CategoryPrestation {
+  _id: string
   name: string
 }
 
 interface Prestation {
   _id?: string
   name: string
-  categoryId: {
+  categoryPrestationId: {
     _id?: string
     name: string
   }
@@ -46,32 +46,32 @@ interface Prestation {
 
 export function ServicesTab() {
   const { toast } = useToast()
-  
+
   const [prestations, setPrestations] = useState<Prestation[]>([])
-  const [categories, setCategories] = useState<Category[]>([])
+  const [categoriesprestation, setCategoriesprestation] = useState<CategoryPrestation[]>([])
   const [loading, setLoading] = useState(true)
-  
+
   // Formulaire nouvelle prestation
   const [newService, setNewService] = useState({
     name: "",
-    categoryId: "", // on envoie le nom de la catégorie
+    categoryprestationId: "",
     prices: [""],
     description: "",
   })
-  
+
   // Formulaire nouvelle catégorie
-  const [newCategoryName, setNewCategoryName] = useState("")
-  const [isCategoryDialogOpen, setIsCategoryDialogOpen] = useState(false)
+  const [newCategoryprestationName, setNewCategoryprestationName] = useState("")
+  const [isCategoryprestationDialogOpen, setIsCategoryprestationDialogOpen] = useState(false)
 
   // Chargement initial
   useEffect(() => {
     fetchPrestations()
-    fetchCategories()
+    fetchCategoriesprestation()
   }, [])
 
   const fetchPrestations = async () => {
     try {
-      const res = await fetch("http://localhost:3500/api/allprestations") // ajuste le chemin selon ta route
+      const res = await fetch("http://localhost:3500/api/allprestations")
       if (res.ok) {
         const data = await res.json()
         setPrestations(data)
@@ -83,21 +83,38 @@ export function ServicesTab() {
     }
   }
 
-  const fetchCategories = async () => {
+  const fetchCategoriesprestation = async () => {
     try {
-      const res = await fetch("http://localhost:3500/api/allcategory") // tu devras créer cette route (GET toutes les catégories)
+      const res = await fetch("http://localhost:3500/api/allcategory")
       if (res.ok) {
-        const data = await res.json()
-        setCategories(data)
+        const data: any[] = await res.json()
+        console.log("✅ Catégories reçues :", data)
+
+        // Nettoyage strict : on garde seulement les catégories valides
+        const cleaned: CategoryPrestation[] = data
+          .filter((cat): cat is CategoryPrestation => 
+            cat && 
+            typeof cat._id === "string" && 
+            cat._id.trim() !== "" && 
+            typeof cat.name === "string" && 
+            cat.name.trim() !== ""
+          )
+          .map(cat => ({ _id: cat._id, name: cat.name }))
+
+        setCategoriesprestation(cleaned)
+      } else {
+        console.error("❌ Erreur HTTP :", res.status, await res.text())
+        toast({ title: "Erreur", description: "Impossible de charger les catégories", variant: "destructive" })
       }
     } catch (err) {
-      console.error(err)
+      console.error("🌐 Erreur réseau :", err)
+      toast({ title: "Erreur", description: "Problème de connexion", variant: "destructive" })
     }
   }
 
   const handleAddService = async () => {
-    if (!newService.name || !newService.categoryId || newService.prices.length === 0) {
-      toast({ title: "Erreur", description: "Champs obligatoires manquants", variant: "destructive" })
+    if (!newService.name || !newService.categoryprestationId || newService.prices.some(p => p === "")) {
+      toast({ title: "Erreur", description: "Champs obligatoires manquants ou prix invalide", variant: "destructive" })
       return
     }
 
@@ -107,8 +124,8 @@ export function ServicesTab() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: newService.name,
-          categoryId: newService.categoryId, // on envoie le nom
-          prices: newService.prices.map((p) => Number(p)),
+          categoryprestationId: newService.categoryprestationId,
+          prices: newService.prices.map(p => Number(p)),
           description: newService.description || undefined,
         }),
       })
@@ -117,10 +134,10 @@ export function ServicesTab() {
         const created = await res.json()
         setPrestations([created, ...prestations])
         toast({ title: "Succès", description: "Prestation ajoutée" })
-        setNewService({ name: "", categoryId: "", prices: [""], description: "" })
+        setNewService({ name: "", categoryprestationId: "", prices: [""], description: "" })
       } else {
         const error = await res.json()
-        toast({ title: "Erreur", description: error.error || "Échec de l'ajout", variant: "destructive" })
+        toast({ title: "Erreur", description: error.error || error.message || "Échec de l'ajout", variant: "destructive" })
       }
     } catch (err) {
       toast({ title: "Erreur", description: "Problème de connexion", variant: "destructive" })
@@ -129,7 +146,7 @@ export function ServicesTab() {
 
   const handleDeleteService = async (id: string) => {
     try {
-      const res = await fetch(`http://localhost:3500/api/putprestation/${id}`, { method: "DELETE" })
+      const res = await fetch(`http://localhost:3500/api/delete/${id}`, { method: "DELETE" }) // Correction de l'URL
       if (res.ok) {
         setPrestations(prestations.filter(p => p._id !== id))
         toast({ title: "Supprimée", description: "Prestation supprimée" })
@@ -151,32 +168,41 @@ export function ServicesTab() {
     }
   }
 
-  const handleCreateCategory = async () => {
-    if (!newCategoryName.trim()) return
+  const handleCreateCategoryprestation = async () => {
+    const name = newCategoryprestationName.trim()
+    if (!name) {
+      toast({ title: "Erreur", description: "Le nom est obligatoire", variant: "destructive" })
+      return
+    }
 
     try {
       const res = await fetch("http://localhost:3500/api/addcategory", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: newCategoryName.trim() }),
+        body: JSON.stringify({ name }),
       })
 
       if (res.ok) {
         const created = await res.json()
-        setCategories([...categories, created])
-        toast({ title: "Catégorie créée", description: newCategoryName })
-        setNewCategoryName("")
-        setIsCategoryDialogOpen(false)
+
+        // Recharge complet depuis le serveur → synchronisation parfaite
+        await fetchCategoriesprestation()
+
+        // Pré-sélectionne la nouvelle catégorie
+        setNewService({ ...newService, categoryprestationId: created._id })
+
+        toast({ title: "Succès", description: `Catégorie "${name}" créée !` })
+        setNewCategoryprestationName("")
+        setIsCategoryprestationDialogOpen(false)
       } else {
         const error = await res.json()
-        toast({ title: "Erreur", description: error.error || "Échec création catégorie", variant: "destructive" })
+        toast({ title: "Erreur", description: error.message || "Échec création", variant: "destructive" })
       }
     } catch (err) {
+      console.error(err)
       toast({ title: "Erreur", description: "Problème de connexion", variant: "destructive" })
     }
   }
-
-  
 
   if (loading) {
     return <div className="text-center py-10">Chargement...</div>
@@ -215,19 +241,29 @@ export function ServicesTab() {
 
             <div>
               <Label>Catégorie *</Label>
-              <Select value={newService.categoryId} onValueChange={(v) => setNewService({ ...newService, categoryId: v })}>
+              <Select
+                value={newService.categoryprestationId}
+                onValueChange={(v) => setNewService({ ...newService, categoryprestationId: v })}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Choisir..." />
                 </SelectTrigger>
                 <SelectContent>
-                  {categories.map((cat, index) => (
-                    <SelectItem key={cat._id || `cat-${index}`} value={cat.name}>
-                      {cat.name}
+                  {categoriesprestation.length === 0 ? (
+                    <SelectItem value="no-categories" disabled>
+                      Aucune catégorie disponible
                     </SelectItem>
-                  ))}
+                  ) : (
+                    categoriesprestation.map((cat) => (
+                      <SelectItem key={cat._id} value={cat._id}>
+                        {cat.name}
+                      </SelectItem>
+                    ))
+                  )}
                 </SelectContent>
               </Select>
-              <Dialog open={isCategoryDialogOpen} onOpenChange={setIsCategoryDialogOpen}>
+
+              <Dialog open={isCategoryprestationDialogOpen} onOpenChange={setIsCategoryprestationDialogOpen}>
                 <DialogTrigger asChild>
                   <Button variant="link" size="sm" className="mt-2 pl-0">
                     <Plus className="w-4 h-4 mr-1" />
@@ -237,71 +273,71 @@ export function ServicesTab() {
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Nouvelle catégorie</DialogTitle>
-                    <DialogDescription>Créez une catégorie qui pourra être utilisée pour les prestations</DialogDescription>
+                    <DialogDescription>
+                      Créez une catégorie qui pourra être utilisée pour les prestations
+                    </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div>
                       <Label htmlFor="catname">Nom de la catégorie</Label>
                       <Input
                         id="catname"
-                        value={newCategoryName}
-                        onChange={(e) => setNewCategoryName(e.target.value)}
+                        value={newCategoryprestationName}
+                        onChange={(e) => setNewCategoryprestationName(e.target.value)}
                         placeholder="Ex: Extensions"
                       />
                     </div>
                   </div>
                   <DialogFooter>
-                    <Button onClick={handleCreateCategory}>Créer</Button>
+                    <Button onClick={handleCreateCategoryprestation}>Créer</Button>
                   </DialogFooter>
                 </DialogContent>
               </Dialog>
             </div>
 
-
             <div>
-  <Label>Prix (€) *</Label>
-  {newService.prices.map((p, i) => (
-    <div key={i} className="flex items-center gap-2 mb-2">
-      <div className="relative flex-1">
-        <Euro className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-        <Input
-          type="number"
-          step="0.01"
-          className="pl-10"
-          value={p}
-          onChange={(e) => {
-            const newPrices = [...newService.prices];
-            newPrices[i] = e.target.value;
-            setNewService({ ...newService, prices: newPrices });
-          }}
-          placeholder="50.00"
-        />
-      </div>
-      {newService.prices.length > 1 && (
-        <Button
-          variant="destructive"
-          size="sm"
-          onClick={() => {
-            const newPrices = newService.prices.filter((_, idx) => idx !== i);
-            setNewService({ ...newService, prices: newPrices });
-          }}
-        >
-          Supprimer
-        </Button>
-      )}
-    </div>
-  ))}
-  <Button
-    size="sm"
-    variant="outline"
-    onClick={() =>
-      setNewService({ ...newService, prices: [...newService.prices, ""] })
-    }
-  >
-    Ajouter un prix
-  </Button>
-</div>
-
+              <Label>Prix (€) *</Label>
+              {newService.prices.map((p, i) => (
+                <div key={i} className="flex items-center gap-2 mb-2">
+                  <div className="relative flex-1">
+                    <Euro className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                      type="number"
+                      step="0.01"
+                      className="pl-10"
+                      value={p}
+                      onChange={(e) => {
+                        const newPrices = [...newService.prices]
+                        newPrices[i] = e.target.value
+                        setNewService({ ...newService, prices: newPrices })
+                      }}
+                      placeholder="50.00"
+                    />
+                  </div>
+                  {newService.prices.length > 1 && (
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => {
+                        setNewService({
+                          ...newService,
+                          prices: newService.prices.filter((_, idx) => idx !== i),
+                        })
+                      }}
+                    >
+                      Supprimer
+                    </Button>
+                  )}
+                </div>
+              ))}
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setNewService({ ...newService, prices: [...newService.prices, ""] })}
+              >
+                Ajouter un prix
+              </Button>
+            </div>
 
             <div className="sm:col-span-2 lg:col-span-3">
               <Label htmlFor="description">Description</Label>
@@ -328,21 +364,21 @@ export function ServicesTab() {
           <CardTitle>Liste des prestations</CardTitle>
         </CardHeader>
         <CardContent>
+          {/* Version desktop */}
           <div className="hidden md:block overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>Prestation</TableHead>
                   <TableHead>Catégorie</TableHead>
-                  <TableHead>Durée</TableHead>
                   <TableHead>Prix</TableHead>
                   <TableHead>Statut</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {prestations.map((service,index) => (
-                  <TableRow key={service._id || `service-${index}`}>
+                {prestations.map((service) => (
+                  <TableRow key={service._id}>
                     <TableCell>
                       <div>
                         <p className="font-medium">{service.name}</p>
@@ -350,15 +386,13 @@ export function ServicesTab() {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Badge variant="outline">{service.categoryId.name}</Badge>
+                      <Badge variant="outline">{service.categoryPrestationId.name}</Badge>
                     </TableCell>
-                    
                     <TableCell>
-  {service.prices.map((p, idx) => (
-    <Badge key={idx} className="mr-1">€{p}</Badge>
-  ))}
-</TableCell>
-
+                      {service.prices.map((p, idx) => (
+                        <Badge key={idx} className="mr-1">€{p}</Badge>
+                      ))}
+                    </TableCell>
                     <TableCell>
                       <Badge variant={service.isActive ? "default" : "secondary"} className={service.isActive ? "bg-green-500" : ""}>
                         {service.isActive ? "Active" : "Inactive"}
@@ -367,8 +401,7 @@ export function ServicesTab() {
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button variant="ghost" size="icon" onClick={() => handleToggleActive(service._id!)}>
-                          {service.isActive ? <Edit className="w-4 h-4" /> : <Edit className="w-4 h-4" />}
-                          <span className="sr-only">Activer/Désactiver</span>
+                          <Edit className="w-4 h-4" />
                         </Button>
                         <Button variant="ghost" size="icon" onClick={() => handleDeleteService(service._id!)}>
                           <Trash2 className="w-4 h-4 text-destructive" />
@@ -381,29 +414,25 @@ export function ServicesTab() {
             </Table>
           </div>
 
-          {/* Version mobile (simplifiée) */}
+          {/* Version mobile */}
           <div className="md:hidden space-y-4">
-            {prestations.map((service, index) => (
-              <Card key={service._id || `service-mobile-${index}`}>
+            {prestations.map((service) => (
+              <Card key={service._id}>
                 <CardContent className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h3 className="font-semibold text-lg">{service.name}</h3>
-                      <Badge variant="outline" className="mt-1">{service.categoryId.name}</Badge>
+                      <Badge variant="outline" className="mt-1">{service.categoryPrestationId.name}</Badge>
                     </div>
                     <Badge variant={service.isActive ? "default" : "secondary"} className={service.isActive ? "bg-green-500" : ""}>
                       {service.isActive ? "Active" : "Inactive"}
                     </Badge>
                   </div>
                   {service.description && <p className="text-sm text-muted-foreground mb-3">{service.description}</p>}
-                  <div className="flex justify-between mb-4">
-                    
-                    <div className="flex flex-wrap gap-1">
-  {service.prices.map((p, idx) => (
-    <Badge key={idx}>€{p}</Badge>
-  ))}
-</div>
-
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {service.prices.map((p, idx) => (
+                      <Badge key={idx}>€{p}</Badge>
+                    ))}
                   </div>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" className="flex-1" onClick={() => handleToggleActive(service._id!)}>
