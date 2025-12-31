@@ -1,8 +1,11 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Globe, Store } from "lucide-react"
 import { useEffect, useState } from "react"
-
+import { useToast } from "@/hooks/use-toast"
+import { useAuthStore } from "@/lib/auth-store"
 
 interface Appointment {
   id: string
@@ -21,67 +24,118 @@ const statusConfig = {
   completed: { label: "Terminé", color: "bg-gray-100 text-gray-800" },
 }
 
-
-
-const mapStatus = (status: string) => {
-  switch (status) {
+const mapStatus = (status: string): Appointment["status"] => {
+  switch (status.toUpperCase()) {
     case "CONFIRMED":
       return "confirmed"
     case "PENDING":
+    case "ARRIVED":
       return "arrived"
+    case "IN_PROGRESS":
+      return "inprogress"
+    case "COMPLETED":
     case "CANCELLED":
       return "completed"
     default:
       return "confirmed"
   }
 }
-const mapOrigin = (source: string) =>
-  source === "ONLINE" ? "online" : "instore"
 
+const mapOrigin = (source: string): Appointment["origin"] =>
+  source.toUpperCase() === "ONLINE" ? "online" : "instore"
 
 export function AppointmentsList() {
+  const { toast } = useToast()
   const [appointments, setAppointments] = useState<Appointment[]>([])
   const [loading, setLoading] = useState(true)
 
+  // Récupération propre du token via ton store
+  const token = useAuthStore((state) => state.token)
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchRdvs = async () => {
+      if (!token) {
+        toast({
+          title: "Non authentifié",
+          description: "Vous devez être connecté pour voir les rendez-vous.",
+          variant: "destructive",
+        })
+        setLoading(false)
+        return
+      }
+
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/rdv/gerant`,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        )
+        setLoading(true)
+        const res = await fetch("http://localhost:3500/api/gerant", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        })
+
+        // Gestion d’erreur si pas 200
+        if (!res.ok) {
+          const data = await res.json()
+          // console.error("Réponse erreur RDV :", res.status, text.substring(0, 300))
+          // throw new Error(`Erreur ${res.status} : Impossible de charger les rendez-vous`)
+        }
+
         const data = await res.json()
 
+        if (!Array.isArray(data)) {
+          console.warn("Données RDV inattendues :", data)
+          setAppointments([])
+          return
+        }
+
         const formatted: Appointment[] = data.map((rdv: any) => ({
-          id: rdv._id,
-          time: rdv.time,
-          client: `${rdv.clientId?.prenom} ${rdv.clientId?.nom}`,
-          service: rdv.service,
-          stylist: rdv.coiffeur || "-",
-          status: mapStatus(rdv.status),
-          origin: mapOrigin(rdv.source),
+          id: rdv._id || rdv.id,
+          time: rdv.time || "Heure inconnue",
+          client: rdv.clientId
+            ? `${rdv.clientId.prenom || ""} ${rdv.clientId.nom || ""}`.trim() || "Client inconnu"
+            : "Client inconnu",
+          service: rdv.service || rdv.serviceId?.nom || "Service inconnu",
+          stylist: rdv.coiffeur || rdv.employee || "-",
+          status: mapStatus(rdv.status || "CONFIRMED"),
+          origin: mapOrigin(rdv.source || "INSTORE"),
         }))
 
-          setAppointments(formatted)
-      } catch (error) {
+        setAppointments(formatted)
+      } catch (error: any) {
         console.error("Erreur chargement RDV", error)
+        toast({
+          title: "Erreur de chargement",
+          description: error.message || "Impossible de récupérer les rendez-vous.",
+          variant: "destructive",
+        })
+        setAppointments([])
       } finally {
         setLoading(false)
       }
     }
 
     fetchRdvs()
-  }, [])
+  }, [token, toast])
 
-    if (loading) {
-    return <p className="text-sm text-muted-foreground">Chargement...</p>
+  if (loading) {
+    return (
+      <Card>
+        <CardContent className="py-8">
+          <p className="text-center text-muted-foreground">Chargement des rendez-vous...</p>
+        </CardContent>
+      </Card>
+    )
   }
 
+  if (appointments.length === 0) {
+    return (
+      <Card>
+        <CardContent className="py-8">
+          <p className="text-center text-muted-foreground">Aucun rendez-vous pour le moment.</p>
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
     <Card>
@@ -89,6 +143,7 @@ export function AppointmentsList() {
         <CardTitle className="text-lg md:text-xl">Liste des rendez-vous</CardTitle>
       </CardHeader>
       <CardContent>
+        {/* Version Desktop */}
         <div className="hidden md:block overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -126,6 +181,7 @@ export function AppointmentsList() {
           </table>
         </div>
 
+        {/* Version Mobile */}
         <div className="md:hidden space-y-3">
           {appointments.map((apt) => (
             <div key={apt.id} className="border rounded-lg p-4 space-y-2">

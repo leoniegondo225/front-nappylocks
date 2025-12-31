@@ -1690,39 +1690,55 @@ function MobileNav() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
         className: "fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border md:hidden",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex items-center justify-around h-16",
+            className: "flex items-center justify-around h-16 safe-area-inset-bottom",
             children: links.map((link)=>{
                 const Icon = link.icon;
                 const isActive = pathname === link.href;
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                     href: link.href,
-                    className: `flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors ${isActive ? "text-foreground" : "text-muted-foreground"}`,
+                    onClick: (e)=>{
+                        // Empêche le rechargement inutile quand on est déjà sur la page
+                        if (isActive) {
+                            e.preventDefault();
+                            window.scrollTo({
+                                top: 0,
+                                behavior: "smooth"
+                            }); // bonus UX
+                        }
+                    },
+                    className: `
+                flex flex-col items-center justify-center flex-1 h-full gap-1
+                transition-colors duration-200
+                ${isActive ? "text-foreground font-semibold" : "text-muted-foreground hover:text-foreground/80"}
+                active:scale-95  // petit effet tactile agréable
+              `,
+                    "aria-current": isActive ? "page" : undefined,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
-                            className: "w-5 h-5"
+                            className: "w-6 h-6"
                         }, void 0, false, {
                             fileName: "[project]/components/navigation/mobile-nav.tsx",
-                            lineNumber: 33,
+                            lineNumber: 49,
                             columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                            className: "text-[10px] font-medium",
+                            className: "text-[10px] font-medium leading-none",
                             children: link.label
                         }, void 0, false, {
                             fileName: "[project]/components/navigation/mobile-nav.tsx",
-                            lineNumber: 34,
+                            lineNumber: 50,
                             columnNumber: 15
                         }, this)
                     ]
                 }, link.href, true, {
                     fileName: "[project]/components/navigation/mobile-nav.tsx",
-                    lineNumber: 26,
+                    lineNumber: 28,
                     columnNumber: 13
                 }, this);
             })
         }, void 0, false, {
             fileName: "[project]/components/navigation/mobile-nav.tsx",
-            lineNumber: 20,
+            lineNumber: 22,
             columnNumber: 7
         }, this)
     }, void 0, false, {

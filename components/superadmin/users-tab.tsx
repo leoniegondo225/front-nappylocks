@@ -57,7 +57,7 @@ export function UsersTab({
 }: UsersTabProps) {
   const [searchTerm, setSearchTerm] = useState("")
   const [userFilter, setUserFilter] = useState<string>("all")
-  
+
   // Formulaire création
   const [newUser, setNewUser] = useState({
     username: "",
@@ -68,7 +68,10 @@ export function UsersTab({
     salonId: "",
   })
 
+  // Formulaire modification
   const [editingUser, setEditingUser] = useState<User | null>(null)
+  const [editDialogOpen, setEditDialogOpen] = useState(false)
+
   const [salons, setSalons] = useState<any[]>([])
 
   const { toast } = useToast()
@@ -97,29 +100,6 @@ export function UsersTab({
       fetchSalons()
     }
   }, [currentUser?.role])
-
-  // Second useEffect (celui qui était dupliqué, je le garde tel quel)
-  useEffect(() => {
-    const fetchSalons = async () => {
-      const token = useAuthStore.getState().token
-      if (!token) return
-
-      try {
-        const res = await fetch("http://localhost:3500/api/getallsalons", {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-
-        if (res.ok) {
-          const data = await res.json()
-          setSalons(data)
-        }
-      } catch (err) {
-        console.error("Erreur chargement salons", err)
-      }
-    }
-
-    fetchSalons()
-  }, [])
 
   // Filtrage local
   const filteredUsers = propUsers.filter((u) => {
@@ -191,7 +171,7 @@ export function UsersTab({
 
       onAddUser(data.user)
       toast({ title: "Succès", description: "Utilisateur créé avec succès" })
-      
+
       setNewUser({
         username: "",
         email: "",
@@ -235,11 +215,46 @@ export function UsersTab({
       const updated = await res.json()
       onEditUser(updated.user || editingUser)
       toast({ title: "Succès", description: "Utilisateur mis à jour" })
+
       setEditingUser(null)
+      setEditDialogOpen(false) // Ferme le modal
     } catch (error: any) {
       toast({ title: "Erreur", description: error.message, variant: "destructive" })
     }
   }
+
+
+  // Suppression d'un utilisateur
+  // Fonction de suppression – même style que handleUpdateUser
+  const handleDeleteUser = async (userId: string, username: string) => {
+    const token = useAuthStore.getState().token
+    if (!token) {
+      toast({ title: "Erreur", description: "Non authentifié", variant: "destructive" })
+      return
+    }
+
+    try {
+      const res = await fetch(`http://localhost:3500/api/admin/users/delete/${userId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.message || "Échec de la suppression")
+      }
+
+      // Suppression réussie
+      onDeleteUser(userId) // Met à jour la liste localement (via la prop passée depuis le dashboard)
+      toast({ title: "Succès", description: `Utilisateur ${username} supprimé` })
+
+    } catch (error: any) {
+      toast({ title: "Erreur", description: error.message, variant: "destructive" })
+    }
+  }
+
 
   return (
     <div className="space-y-8">
@@ -274,7 +289,7 @@ export function UsersTab({
             Exporter
           </Button>
 
-          {/* Dialog Ajouter un utilisateur – FORMULAIRE BEAU */}
+          {/* Dialog Ajouter un utilisateur */}
           {currentUser?.role === "superadmin" && (
             <Dialog>
               <DialogTrigger asChild>
@@ -349,59 +364,60 @@ export function UsersTab({
                       />
                     </div>
                   </div>
-                <div className=" grid grid-cols-1 md:grid-cols-2 gap-6"> 
-                  <div className="space-y-2 ">
-                    <Label htmlFor="add-role" className="text-base ">
-                      <Shield className="w-4 h-4 inline mr-2 text-muted-foreground" />
-                      Rôle
-                    </Label>
-                    <Select
-                      value={newUser.role}
-                      onValueChange={(v: UserRole) =>
-                        setNewUser({ ...newUser, role: v, salonId: v === "gerant" ? newUser.salonId : "" })
-                      }
-                    >
-                      <SelectTrigger id="add-role">
-                        <SelectValue placeholder="Sélectionner un rôle" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="gerant">Gérant</SelectItem>
-                        <SelectItem value="admin">Admin</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
 
-                  {newUser.role === "gerant" && (
-                    <div className="space-y-2 animate-in fade-in-0 zoom-in-95 duration-300">
-                      <Label htmlFor="add-salon" className="text-base">
-                        <Building2 className="w-4 h-4 inline mr-2 text-muted-foreground" />
-                        Salon associé
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="add-role" className="text-base">
+                        <Shield className="w-4 h-4 inline mr-2 text-muted-foreground" />
+                        Rôle
                       </Label>
                       <Select
-                        value={newUser.salonId}
-                        onValueChange={(v) => setNewUser({ ...newUser, salonId: v })}
+                        value={newUser.role}
+                        onValueChange={(v: UserRole) =>
+                          setNewUser({ ...newUser, role: v, salonId: v === "gerant" ? newUser.salonId : "" })
+                        }
                       >
-                        <SelectTrigger id="add-salon">
-                          <SelectValue placeholder="Choisir un salon" />
+                        <SelectTrigger id="add-role">
+                          <SelectValue placeholder="Sélectionner un rôle" />
                         </SelectTrigger>
                         <SelectContent>
-                          {salons.length === 0 ? (
-                            <SelectItem value="" disabled>
-                              Aucun salon disponible
-                            </SelectItem>
-                          ) : (
-                            salons.map((salon) => (
-                              <SelectItem key={salon._id} value={salon._id}>
-                                {salon.nom}
-                              </SelectItem>
-                            ))
-                          )}
+                          <SelectItem value="gerant">Gérant</SelectItem>
+                          <SelectItem value="admin">Admin</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-                  )}
 
-              </div>
+                    {newUser.role === "gerant" && (
+                      <div className="space-y-2 animate-in fade-in-0 zoom-in-95 duration-300">
+                        <Label htmlFor="add-salon" className="text-base">
+                          <Building2 className="w-4 h-4 inline mr-2 text-muted-foreground" />
+                          Salon associé
+                        </Label>
+                        <Select
+                          value={newUser.salonId}
+                          onValueChange={(v) => setNewUser({ ...newUser, salonId: v })}
+                          disabled={salons.length === 0}
+                        >
+                          <SelectTrigger id="add-salon">
+                            <SelectValue
+                              placeholder={
+                                salons.length === 0
+                                  ? "Aucun salon disponible"
+                                  : "Choisir un salon"
+                              }
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {salons.map((salon) => (
+                              <SelectItem key={salon._id} value={salon._id}>
+                                {salon.nom}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 <DialogFooter>
@@ -444,13 +460,16 @@ export function UsersTab({
 
               {currentUser?.role === "superadmin" && u.role !== "superadmin" && (
                 <div className="flex gap-3">
-                  {/* Dialog Modifier – FORMULAIRE BEAU */}
-                  <Dialog>
+                  {/* Dialog Modifier */}
+                  <Dialog open={editDialogOpen} onOpenChange={setEditDialogOpen}>
                     <DialogTrigger asChild>
                       <Button
                         variant="outline"
                         size="sm"
-                        onClick={() => setEditingUser(u)}
+                        onClick={() => {
+                          setEditingUser(u)
+                          setEditDialogOpen(true)
+                        }}
                       >
                         <Edit className="w-4 h-4 mr-2" />
                         Modifier
@@ -460,7 +479,7 @@ export function UsersTab({
                     <DialogContent className="sm:max-w-xl">
                       <DialogHeader>
                         <DialogTitle className="text-2xl font-bold">
-                          Modifier {u.username}
+                          Modifier {editingUser?.username || "l'utilisateur"}
                         </DialogTitle>
                       </DialogHeader>
 
@@ -502,8 +521,12 @@ export function UsersTab({
                               </Label>
                               <Input
                                 value={editingUser.telephone || ""}
-                                onChange={(e) => setEditingUser({ ...editingUser, telephone: e.target.value || undefined })}
-                                
+                                onChange={(e) =>
+                                  setEditingUser({
+                                    ...editingUser,
+                                    telephone: e.target.value || undefined,
+                                  })
+                                }
                               />
                             </div>
                             <div className="space-y-2">
@@ -542,7 +565,7 @@ export function UsersTab({
                     variant="outline"
                     size="sm"
                     className="text-destructive border-destructive hover:bg-destructive hover:text-white"
-                    onClick={() => onDeleteUser(u._id!)}
+                    onClick={() => handleDeleteUser(u._id!, u.username)}
                   >
                     <Trash2 className="w-4 h-4 mr-2" />
                     Supprimer

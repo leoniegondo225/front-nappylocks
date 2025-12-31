@@ -26,7 +26,7 @@ interface DaySchedule {
 }
 
 interface Employee {
-  id: string
+  _id: string
   name: string
   // On suppose que tu as un champ schedule dans ton modèle Employee
   // Si ce n'est pas le cas, on pourra adapter avec un endpoint séparé
@@ -76,7 +76,7 @@ export function StaffPlanning({ salonId }: { salonId: string }) {
     // Mise à jour optimiste
     setEmployees(prev =>
       prev.map(emp =>
-        emp.id === employeeId
+        emp._id === employeeId
           ? {
               ...emp,
               schedule: emp.schedule?.map((d, i) => (i === dayIndex ? updatedDay : d)),
@@ -93,7 +93,7 @@ export function StaffPlanning({ salonId }: { salonId: string }) {
         body: JSON.stringify({
           // On envoie seulement le jour modifié ou tout le schedule selon ton modèle
           schedule: employees
-            .find(e => e.id === employeeId)
+            .find(e => e._id === employeeId)
             ?.schedule?.map((d, i) => (i === dayIndex ? updatedDay : d)),
         }),
       })
@@ -179,7 +179,7 @@ export function StaffPlanning({ salonId }: { salonId: string }) {
             </thead>
             <tbody>
               {employees.map((emp) => (
-                <tr key={emp.id} className="border-b last:border-0">
+                <tr key={emp._id} className="border-b last:border-0">
                   <td className="py-4 pr-8 font-medium sticky left-0 bg-background z-10">
                     {emp.name}
                   </td>
@@ -191,10 +191,10 @@ export function StaffPlanning({ salonId }: { salonId: string }) {
                     return (
                       <td key={day.date} className="py-4 px-3">
                         <Dialog
-                          open={selectedDay?.employeeId === emp.id && selectedDay?.dayIndex === dayIndex}
+                          open={selectedDay?.employeeId === emp._id && selectedDay?.dayIndex === dayIndex}
                           onOpenChange={(open) =>
                             open
-                              ? setSelectedDay({ employeeId: emp.id, dayIndex })
+                              ? setSelectedDay({ employeeId: emp._id, dayIndex })
                               : setSelectedDay(null)
                           }
                         >
@@ -225,7 +225,7 @@ export function StaffPlanning({ salonId }: { salonId: string }) {
                             </DialogHeader>
                             <DayEditForm
                               day={day}
-                              onSave={(updated) => handleSaveDay(emp.id, dayIndex, updated)}
+                              onSave={(updated) => handleSaveDay(emp._id, dayIndex, updated)}
                               onCancel={() => setSelectedDay(null)}
                             />
                           </DialogContent>

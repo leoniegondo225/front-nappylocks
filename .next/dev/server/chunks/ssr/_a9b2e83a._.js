@@ -497,7 +497,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$store$2e$ts__
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$service$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/superadmin/service-tab.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$staff$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/superadmin/staff-tab.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$clients$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/manager/clients-tab.tsx [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2f$mobile$2d$nav$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/navigation/mobile-nav.tsx [app-ssr] (ecmascript)");
 "use client";
+;
 ;
 ;
 ;
@@ -665,6 +667,32 @@ function SuperAdminDashboard() {
         user,
         toast
     ]);
+    // Ajoute ce useEffect pour charger les salons au démarrage
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const fetchSalons = async ()=>{
+            const token = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$store$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuthStore"].getState().token;
+            if (!token) return;
+            try {
+                const res = await fetch("http://localhost:3500/api/getallsalons", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    setSalons(data);
+                }
+            } catch (err) {
+                console.error("Erreur chargement salons", err);
+            }
+        };
+        if (isAuthenticated && user?.role === "superadmin") {
+            fetchSalons();
+        }
+    }, [
+        isAuthenticated,
+        user
+    ]);
     const handleDeleteProduct = (id)=>{
         setProducts((prev)=>prev.filter((p)=>p._id !== id));
         toast({
@@ -680,12 +708,12 @@ function SuperAdminDashboard() {
                 className: "animate-spin rounded-full h-12 w-12 border-t-4 border-purple-600"
             }, void 0, false, {
                 fileName: "[project]/app/admin/page.tsx",
-                lineNumber: 158,
+                lineNumber: 182,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/admin/page.tsx",
-            lineNumber: 157,
+            lineNumber: 181,
             columnNumber: 7
         }, this);
     }
@@ -698,12 +726,12 @@ function SuperAdminDashboard() {
                 className: "animate-spin rounded-full h-12 w-12 border-t-4 border-purple-600"
             }, void 0, false, {
                 fileName: "[project]/app/admin/page.tsx",
-                lineNumber: 169,
+                lineNumber: 193,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/admin/page.tsx",
-            lineNumber: 168,
+            lineNumber: 192,
             columnNumber: 7
         }, this);
     }
@@ -717,7 +745,7 @@ function SuperAdminDashboard() {
                 onClose: ()=>setSidebarOpen(false)
             }, void 0, false, {
                 fileName: "[project]/app/admin/page.tsx",
-                lineNumber: 177,
+                lineNumber: 201,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -733,22 +761,22 @@ function SuperAdminDashboard() {
                                 className: "w-5 h-5"
                             }, void 0, false, {
                                 fileName: "[project]/app/admin/page.tsx",
-                                lineNumber: 188,
+                                lineNumber: 212,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/admin/page.tsx",
-                            lineNumber: 187,
+                            lineNumber: 211,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/admin/page.tsx",
-                        lineNumber: 186,
+                        lineNumber: 210,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2f$header$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Header"], {}, void 0, false, {
                         fileName: "[project]/app/admin/page.tsx",
-                        lineNumber: 192,
+                        lineNumber: 216,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -764,7 +792,7 @@ function SuperAdminDashboard() {
                                             children: "Tableau de bord SuperAdmin"
                                         }, void 0, false, {
                                             fileName: "[project]/app/admin/page.tsx",
-                                            lineNumber: 197,
+                                            lineNumber: 221,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -772,13 +800,13 @@ function SuperAdminDashboard() {
                                             children: "Gestion complète de la plateforme NappyLocks"
                                         }, void 0, false, {
                                             fileName: "[project]/app/admin/page.tsx",
-                                            lineNumber: 198,
+                                            lineNumber: 222,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 196,
+                                    lineNumber: 220,
                                     columnNumber: 13
                                 }, this),
                                 activeTab === "overview" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -792,42 +820,50 @@ function SuperAdminDashboard() {
                                                 todayBookings: 87
                                             }, void 0, false, {
                                                 fileName: "[project]/app/admin/page.tsx",
-                                                lineNumber: 204,
+                                                lineNumber: 228,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/admin/page.tsx",
-                                            lineNumber: 203,
+                                            lineNumber: 227,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$overview$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["OverviewTab"], {}, void 0, false, {
                                             fileName: "[project]/app/admin/page.tsx",
-                                            lineNumber: 206,
+                                            lineNumber: 230,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true),
                                 activeTab === "users" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$users$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["UsersTab"], {
                                     users: users,
-                                    onAddUser: ()=>{},
-                                    onEditUser: ()=>{},
-                                    onDeleteUser: ()=>{},
-                                    onExport: ()=>{}
+                                    onAddUser: (user)=>setUsers((prev)=>[
+                                                ...prev,
+                                                user
+                                            ]),
+                                    onEditUser: (updated)=>setUsers((prev)=>prev.map((u)=>u._id === updated._id ? updated : u)),
+                                    onDeleteUser: (id)=>setUsers((prev)=>prev.filter((u)=>u._id !== id)),
+                                    onExport: ()=>console.log("Export à implémenter")
                                 }, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 211,
+                                    lineNumber: 235,
                                     columnNumber: 15
                                 }, this),
                                 activeTab === "salons" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$salons$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SalonsTab"], {
-                                    users: users,
                                     salons: salons,
                                     onSalonCreated: (salon)=>setSalons((prev)=>[
                                                 ...prev,
                                                 salon
-                                            ])
+                                            ]),
+                                    onStatusChanged: (salonId, newStatus)=>setSalons((prev)=>prev.map((s)=>s._id === salonId ? {
+                                                    ...s,
+                                                    status: newStatus
+                                                } : s)),
+                                    onSalonUpdated: (updatedSalon)=>setSalons((prev)=>prev.map((s)=>s._id === updatedSalon._id ? updatedSalon : s)),
+                                    onSalonDeleted: (salonId)=>setSalons((prev)=>prev.filter((s)=>s._id !== salonId))
                                 }, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 221,
+                                    lineNumber: 245,
                                     columnNumber: 15
                                 }, this),
                                 activeTab === "products" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$products$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ProductsTab"], {
@@ -835,22 +871,22 @@ function SuperAdminDashboard() {
                                     onDeleteProduct: handleDeleteProduct
                                 }, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 229,
+                                    lineNumber: 265,
                                     columnNumber: 15
                                 }, this),
                                 activeTab === "services" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$service$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ServicesTab"], {}, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 232,
+                                    lineNumber: 268,
                                     columnNumber: 42
                                 }, this),
                                 activeTab === "staff" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$staff$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["StaffTab"], {}, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 233,
+                                    lineNumber: 269,
                                     columnNumber: 39
                                 }, this),
                                 activeTab === "clients" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$manager$2f$clients$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ClientsTab"], {}, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 234,
+                                    lineNumber: 270,
                                     columnNumber: 41
                                 }, this),
                                 activeTab === "bookings" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$bookings$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["BookingsTab"], {
@@ -858,14 +894,14 @@ function SuperAdminDashboard() {
                                     onUpdateStatus: ()=>{}
                                 }, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 236,
+                                    lineNumber: 272,
                                     columnNumber: 42
                                 }, this),
                                 activeTab === "logs" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$logs$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LogsTab"], {
                                     logs: logs
                                 }, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 237,
+                                    lineNumber: 273,
                                     columnNumber: 38
                                 }, this),
                                 activeTab === "settings" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$superadmin$2f$settings$2d$tab$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SettingsTab"], {
@@ -874,30 +910,35 @@ function SuperAdminDashboard() {
                                         })
                                 }, void 0, false, {
                                     fileName: "[project]/app/admin/page.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 274,
                                     columnNumber: 42
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/admin/page.tsx",
-                            lineNumber: 195,
+                            lineNumber: 219,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/admin/page.tsx",
-                        lineNumber: 194,
+                        lineNumber: 218,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/admin/page.tsx",
-                lineNumber: 184,
+                lineNumber: 208,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$navigation$2f$mobile$2d$nav$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["MobileNav"], {}, void 0, false, {
+                fileName: "[project]/app/admin/page.tsx",
+                lineNumber: 278,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/admin/page.tsx",
-        lineNumber: 175,
+        lineNumber: 199,
         columnNumber: 5
     }, this);
 }

@@ -1697,12 +1697,14 @@ function MobileNav() {
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                     href: link.href,
                     className: `flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors ${isActive ? "text-foreground" : "text-muted-foreground"}`,
+                    onClick: isActive ? (e)=>e.preventDefault() : undefined,
+                    "aria-current": isActive ? "page" : undefined,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Icon, {
                             className: "w-5 h-5"
                         }, void 0, false, {
                             fileName: "[project]/components/navigation/mobile-nav.tsx",
-                            lineNumber: 33,
+                            lineNumber: 35,
                             columnNumber: 15
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1710,7 +1712,7 @@ function MobileNav() {
                             children: link.label
                         }, void 0, false, {
                             fileName: "[project]/components/navigation/mobile-nav.tsx",
-                            lineNumber: 34,
+                            lineNumber: 36,
                             columnNumber: 15
                         }, this)
                     ]

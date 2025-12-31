@@ -21,18 +21,19 @@ import { Product } from "@/types/product"
 import { ServicesTab } from "@/components/superadmin/service-tab"
 import { StaffTab } from "@/components/superadmin/staff-tab"
 import { ClientsTab } from "@/components/manager/clients-tab"
+import { MobileNav } from "@/components/navigation/mobile-nav"
 
 
 
 
 interface Salon {
-  id: string
+  _id: string
   nom: string
   address: string
   pays: string
   ville: string
   telephone: string
-  gerantId: string
+  gerantId?: string  // optionnel
   email: string
   status: "active" | "inactive"
   createdAt: string
@@ -106,43 +107,66 @@ export default function SuperAdminDashboard() {
     }
   }, [isLoading, isAuthenticated, user, router])
 
-useEffect(() => {
-  const fetchProducts = async () => {
-    const token = useAuthStore.getState().token
-    if (!token) return
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const token = useAuthStore.getState().token
+      if (!token) return
 
-    try {
-      const res = await fetch("http://localhost:3500/api/getAllproduit", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      const data = await res.json()
+      try {
+        const res = await fetch("http://localhost:3500/api/getAllproduit", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        const data = await res.json()
 
-      if (res.ok) {
-        // Assurez-vous que data.produits est un tableau
-        setProducts(Array.isArray(data) ? data : [])
-      } else {
+        if (res.ok) {
+          // Assurez-vous que data.produits est un tableau
+          setProducts(Array.isArray(data) ? data : [])
+        } else {
+          toast({
+            title: "Erreur",
+            description: data.message || "Impossible de charger les produits",
+            variant: "destructive",
+          })
+        }
+      } catch (err) {
         toast({
-          title: "Erreur",
-          description: data.message || "Impossible de charger les produits",
+          title: "Erreur réseau",
+          description: "Vérifie que ton serveur est lancé",
           variant: "destructive",
         })
       }
-    } catch (err) {
-      toast({
-        title: "Erreur réseau",
-        description: "Vérifie que ton serveur est lancé",
-        variant: "destructive",
-      })
     }
-  }
 
-  if (isAuthenticated && user?.role === "superadmin") {
-    fetchProducts()
-  }
-}, [isAuthenticated, user, toast])
+    if (isAuthenticated && user?.role === "superadmin") {
+      fetchProducts()
+    }
+  }, [isAuthenticated, user, toast])
 
+  // Ajoute ce useEffect pour charger les salons au démarrage
+  useEffect(() => {
+    const fetchSalons = async () => {
+      const token = useAuthStore.getState().token
+      if (!token) return
+
+      try {
+        const res = await fetch("http://localhost:3500/api/getallsalons", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        const data = await res.json()
+        if (res.ok) {
+          setSalons(data)
+        }
+      } catch (err) {
+        console.error("Erreur chargement salons", err)
+      }
+    }
+
+    if (isAuthenticated && user?.role === "superadmin") {
+      fetchSalons()
+    }
+  }, [isAuthenticated, user])
 
 
 
@@ -162,7 +186,7 @@ useEffect(() => {
 
   if (!isAuthenticated || user?.role !== "superadmin") return null
 
-// Loader
+  // Loader
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -210,18 +234,30 @@ useEffect(() => {
             {activeTab === "users" && (
               <UsersTab
                 users={users}
-                onAddUser={() => { }}
-                onEditUser={() => { }}
-                onDeleteUser={() => { }}
-                onExport={() => { }}
+                onAddUser={(user) => setUsers(prev => [...prev, user])}
+                onEditUser={(updated) => setUsers(prev => prev.map(u => u._id === updated._id ? updated : u))}
+                onDeleteUser={(id) => setUsers(prev => prev.filter(u => u._id !== id))}
+                onExport={() => console.log("Export à implémenter")}
               />
             )}
 
             {activeTab === "salons" && (
               <SalonsTab
-                users={users}
                 salons={salons}
                 onSalonCreated={(salon) => setSalons(prev => [...prev, salon])}
+                onStatusChanged={(salonId, newStatus) =>
+                  setSalons(prev =>
+                    prev.map(s => s._id === salonId ? { ...s, status: newStatus } : s)
+                  )
+                }
+                onSalonUpdated={(updatedSalon) =>
+                  setSalons(prev =>
+                    prev.map(s => s._id === updatedSalon._id ? updatedSalon : s)
+                  )
+                }
+                onSalonDeleted={(salonId) =>
+                  setSalons(prev => prev.filter(s => s._id !== salonId))
+                }
               />
             )}
 
@@ -230,8 +266,8 @@ useEffect(() => {
             )}
 
             {activeTab === "services" && <ServicesTab />}
-            {activeTab === "staff" && <StaffTab/>}
-            {activeTab === "clients" && <ClientsTab/> }
+            {activeTab === "staff" && <StaffTab />}
+            {activeTab === "clients" && <ClientsTab />}
 
             {activeTab === "bookings" && <BookingsTab bookings={bookings} onUpdateStatus={() => { }} />}
             {activeTab === "logs" && <LogsTab logs={logs} />}
@@ -239,6 +275,7 @@ useEffect(() => {
           </div>
         </main>
       </div>
+      <MobileNav />
     </div>
   )
 }

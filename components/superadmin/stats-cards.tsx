@@ -3,7 +3,7 @@ import { Users, Building2, TrendingUp, Calendar } from "lucide-react"
 import type { User } from "@/lib/auth-store"
 
 interface Salon {
-  id: string
+  _id: string  // ← Changé de "id" à "_id"
   status: "active" | "inactive"
 }
 
