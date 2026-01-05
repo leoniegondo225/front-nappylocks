@@ -1,4 +1,3 @@
-// hooks/useAuthSafe.ts
 "use client"
 
 import { useEffect, useState } from "react"
@@ -7,19 +6,16 @@ import { useAuthStore } from "@/lib/auth-store"
 export const useAuthSafe = () => {
   const [isHydrated, setIsHydrated] = useState(false)
 
-  // La méthode officielle de Zustand pour détecter l'hydratation
   useEffect(() => {
-    const unsub = useAuthStore.persist.onHydrate(() => {})
-    useAuthStore.persist.onFinishHydration(() => {
+    const unsub = useAuthStore.persist.onFinishHydration(() => {
       setIsHydrated(true)
     })
 
-    // Si déjà hydraté (rare mais possible)
     if (useAuthStore.persist.hasHydrated()) {
       setIsHydrated(true)
     }
 
-    return () => unsub()
+    return unsub
   }, [])
 
   const user = useAuthStore(s => s.user)

@@ -56,6 +56,7 @@ interface Service {
   isActive: boolean
 }
 
+
 interface Client {
   _id: string
   prenom: string
@@ -67,6 +68,9 @@ interface Client {
   lastVisit?: string
   totalSpent: number
   createdBy?: CreatedBy
+  createdAt?: string        // ← Ajouté (grâce à timestamps: true)
+  updatedAt?: string        // ← Ajouté
+  salonId?: { _id: string; nom: string }
 }
 
 interface Employee {

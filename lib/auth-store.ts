@@ -1,3 +1,4 @@
+// lib/auth-store.ts
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
@@ -16,16 +17,14 @@ export interface User {
 
 interface AuthState {
   user: User | null
-  token: string | null;
+  token: string | null
   isAuthenticated: boolean
   login: (identifier: string, password: string) => Promise<boolean>
-  register: (data: Omit<User, "id" | "createdAt" | "role"> & { password: string }) => Promise<boolean>
+  register: (data: Omit<User, "_id" | "createdAt" | "role"> & { password: string }) => Promise<boolean>
   logout: () => void
   updateProfile: (data: Partial<User>) => Promise<boolean>
   resetPassword: (email: string) => Promise<boolean>
 }
-// Mock API calls - Replace with real API
-
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -42,8 +41,12 @@ export const useAuthStore = create<AuthState>()(
             body: JSON.stringify({ identifier, password }),
           });
 
+          if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.message || "Échec de connexion");
+          }
+
           const data = await res.json();
-          if (!res.ok) throw new Error(data.message);
 
           set({
             user: data.user,
@@ -66,8 +69,12 @@ export const useAuthStore = create<AuthState>()(
             body: JSON.stringify(userData),
           });
 
+          if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.message || "Échec d'inscription");
+          }
+
           const data = await res.json();
-          if (!res.ok) throw new Error(data.message);
 
           set({
             user: data.user,
@@ -100,9 +107,9 @@ export const useAuthStore = create<AuthState>()(
             body: JSON.stringify(userData),
           });
 
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.message);
+          if (!res.ok) throw new Error("Erreur mise à jour profil");
 
+          const data = await res.json();
           set({ user: data.user });
           return true;
         } catch (error) {
@@ -115,14 +122,13 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: "nappylocks-auth",
+      // SUPPRIME skipHydration: true → c'est ce qui cassait tout !
+      // L'hydratation est nécessaire pour que le token soit disponible côté client
       partialize: (state) => ({
         user: state.user,
         token: state.token,
         isAuthenticated: state.isAuthenticated,
       }),
-      // SUPPRIME CETTE LIGNE :
-      // skipHydration: true,
     }
   )
 );
-

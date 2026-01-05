@@ -21,10 +21,6 @@ import { Product } from "@/types/product"
 import { ServicesTab } from "@/components/superadmin/service-tab"
 import { StaffTab } from "@/components/superadmin/staff-tab"
 import { ClientsTab } from "@/components/manager/clients-tab"
-import { MobileNav } from "@/components/navigation/mobile-nav"
-
-
-
 
 interface Salon {
   _id: string
@@ -33,18 +29,11 @@ interface Salon {
   pays: string
   ville: string
   telephone: string
-  gerantId?: string  // optionnel
+  gerantId?: string
   email: string
   status: "active" | "inactive"
   createdAt: string
 }
-
-
-const mockBookings = [
-  { id: "1", clientName: "Marie Dubois", service: "Coupe + Coloration", salonName: "NappyLocks - Centre Ville", date: "2025-12-05", time: "14:00", status: "confirmed" as const, price: 85 },
-  { id: "2", clientName: "Paul Martin", service: "Coiffure Locks", salonName: "NappyLocks - Le Marais", date: "2025-12-05", time: "15:30", status: "pending" as const, price: 120 },
-  { id: "3", clientName: "Sophie Laurent", service: "Défrisage", salonName: "NappyLocks - Centre Ville", date: "2025-12-04", time: "10:00", status: "completed" as const, price: 95 },
-]
 
 const mockLogs = [
   { id: "1", type: "success" as const, message: "Nouvelle réservation créée", user: "Sophie Admin", timestamp: "2025-12-02 14:23:45" },
@@ -58,55 +47,45 @@ export default function SuperAdminDashboard() {
 
   const [salons, setSalons] = useState<Salon[]>([])
   const [products, setProducts] = useState<Product[]>([])
-  const [bookings] = useState(mockBookings)
-  const [logs] = useState(mockLogs)
-  const [users, setUsers] = useState<User[]>([]) // Temporaire, en attendant le vrai type
+  const [users, setUsers] = useState<User[]>([])
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("overview")
 
-  // Charger les utilisateurs au montage (une seule fois)
+  // Nouveaux états pour les statistiques dynamiques
+  const [dailyRevenue, setDailyRevenue] = useState(0)
+  const [monthlyRevenue, setMonthlyRevenue] = useState(0)
+  const [annualRevenue, setAnnualRevenue] = useState(0)
+  const [todayBookings, setTodayBookings] = useState(0)
+  const [pendingBookings, setPendingBookings] = useState(0)
+
+  // Chargement des utilisateurs
   useEffect(() => {
     const fetchUsers = async () => {
       const token = useAuthStore.getState().token
       if (!token) return
+
       try {
         const res = await fetch("http://localhost:3500/api/admin/users", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         })
         const data = await res.json()
 
         if (res.ok) {
-          setUsers(data.users || data) // selon la structure de ta réponse
+          setUsers(data.users || data)
         } else {
-          toast({
-            title: "Erreur",
-            description: data.message || "Impossible de charger les utilisateurs",
-            variant: "destructive",
-          })
+          toast({ title: "Erreur", description: data.message || "Impossible de charger les utilisateurs", variant: "destructive" })
         }
       } catch (err) {
-        toast({
-          title: "Erreur réseau",
-          description: "Vérifie que ton serveur est lancé",
-          variant: "destructive",
-        })
+        toast({ title: "Erreur réseau", description: "Vérifie que ton serveur est lancé", variant: "destructive" })
       }
     }
+
     if (isAuthenticated && user?.role === "superadmin") {
       fetchUsers()
     }
   }, [isAuthenticated, user, toast])
 
-  // Protection + redirection
-  useEffect(() => {
-    if (isLoading) return
-    if (!isAuthenticated || user?.role !== "superadmin") {
-      router.replace("/auth/login")
-    }
-  }, [isLoading, isAuthenticated, user, router])
-
+  // Chargement des produits
   useEffect(() => {
     const fetchProducts = async () => {
       const token = useAuthStore.getState().token
@@ -114,28 +93,17 @@ export default function SuperAdminDashboard() {
 
       try {
         const res = await fetch("http://localhost:3500/api/getAllproduit", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         })
         const data = await res.json()
 
         if (res.ok) {
-          // Assurez-vous que data.produits est un tableau
-          setProducts(Array.isArray(data) ? data : [])
+          setProducts(Array.isArray(data) ? data : data.produits || [])
         } else {
-          toast({
-            title: "Erreur",
-            description: data.message || "Impossible de charger les produits",
-            variant: "destructive",
-          })
+          toast({ title: "Erreur", description: data.message || "Impossible de charger les produits", variant: "destructive" })
         }
       } catch (err) {
-        toast({
-          title: "Erreur réseau",
-          description: "Vérifie que ton serveur est lancé",
-          variant: "destructive",
-        })
+        toast({ title: "Erreur réseau", description: "Vérifie que ton serveur est lancé", variant: "destructive" })
       }
     }
 
@@ -144,7 +112,7 @@ export default function SuperAdminDashboard() {
     }
   }, [isAuthenticated, user, toast])
 
-  // Ajoute ce useEffect pour charger les salons au démarrage
+  // Chargement des salons
   useEffect(() => {
     const fetchSalons = async () => {
       const token = useAuthStore.getState().token
@@ -155,6 +123,7 @@ export default function SuperAdminDashboard() {
           headers: { Authorization: `Bearer ${token}` },
         })
         const data = await res.json()
+
         if (res.ok) {
           setSalons(data)
         }
@@ -168,14 +137,59 @@ export default function SuperAdminDashboard() {
     }
   }, [isAuthenticated, user])
 
+  // Nouveau : Chargement des revenus + réservations du jour
+  useEffect(() => {
+    const fetchStats = async () => {
+      const token = useAuthStore.getState().token
+      if (!token) return
 
+      try {
+        // 1. Revenus (journalier, mensuel, annuel)
+        const revenuesRes = await fetch("http://localhost:3500/api/stats/revenues", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+
+        if (revenuesRes.ok) {
+          const rev = await revenuesRes.json()
+          setDailyRevenue(rev.dailyRevenue || 0)
+          setMonthlyRevenue(rev.monthlyRevenue || 0)
+          setAnnualRevenue(rev.annualRevenue || 0)
+        }
+
+        // 2. Réservations du jour
+        const todayRes = await fetch("http://localhost:3500/api/stats/today-bookings", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+
+        if (todayRes.ok) {
+          const today = await todayRes.json()
+          setTodayBookings(today.total || 0)
+          setPendingBookings(today.pending || 0)
+        }
+      } catch (err) {
+        console.error("Erreur lors du chargement des statistiques revenus/bookings", err)
+        // Pas de toast bloquant ici pour ne pas gêner l'UX si un endpoint échoue temporairement
+      }
+    }
+
+    if (isAuthenticated && user?.role === "superadmin") {
+      fetchStats()
+    }
+  }, [isAuthenticated, user])
+
+  // Protection + redirection
+  useEffect(() => {
+    if (isLoading) return
+    if (!isAuthenticated || user?.role !== "superadmin") {
+      router.replace("/auth/login")
+    }
+  }, [isLoading, isAuthenticated, user, router])
 
   const handleDeleteProduct = (id: string) => {
-    setProducts(prev => prev.filter(p => p._id !== id))
+    setProducts((prev) => prev.filter((p) => p._id !== id))
     toast({ title: "Supprimé", description: "Produit supprimé" })
   }
 
-  // Loader pendant hydratation
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -186,18 +200,8 @@ export default function SuperAdminDashboard() {
 
   if (!isAuthenticated || user?.role !== "superadmin") return null
 
-  // Loader
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-purple-600"></div>
-      </div>
-    )
-  }
-
   return (
     <div className="flex h-screen bg-background">
-      {/* Sidebar sans prop user → il utilise useAuthSafe à l'intérieur */}
       <Sidebar
         activeTab={activeTab}
         sidebarOpen={sidebarOpen}
@@ -206,7 +210,7 @@ export default function SuperAdminDashboard() {
       />
 
       <div className="flex-1 flex flex-col">
-        {/* Bouton menu mobile */}
+        {/* Menu mobile */}
         <div className="flex items-center justify-between border-b border-border px-4 py-3 lg:hidden">
           <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(true)}>
             <Menu className="w-5 h-5" />
@@ -225,7 +229,15 @@ export default function SuperAdminDashboard() {
             {activeTab === "overview" && (
               <>
                 <div className="mb-8">
-                  <StatsCards users={users} salons={salons} monthlyRevenue={48520} todayBookings={87} />
+                  <StatsCards
+                    users={users}
+                    salons={salons}
+                    dailyRevenue={dailyRevenue}
+                    monthlyRevenue={monthlyRevenue}
+                    annualRevenue={annualRevenue}
+                    todayBookings={todayBookings}
+                    pendingBookings={pendingBookings}
+                  />
                 </div>
                 <OverviewTab />
               </>
@@ -234,9 +246,11 @@ export default function SuperAdminDashboard() {
             {activeTab === "users" && (
               <UsersTab
                 users={users}
-                onAddUser={(user) => setUsers(prev => [...prev, user])}
-                onEditUser={(updated) => setUsers(prev => prev.map(u => u._id === updated._id ? updated : u))}
-                onDeleteUser={(id) => setUsers(prev => prev.filter(u => u._id !== id))}
+                onAddUser={(user) => setUsers((prev) => [...prev, user])}
+                onEditUser={(updated) =>
+                  setUsers((prev) => prev.map((u) => (u._id === updated._id ? updated : u)))
+                }
+                onDeleteUser={(id) => setUsers((prev) => prev.filter((u) => u._id !== id))}
                 onExport={() => console.log("Export à implémenter")}
               />
             )}
@@ -244,19 +258,19 @@ export default function SuperAdminDashboard() {
             {activeTab === "salons" && (
               <SalonsTab
                 salons={salons}
-                onSalonCreated={(salon) => setSalons(prev => [...prev, salon])}
+                onSalonCreated={(salon) => setSalons((prev) => [...prev, salon])}
                 onStatusChanged={(salonId, newStatus) =>
-                  setSalons(prev =>
-                    prev.map(s => s._id === salonId ? { ...s, status: newStatus } : s)
+                  setSalons((prev) =>
+                    prev.map((s) => (s._id === salonId ? { ...s, status: newStatus } : s))
                   )
                 }
                 onSalonUpdated={(updatedSalon) =>
-                  setSalons(prev =>
-                    prev.map(s => s._id === updatedSalon._id ? updatedSalon : s)
+                  setSalons((prev) =>
+                    prev.map((s) => (s._id === updatedSalon._id ? updatedSalon : s))
                   )
                 }
                 onSalonDeleted={(salonId) =>
-                  setSalons(prev => prev.filter(s => s._id !== salonId))
+                  setSalons((prev) => prev.filter((s) => s._id !== salonId))
                 }
               />
             )}
@@ -269,13 +283,13 @@ export default function SuperAdminDashboard() {
             {activeTab === "staff" && <StaffTab />}
             {activeTab === "clients" && <ClientsTab />}
 
-            {activeTab === "bookings" && <BookingsTab bookings={bookings} onUpdateStatus={() => { }} />}
-            {activeTab === "logs" && <LogsTab logs={logs} />}
+            {activeTab === "bookings" && <BookingsTab />}
+
+            {activeTab === "logs" && <LogsTab logs={mockLogs} />}
             {activeTab === "settings" && <SettingsTab onRefresh={() => toast({ title: "Rafraîchi !" })} />}
           </div>
         </main>
       </div>
-      <MobileNav />
     </div>
   )
 }

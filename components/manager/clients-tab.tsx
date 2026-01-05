@@ -54,7 +54,7 @@ interface Client {
   telephone: string
   notes?: string
   totalVisits: number
-  lastVisit: string
+  lastVisit?: string | null
   totalSpent: number
   createdBy?: CreatedBy
   createdAt?: string
@@ -102,12 +102,11 @@ export function ClientsTab() {
   const [loading, setLoading] = useState(true)
   const [loadingEmployees, setLoadingEmployees] = useState(true)
 
-  // Modal détails client + prestations
   const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
   const [selectedClientDetails, setSelectedClientDetails] = useState<Client | null>(null)
   const [clientPrestations, setClientPrestations] = useState<PrestationRealisee[]>([])
   const [loadingClientPrestations, setLoadingClientPrestations] = useState(false)
-
+  
   const user = useAuthStore((state) => state.user)
   const isSuperAdmin = user?.role === "superadmin"
   const canEdit = !isSuperAdmin
@@ -133,16 +132,17 @@ export function ClientsTab() {
     notes: ""
   })
 
-  const formatDateTime = (date?: string) => {
+  const formatDateTime = (date?: string | null) => {
     if (!date) return "—"
-    return new Date(date).toLocaleDateString("fr-FR", {
+    const parsed = new Date(date)
+    if (isNaN(parsed.getTime())) return "—"
+    return parsed.toLocaleDateString("fr-FR", {
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
     })
   }
 
-  // Chargement des données
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
@@ -194,7 +194,6 @@ export function ClientsTab() {
     fetchData()
   }, [toast])
 
-  // Ouvrir le modal détails et charger les prestations du client
   const openDetailsModal = async (client: Client) => {
     setSelectedClientDetails(client)
     setIsDetailsDialogOpen(true)
@@ -346,7 +345,7 @@ export function ClientsTab() {
         body: JSON.stringify({
           clientId: prestationClient._id,
           serviceId: prestationForm.serviceId,
-          employee: prestationForm.employee,
+          employee: prestationForm.employee, 
           price: Number(prestationForm.price || 0),
           notes: prestationForm.notes,
           date: new Date().toISOString().split("T")[0],
@@ -483,7 +482,6 @@ export function ClientsTab() {
                 <div>Créé le {formatDateTime(client.createdAt)}</div>
               </div>
               <div className="flex gap-3">
-                {/* Icône œil pour voir les détails */}
                 <Button size="sm" variant="outline" onClick={() => openDetailsModal(client)}>
                   <Eye className="w-4 h-4 mr-2" />
                   Voir
@@ -567,7 +565,6 @@ export function ClientsTab() {
                   )}
                   <td className="px-6 py-5 text-right">
                     <div className="flex justify-end gap-3">
-                      {/* Icône œil pour voir les détails */}
                       <Button size="sm" variant="ghost" onClick={() => openDetailsModal(client)}>
                         <Eye className="w-4 h-4" />
                       </Button>
@@ -610,25 +607,36 @@ export function ClientsTab() {
 
           {selectedClientDetails && (
             <div className="space-y-8 py-4">
-              {/* Infos générales du client */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                <div className="space-y-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                <div className="space-y-4">
                   <div><strong>Téléphone :</strong> {selectedClientDetails.telephone}</div>
                   <div><strong>Email :</strong> {selectedClientDetails.email || "—"}</div>
-                  <div><strong>Total visites :</strong> {selectedClientDetails.totalVisits}</div>
-                  <div><strong>Total dépensé :</strong> {selectedClientDetails.totalSpent} FCFA</div>
+                  <div className="text-lg">
+                    <strong>Total visites :</strong>{" "}
+                    <span className="font-bold text-2xl text-cyan-600">
+                      {selectedClientDetails.totalVisits}
+                    </span>
+                  </div>
+                  <div><strong>Total dépensé :</strong> {selectedClientDetails.totalSpent?.toLocaleString() || 0} FCFA</div>
                 </div>
-                <div className="space-y-3">
-                  <div><strong>Dernière visite :</strong> {formatDateTime(selectedClientDetails.lastVisit)}</div>
+                <div className="space-y-4">
+                  <div className="text-lg">
+                    <strong>Dernière visite :</strong>{" "}
+                    <span className="font-bold text-cyan-600 text-xl">
+                      {formatDateTime(selectedClientDetails.lastVisit)}
+                    </span>
+                  </div>
                   <div><strong>Inscrit le :</strong> {formatDateTime(selectedClientDetails.createdAt)}</div>
                   <div><strong>Créé par :</strong> {selectedClientDetails.createdBy?.username || "—"}</div>
                   {selectedClientDetails.notes && (
-                    <div><strong>Notes :</strong> <span className="text-muted-foreground">{selectedClientDetails.notes}</span></div>
+                    <div>
+                      <strong>Notes :</strong>{" "}
+                      <span className="text-muted-foreground">{selectedClientDetails.notes}</span>
+                    </div>
                   )}
                 </div>
               </div>
 
-              {/* Historique des prestations */}
               <div>
                 <h3 className="text-lg font-semibold mb-4">
                   Historique des prestations ({clientPrestations.length})
@@ -660,8 +668,8 @@ export function ClientsTab() {
                               </div>
                             </TableCell>
                             <TableCell className="font-medium">{p.prestationId.name}</TableCell>
-                            <TableCell>{p.price} FCFA</TableCell>
-                            <TableCell>{p.employeeId.name} ({p.employeeId.role})</TableCell>
+                            <TableCell>{p.price.toLocaleString()} FCFA</TableCell>
+                            <TableCell>{p.employeeId?.name} ({p.employeeId?.role})</TableCell>
                             <TableCell className="text-muted-foreground max-w-xs truncate">
                               {p.notes || "—"}
                             </TableCell>

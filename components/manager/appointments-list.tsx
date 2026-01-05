@@ -8,11 +8,11 @@ import { useToast } from "@/hooks/use-toast"
 import { useAuthStore } from "@/lib/auth-store"
 
 interface Appointment {
-  id: string
+  _id: string
   time: string
   client: string
   service: string
-  stylist: string
+  employee: string
   status: "confirmed" | "arrived" | "inprogress" | "completed"
   origin: "online" | "instore"
 }
@@ -29,7 +29,6 @@ const mapStatus = (status: string): Appointment["status"] => {
     case "CONFIRMED":
       return "confirmed"
     case "PENDING":
-    case "ARRIVED":
       return "arrived"
     case "IN_PROGRESS":
       return "inprogress"
@@ -49,7 +48,6 @@ export function AppointmentsList() {
   const [appointments, setAppointments] = useState<Appointment[]>([])
   const [loading, setLoading] = useState(true)
 
-  // Récupération propre du token via ton store
   const token = useAuthStore((state) => state.token)
 
   useEffect(() => {
@@ -69,18 +67,16 @@ export function AppointmentsList() {
         const res = await fetch("http://localhost:3500/api/gerant", {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
           },
         })
 
-        // Gestion d’erreur si pas 200
         if (!res.ok) {
-          const data = await res.json()
-          // console.error("Réponse erreur RDV :", res.status, text.substring(0, 300))
-          // throw new Error(`Erreur ${res.status} : Impossible de charger les rendez-vous`)
+          const errData = await res.json().catch(() => ({}))
+          throw new Error(errData.message || "Impossible de charger les rendez-vous")
         }
 
         const data = await res.json()
+        
 
         if (!Array.isArray(data)) {
           console.warn("Données RDV inattendues :", data)
@@ -89,23 +85,25 @@ export function AppointmentsList() {
         }
 
         const formatted: Appointment[] = data.map((rdv: any) => ({
-          id: rdv._id || rdv.id,
+          _id: rdv._id,
           time: rdv.time || "Heure inconnue",
           client: rdv.clientId
             ? `${rdv.clientId.prenom || ""} ${rdv.clientId.nom || ""}`.trim() || "Client inconnu"
             : "Client inconnu",
-          service: rdv.service || rdv.serviceId?.nom || "Service inconnu",
-          stylist: rdv.coiffeur || rdv.employee || "-",
-          status: mapStatus(rdv.status || "CONFIRMED"),
-          origin: mapOrigin(rdv.source || "INSTORE"),
+          service: rdv.serviceId?.name || rdv.service || "Service inconnu",
+          employee: rdv.employeeId
+            ? `${rdv.employeeId.name} (${rdv.employeeId.role})`
+            : rdv.coiffeur || "Employé inconnu",
+          status: mapStatus(rdv.status || "PENDING"),
+          origin: mapOrigin(rdv.source || "SALON"),
         }))
 
         setAppointments(formatted)
       } catch (error: any) {
-        console.error("Erreur chargement RDV", error)
+        console.error("Erreur chargement RDV :", error)
         toast({
           title: "Erreur de chargement",
-          description: error.message || "Impossible de récupérer les rendez-vous.",
+          description: error.message || "Impossible de récupérer les rendez-vous du jour.",
           variant: "destructive",
         })
         setAppointments([])
@@ -120,8 +118,8 @@ export function AppointmentsList() {
   if (loading) {
     return (
       <Card>
-        <CardContent className="py-8">
-          <p className="text-center text-muted-foreground">Chargement des rendez-vous...</p>
+        <CardContent className="py-12">
+          <p className="text-center text-muted-foreground">Chargement des rendez-vous du jour...</p>
         </CardContent>
       </Card>
     )
@@ -130,8 +128,8 @@ export function AppointmentsList() {
   if (appointments.length === 0) {
     return (
       <Card>
-        <CardContent className="py-8">
-          <p className="text-center text-muted-foreground">Aucun rendez-vous pour le moment.</p>
+        <CardContent className="py-12">
+          <p className="text-center text-muted-foreground">Aucun rendez-vous prévu aujourd'hui.</p>
         </CardContent>
       </Card>
     )
@@ -140,39 +138,45 @@ export function AppointmentsList() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg md:text-xl">Liste des rendez-vous</CardTitle>
+        <CardTitle className="text-lg md:text-xl">Rendez-vous du jour ({appointments.length})</CardTitle>
       </CardHeader>
       <CardContent>
-        {/* Version Desktop */}
+        {/* Version Desktop - Tableau scrollable */}
         <div className="hidden md:block overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b text-left text-sm text-muted-foreground">
-                <th className="pb-3 font-medium">HEURE</th>
-                <th className="pb-3 font-medium">CLIENT</th>
-                <th className="pb-3 font-medium">SERVICE</th>
-                <th className="pb-3 font-medium">COIFFEUR/SE</th>
-                <th className="pb-3 font-medium">STATUT</th>
-                <th className="pb-3 font-medium">ORIGINE</th>
+          <table className="w-full text-sm">
+            <thead className="border-b">
+              <tr>
+                <th className="text-left py-3 px-2 font-medium">Heure</th>
+                <th className="text-left py-3 px-2 font-medium">Client</th>
+                <th className="text-left py-3 px-2 font-medium">Service</th>
+                <th className="text-left py-3 px-2 font-medium">Employé(e)</th>
+                <th className="text-left py-3 px-2 font-medium">Statut</th>
+                <th className="text-left py-3 px-2 font-medium">Origine</th>
               </tr>
             </thead>
             <tbody>
               {appointments.map((apt) => (
-                <tr key={apt.id} className="border-b last:border-0">
-                  <td className="py-4 font-medium">{apt.time}</td>
-                  <td className="py-4">{apt.client}</td>
-                  <td className="py-4">{apt.service}</td>
-                  <td className="py-4">{apt.stylist}</td>
-                  <td className="py-4">
-                    <Badge variant="secondary" className={statusConfig[apt.status].color}>
+                <tr key={apt._id} className="border-b hover:bg-muted/30">
+                  <td className="py-4 px-2 font-medium">{apt.time}</td>
+                  <td className="py-4 px-2">{apt.client}</td>
+                  <td className="py-4 px-2">{apt.service}</td>
+                  <td className="py-4 px-2">{apt.employee}</td>
+                  <td className="py-4 px-2">
+                    <Badge className={statusConfig[apt.status].color}>
                       {statusConfig[apt.status].label}
                     </Badge>
                   </td>
-                  <td className="py-4">
+                  <td className="py-4 px-2">
                     {apt.origin === "online" ? (
-                      <Globe className="w-5 h-5 text-blue-600" />
+                      <div className="flex items-center gap-1 text-blue-600">
+                        <Globe className="w-4 h-4" />
+                        <span className="text-xs">En ligne</span>
+                      </div>
                     ) : (
-                      <Store className="w-5 h-5 text-gray-600" />
+                      <div className="flex items-center gap-1 text-gray-600">
+                        <Store className="w-4 h-4" />
+                        <span className="text-xs">Au salon</span>
+                      </div>
                     )}
                   </td>
                 </tr>
@@ -181,35 +185,37 @@ export function AppointmentsList() {
           </table>
         </div>
 
-        {/* Version Mobile */}
-        <div className="md:hidden space-y-3">
+        {/* Version Mobile - Cards */}
+        <div className="md:hidden space-y-4">
           {appointments.map((apt) => (
-            <div key={apt.id} className="border rounded-lg p-4 space-y-2">
-              <div className="flex justify-between items-start">
+            <div key={apt._id} className="border rounded-lg p-4 bg-card">
+              <div className="flex justify-between items-start mb-3">
                 <div>
-                  <p className="font-semibold">{apt.client}</p>
-                  <p className="text-sm text-muted-foreground">{apt.service}</p>
+                  <p className="font-bold text-lg">{apt.time}</p>
+                  <p className="font-medium">{apt.client}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{apt.service}</p>
                 </div>
-                <Badge variant="secondary" className={statusConfig[apt.status].color}>
+                <Badge className={statusConfig[apt.status].color}>
                   {statusConfig[apt.status].label}
                 </Badge>
               </div>
-              <div className="flex justify-between items-center text-sm">
-                <span className="font-medium">{apt.time}</span>
-                <span className="text-muted-foreground">{apt.stylist}</span>
-              </div>
-              <div className="flex justify-end">
-                {apt.origin === "online" ? (
-                  <div className="flex items-center gap-1 text-xs text-blue-600">
-                    <Globe className="w-4 h-4" />
-                    <span>En ligne</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1 text-xs text-gray-600">
-                    <Store className="w-4 h-4" />
-                    <span>Sur place</span>
-                  </div>
-                )}
+
+              <div className="space-y-2 text-sm">
+                <p><strong>Employé(e) :</strong> {apt.employee}</p>
+                <div className="flex items-center gap-2">
+                  <strong>Origine :</strong>
+                  {apt.origin === "online" ? (
+                    <div className="flex items-center gap-1 text-blue-600">
+                      <Globe className="w-4 h-4" />
+                      <span>En ligne</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1 text-gray-600">
+                      <Store className="w-4 h-4" />
+                      <span>Au salon</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           ))}

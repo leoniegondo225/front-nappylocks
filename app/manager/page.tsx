@@ -8,8 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { Bell, Menu, Plus, Search, Calendar as CalendarIcon } from "lucide-react"
-import { format } from "date-fns"
+import { Bell, Menu, Plus, Search } from "lucide-react"
 import { ManagerSidebar } from "@/components/manager/manager-sidebar"
 import { DashboardStats } from "@/components/manager/dashboard-stats"
 import { AppointmentsList } from "@/components/manager/appointments-list"
@@ -25,12 +24,24 @@ import { useToast } from "@/components/ui/use-toast"
 import { useAuthSafe } from "@/hooks/useAuthSafe"
 import { useAuthStore } from "@/lib/auth-store"
 
-interface Service {
+// Interface pour les vraies prestations (depuis PrestationModel)
+interface Prestation {
   _id: string
   name: string
-  price: number
-  duration: number
+  prices: number[] // plusieurs prix possibles
   isActive: boolean
+  description?: string
+  categoryPrestationId: {
+    _id: string
+    name: string
+  }
+}
+
+// Interface pour les employés
+interface Employee {
+  _id: string
+  name: string
+  role: string
 }
 
 export default function ManagerDashboard() {
@@ -39,16 +50,22 @@ export default function ManagerDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [activeTab, setActiveTab] = useState("dashboard")
   const { toast } = useToast()
+
   const [clients, setClients] = useState<any[]>([])
+  const [prestations, setPrestations] = useState<Prestation[]>([])
+  const [employees, setEmployees] = useState<Employee[]>([])
   const [loading, setLoading] = useState(true)
-  const [services, setServices] = useState<Service[]>([])
+  const [loadingPrestations, setLoadingPrestations] = useState(true)
+  const [loadingEmployees, setLoadingEmployees] = useState(true)
+
   const salonId = user?.salonId
+
   const [rdvForm, setRdvForm] = useState({
     clientId: "",
     date: "",
     time: "",
-    service: "",
-    coiffeur: "",
+    serviceId: "",     // ← ID de la prestation
+    employeeId: "",    // ← ID de l'employé
     notes: "",
   })
 
@@ -56,6 +73,7 @@ export default function ManagerDashboard() {
   const [openClientModal, setOpenClientModal] = useState(false)
   const [openRdvModal, setOpenRdvModal] = useState(false)
   const [availableSlots, setAvailableSlots] = useState<string[]>([])
+
   const [clientForm, setClientForm] = useState({
     prenom: "",
     nom: "",
@@ -80,7 +98,7 @@ export default function ManagerDashboard() {
     }
   }, [isAuthenticated, user, router, isLoading])
 
-  // Chargement des données (clients + services/prestations)
+  // Chargement des données : clients + prestations + employés
   useEffect(() => {
     const fetchData = async () => {
       const token = useAuthStore.getState().token
@@ -95,27 +113,33 @@ export default function ManagerDashboard() {
 
       setLoading(true)
       try {
-        const [clientsRes, servicesRes] = await Promise.all([
+        const [clientsRes, prestationsRes, employeesRes] = await Promise.all([
           fetch("http://localhost:3500/api/allclient", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          fetch("http://localhost:3500/api/getAllservice", { // ou /allprestations si c'est le même
+          fetch("http://localhost:3500/api/allprestations", { // ← Vraies prestations
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          fetch("http://localhost:3500/api/getallemployee", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ])
 
-        if (!clientsRes.ok) throw new Error("Erreur chargement clients")
-        if (!servicesRes.ok) throw new Error("Erreur chargement services")
+        if (!clientsRes.ok || !prestationsRes.ok || !employeesRes.ok) {
+          throw new Error("Erreur lors du chargement des données")
+        }
 
         const clientsData = await clientsRes.json()
-        const servicesData = await servicesRes.json()
+        const prestationsData = await prestationsRes.json()
+        const employeesData = await employeesRes.json()
 
         setClients(Array.isArray(clientsData) ? clientsData : [])
-        setServices(
-          Array.isArray(servicesData)
-            ? servicesData.filter((s: Service) => s.isActive)
+        setPrestations(
+          Array.isArray(prestationsData)
+            ? prestationsData.filter((p: Prestation) => p.isActive)
             : []
         )
+        setEmployees(Array.isArray(employeesData) ? employeesData : [])
       } catch (error: any) {
         console.error("Erreur chargement données :", error)
         toast({
@@ -124,9 +148,12 @@ export default function ManagerDashboard() {
           variant: "destructive",
         })
         setClients([])
-        setServices([])
+        setPrestations([])
+        setEmployees([])
       } finally {
         setLoading(false)
+        setLoadingPrestations(false)
+        setLoadingEmployees(false)
       }
     }
 
@@ -204,11 +231,16 @@ export default function ManagerDashboard() {
     }
   }
 
-  // Création RDV
+  // Création RDV au salon
   const handleCreateRdv = async () => {
     const token = useAuthStore.getState().token
     if (!token) {
       toast({ title: "Erreur", description: "Token manquant", variant: "destructive" })
+      return
+    }
+
+    if (!rdvForm.clientId || !rdvForm.serviceId || !rdvForm.employeeId || !rdvForm.time) {
+      toast({ title: "Erreur", description: "Tous les champs obligatoires doivent être remplis", variant: "destructive" })
       return
     }
 
@@ -220,8 +252,13 @@ export default function ManagerDashboard() {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          ...rdvForm,
+          clientId: rdvForm.clientId,
           salonId: user?.salonId,
+          date: rdvForm.date,
+          time: rdvForm.time,
+          serviceId: rdvForm.serviceId,     // ← ID de la prestation
+          employeeId: rdvForm.employeeId,   // ← ID de l'employé
+          notes: rdvForm.notes,
         }),
       })
 
@@ -232,7 +269,7 @@ export default function ManagerDashboard() {
 
       toast({ title: "Succès", description: "Rendez-vous créé avec succès" })
       setOpenRdvModal(false)
-      setRdvForm({ clientId: "", date: "", time: "", service: "", coiffeur: "", notes: "" })
+      setRdvForm({ clientId: "", date: "", time: "", serviceId: "", employeeId: "", notes: "" })
     } catch (e: any) {
       toast({
         title: "Erreur",
@@ -406,7 +443,10 @@ export default function ManagerDashboard() {
                   <Input
                     type="date"
                     value={rdvForm.date}
-                    onChange={(e) => { updateRdvForm("date", e.target.value); updateRdvForm("time", ""); }}
+                    onChange={(e) => {
+                      updateRdvForm("date", e.target.value)
+                      updateRdvForm("time", "")
+                    }}
                     className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400"
                   />
                 </div>
@@ -445,24 +485,34 @@ export default function ManagerDashboard() {
                     </SelectContent>
                   </Select>
                 </div>
+
+                {/* Select des prestations réelles */}
                 <div>
                   <Label>Service</Label>
                   <Select
-                    value={rdvForm.service}
-                    onValueChange={(v) => updateRdvForm("service", v)}
+                    value={rdvForm.serviceId}
+                    onValueChange={(v) => updateRdvForm("serviceId", v)}
+                    disabled={loadingPrestations}
                   >
                     <SelectTrigger className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400">
-                      <SelectValue placeholder="Choisir un service" />
+                      <SelectValue placeholder={loadingPrestations ? "Chargement..." : "Choisir une prestation"} />
                     </SelectTrigger>
                     <SelectContent>
-                      {services.length === 0 ? (
+                      {prestations.length === 0 ? (
                         <SelectItem disabled value="none">
-                          Aucun service disponible
+                          Aucune prestation disponible
                         </SelectItem>
                       ) : (
-                        services.map((s) => (
-                          <SelectItem key={s._id} value={s._id}>
-                            {s.name} – {s.price} FCFA
+                        prestations.map((p) => (
+                          <SelectItem key={p._id} value={p._id}>
+                            <div className="flex justify-between items-center w-full">
+                              <span>{p.name}</span>
+                              <span className="text-muted-foreground text-xs ml-4">
+                                {p.prices.length > 1
+                                  ? `${p.prices[0]} - ${p.prices[p.prices.length - 1]} FCFA`
+                                  : `${p.prices[0]} FCFA`}
+                              </span>
+                            </div>
                           </SelectItem>
                         ))
                       )}
@@ -471,9 +521,31 @@ export default function ManagerDashboard() {
                 </div>
               </div>
 
+              {/* Select des employés */}
               <div>
-                <Label>Coiffeur/se</Label>
-                <Input disabled placeholder="Assigné automatiquement" className="border-gray-300 dark:border-gray-700" />
+                <Label>Employé(e)</Label>
+                <Select
+                  value={rdvForm.employeeId}
+                  onValueChange={(v) => updateRdvForm("employeeId", v)}
+                  disabled={loadingEmployees}
+                >
+                  <SelectTrigger className="border-gray-300 dark:border-gray-700 focus:ring-cyan-400">
+                    <SelectValue placeholder={loadingEmployees ? "Chargement..." : "Sélectionner un employé"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {employees.length === 0 ? (
+                      <SelectItem disabled value="none">
+                        Aucun employé disponible
+                      </SelectItem>
+                    ) : (
+                      employees.map((emp) => (
+                        <SelectItem key={emp._id} value={emp._id}>
+                          {emp.name} — {emp.role}
+                        </SelectItem>
+                      ))
+                    )}
+                  </SelectContent>
+                </Select>
               </div>
 
               <div>

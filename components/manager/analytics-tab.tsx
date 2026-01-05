@@ -17,36 +17,133 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts"
+import { useAuthSafe } from "@/hooks/useAuthSafe"
+import { useEffect, useState } from "react"
 
-const revenueData = [
-  { name: "Jan", revenue: 4500 },
-  { name: "Fév", revenue: 5200 },
-  { name: "Mar", revenue: 4800 },
-  { name: "Avr", revenue: 6100 },
-  { name: "Mai", revenue: 7200 },
-  { name: "Juin", revenue: 6800 },
-  { name: "Juil", revenue: 8500 },
-]
+interface RevenueData {
+  name: string
+  revenue: number
+}
 
-const serviceDistributionData = [
-  { name: "Tresses", value: 35, color: "#06b6d4" },
-  { name: "Coupe", value: 25, color: "#8b5cf6" },
-  { name: "Coloration", value: 20, color: "#ec4899" },
-  { name: "Soin", value: 15, color: "#10b981" },
-  { name: "Défrisage", value: 5, color: "#f59e0b" },
-]
+interface ServiceDistributionData {
+  name: string
+  value: number
+  color: string
+}
 
-const occupancyData = [
-  { day: "Lun", rate: 75 },
-  { day: "Mar", rate: 82 },
-  { day: "Mer", rate: 68 },
-  { day: "Jeu", rate: 90 },
-  { day: "Ven", rate: 95 },
-  { day: "Sam", rate: 88 },
-  { day: "Dim", rate: 45 },
-]
+interface OccupancyData {
+  day: string
+  rate: number
+}
+
+interface TopService {
+  name: string
+  revenue: number
+  bookings: number
+}
+
+interface PeakHour {
+  time: string
+  rate: number
+  colorClass: string
+}
+
+interface Recommendation {
+  type: 'positive' | 'warning' | 'info'
+  text: string
+  icon: string
+  color: string
+}
+
+interface AnalyticsData {
+  revenueData: RevenueData[]
+  totalRevenue: number
+  averageDailyRevenue: number
+  averageTicket: number
+  changeTotal: string
+  changeDaily: string
+  changeTicket: string
+  serviceDistributionData: ServiceDistributionData[]
+  topServices: TopService[]
+  occupancyData: OccupancyData[]
+  peakHours: PeakHour[]
+  recommendations: Recommendation[]
+}
 
 export function AnalyticsTab() {
+  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const { token, isAuthenticated, isLoading: isAuthLoading } = useAuthSafe()
+
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      if (isAuthLoading) return
+
+      if (!isAuthenticated || !token) {
+        setError("Connexion requise pour voir les analytics")
+        setIsLoading(false)
+        return
+      }
+
+      try {
+        setIsLoading(true)
+        setError(null)
+
+        const response = await fetch('http://localhost:3500/api/analytics', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        })
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            setError("Session expirée. Reconnectez-vous.")
+            return
+          }
+          const errorData = await response.json().catch(() => ({}))
+          throw new Error(errorData.message || "Erreur lors du chargement des analytics")
+        }
+
+        const data = await response.json()
+        setAnalytics(data)
+      } catch (err: any) {
+        console.error("Erreur fetch analytics:", err)
+        setError(err.message || "Impossible de charger les analytics")
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchAnalytics()
+  }, [token, isAuthenticated, isAuthLoading])
+
+  if (isLoading || isAuthLoading) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-3xl font-bold">Analytics</h2>
+          <p className="text-muted-foreground">Chargement...</p>
+        </div>
+        <div className="h-96 bg-muted rounded-lg animate-pulse" />
+      </div>
+    )
+  }
+
+  if (error || !analytics) {
+    return (
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-3xl font-bold">Analytics</h2>
+          <p className="text-destructive">{error || "Aucune donnée disponible"}</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-6">
       <div>
@@ -69,11 +166,12 @@ export function AnalyticsTab() {
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={400}>
-                <LineChart data={revenueData}>
+                <LineChart data={analytics.revenueData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
                   <YAxis />
-                  <Tooltip formatter={(value) => `€${value}`} />
+                  {/* Tooltip avec FCFA */}
+                  <Tooltip formatter={(value: number) => `FCFA ${value.toLocaleString()}`} />
                   <Legend />
                   <Line type="monotone" dataKey="revenue" name="Revenus" stroke="#06b6d4" strokeWidth={3} />
                 </LineChart>
@@ -87,8 +185,8 @@ export function AnalyticsTab() {
                 <CardTitle className="text-sm font-medium">Revenu total</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold">€43,100</div>
-                <p className="text-sm text-green-600">+23% vs période précédente</p>
+                <div className="text-3xl font-bold">FCFA {analytics.totalRevenue.toLocaleString()}</div>
+                <p className="text-sm text-green-600">{analytics.changeTotal}</p>
               </CardContent>
             </Card>
             <Card>
@@ -96,8 +194,8 @@ export function AnalyticsTab() {
                 <CardTitle className="text-sm font-medium">Revenu moyen/jour</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold">€850</div>
-                <p className="text-sm text-green-600">+15% vs mois dernier</p>
+                <div className="text-3xl font-bold">FCFA {analytics.averageDailyRevenue.toLocaleString()}</div>
+                <p className="text-sm text-green-600">{analytics.changeDaily}</p>
               </CardContent>
             </Card>
             <Card>
@@ -105,8 +203,8 @@ export function AnalyticsTab() {
                 <CardTitle className="text-sm font-medium">Ticket moyen</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-bold">€65</div>
-                <p className="text-sm text-muted-foreground">Stable</p>
+                <div className="text-3xl font-bold">FCFA {analytics.averageTicket.toLocaleString()}</div>
+                <p className="text-sm text-muted-foreground">{analytics.changeTicket}</p>
               </CardContent>
             </Card>
           </div>
@@ -123,7 +221,7 @@ export function AnalyticsTab() {
                 <ResponsiveContainer width="100%" height={300}>
                   <PieChart>
                     <Pie
-                      data={serviceDistributionData}
+                      data={analytics.serviceDistributionData}
                       cx="50%"
                       cy="50%"
                       labelLine={false}
@@ -132,11 +230,12 @@ export function AnalyticsTab() {
                       fill="#8884d8"
                       dataKey="value"
                     >
-                      {serviceDistributionData.map((entry, index) => (
+                      {analytics.serviceDistributionData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    {/* Tooltip du PieChart sans € */}
+                    <Tooltip formatter={(value: number) => `${value} réservations`} />
                   </PieChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -149,19 +248,14 @@ export function AnalyticsTab() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {[
-                    { name: "Tresses Africaines", revenue: 15000, bookings: 120 },
-                    { name: "Coloration", revenue: 12000, bookings: 80 },
-                    { name: "Coupe Homme", revenue: 8500, bookings: 200 },
-                    { name: "Soin Profond", revenue: 7600, bookings: 95 },
-                  ].map((service, idx) => (
+                  {analytics.topServices.map((service, idx) => (
                     <div key={idx} className="flex items-center justify-between">
                       <div>
                         <p className="font-medium">{service.name}</p>
                         <p className="text-sm text-muted-foreground">{service.bookings} réservations</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-bold">€{service.revenue.toLocaleString()}</p>
+                        <p className="font-bold">FCFA {service.revenue.toLocaleString()}</p>
                       </div>
                     </div>
                   ))}
@@ -179,7 +273,7 @@ export function AnalyticsTab() {
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={400}>
-                <BarChart data={occupancyData}>
+                <BarChart data={analytics.occupancyData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="day" />
                   <YAxis />
@@ -198,22 +292,12 @@ export function AnalyticsTab() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span>10:00 - 12:00</span>
-                    <span className="font-bold text-green-600">95%</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>14:00 - 16:00</span>
-                    <span className="font-bold text-green-600">88%</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>16:00 - 18:00</span>
-                    <span className="font-bold text-yellow-600">72%</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>18:00 - 20:00</span>
-                    <span className="font-bold text-red-600">45%</span>
-                  </div>
+                  {analytics.peakHours.map((hour, idx) => (
+                    <div key={idx} className="flex justify-between items-center">
+                      <span>{hour.time}</span>
+                      <span className={`font-bold ${hour.colorClass}`}>{hour.rate}%</span>
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
@@ -224,18 +308,12 @@ export function AnalyticsTab() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 text-sm">
-                  <div className="flex gap-2">
-                    <span className="text-green-600">✓</span>
-                    <p>Excellent taux de réservation le jeudi et vendredi</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="text-yellow-600">⚠</span>
-                    <p>Proposer des promotions pour le mercredi</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="text-blue-600">ℹ</span>
-                    <p>Envisager des horaires réduits le dimanche</p>
-                  </div>
+                  {analytics.recommendations.map((rec, idx) => (
+                    <div key={idx} className="flex gap-2">
+                      <span className={rec.color}>{rec.icon}</span>
+                      <p>{rec.text}</p>
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
