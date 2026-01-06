@@ -2051,6 +2051,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$lu
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/next@16.1.1_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/next/image.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$react$2d$hot$2d$toast$40$2$2e$6$2e$0_react_ded90e1b846baadbbbfd259e63483099$2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/react-hot-toast@2.6.0_react_ded90e1b846baadbbbfd259e63483099/node_modules/react-hot-toast/dist/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hooks$2f$useAuthSafe$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/hooks/useAuthSafe.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$imagekit$2b$next$40$2$2e$1$2e$3_next$40$1_9ae5f2b6b0cc1a9723f2badcbb2e9bc1$2f$node_modules$2f40$imagekit$2f$next$2f$dist$2f$client$2f$index$2d$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/@imagekit+next@2.1.3_next@1_9ae5f2b6b0cc1a9723f2badcbb2e9bc1/node_modules/@imagekit/next/dist/client/index-esm.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$browser$2d$image$2d$compression$40$2$2e$0$2e$2$2f$node_modules$2f$browser$2d$image$2d$compression$2f$dist$2f$browser$2d$image$2d$compression$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/.pnpm/browser-image-compression@2.0.2/node_modules/browser-image-compression/dist/browser-image-compression.mjs [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
@@ -2067,24 +2069,10 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
+;
 const API_URL = "http://localhost:3500/api";
 const BASE_URL = "http://localhost:3500/api";
-const getImageUrl = (img)=>{
-    if (!img) return "/placeholder.png";
-    // Si c'est déjà une URL string (rétro-compatibilité)
-    if (typeof img === "string") {
-        return img.startsWith("http") ? img : `${BASE_URL}${img}`;
-    }
-    // Si c'est un objet ProductImage
-    if (img && typeof img === "object") {
-        // Récupère l'URL de différentes propriétés possibles
-        const url = img.url || img.path || img.src;
-        if (url && typeof url === "string") {
-            return url.startsWith("http") ? url : `${BASE_URL}${url}`;
-        }
-    }
-    return "/placeholder.png";
-};
 function ProductsTab({ products: initialProducts, onDeleteProduct }) {
     _s();
     const [products, setProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(initialProducts);
@@ -2113,23 +2101,23 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
     const [editImages, setEditImages] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedCategory, setSelectedCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("all");
     const [newCatName, setNewCatName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    // Fonction pour uploader une image vers ImageKit
-    const uploadToImageKit = async (file)=>{
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("fileName", file.name);
-        const res = await fetch(`${API_URL}/imagekit-upload`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-            body: formData
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.message || "Upload ImageKit échoué");
-        return data.url; // ← L’URL finale de l’image hébergée
-    };
-    // Nettoyage des blob URLs
+    /*   // Fonction pour uploader une image vers ImageKit
+const uploadToImageKit = async (file: File): Promise<string> => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("fileName", file.name);
+
+  const res = await fetch(`${API_URL}/imagekit-upload`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: formData
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message || "Upload ImageKit échoué");
+
+  return data.url; // ← L’URL finale de l’image hébergée
+}; */ // Nettoyage des blob URLs
     const revokeBlobUrls = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
         "ProductsTab.useCallback[revokeBlobUrls]": (images)=>{
             images.forEach({
@@ -2219,6 +2207,42 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
             reader.readAsDataURL(file);
         });
     };
+    //fonction pour uploader les images sur imagekit
+    const UploadImageAvecImageKit = async (file)=>{
+        try {
+            const response = await fetch("/api/imagekit-auth");
+            const data = await response.json();
+            const { signature, expire, token, publicKey } = data;
+            if (!file) return {
+                message: "Selectionnecter une image du produit"
+            };
+            if (file && file.size > 1024 * 1024) return {
+                message: "Selectionner une image inférireur à 1Mb"
+            };
+            // Options de compression
+            const options = {
+                maxWidthOrHeight: 800,
+                useWebWorker: true,
+                fileType: "image/webp"
+            };
+            // Convertir l'image en WebP
+            const compressedImage = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$browser$2d$image$2d$compression$40$2$2e$0$2e$2$2f$node_modules$2f$browser$2d$image$2d$compression$2f$dist$2f$browser$2d$image$2d$compression$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(file, options);
+            //Envoie à imageKit.io
+            const uploadResponse = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f40$imagekit$2b$next$40$2$2e$1$2e$3_next$40$1_9ae5f2b6b0cc1a9723f2badcbb2e9bc1$2f$node_modules$2f40$imagekit$2f$next$2f$dist$2f$client$2f$index$2d$esm$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["upload"])({
+                expire,
+                token,
+                signature,
+                publicKey,
+                file: compressedImage,
+                fileName: `${Date.now()}.webp`
+            });
+            console.log("Upload response:", uploadResponse.url);
+            return uploadResponse.url;
+        } catch (error) {
+            console.log(error);
+            return "error";
+        }
+    };
     // === Ajout produit ===
     const handleAdd = async ()=>{
         if (!addForm.nom || !addForm.prix || !addForm.categoryId || addImages.length === 0) {
@@ -2228,9 +2252,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
         try {
             setLoading(true);
             // 1. UPLOAD CHAQUE IMAGE VERS IMAGEKIT
-            const uploadedImages = [];
+            let uploadedImages = [];
             for (const img of addImages){
-                const url = await uploadToImageKit(img.file); // upload 1 image
+                const url = await UploadImageAvecImageKit(img?.file);
+                if (!url) {
+                    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$react$2d$hot$2d$toast$40$2$2e$6$2e$0_react_ded90e1b846baadbbbfd259e63483099$2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].error("Erreur lors du téléchargements des images.");
+                    return;
+                }
                 uploadedImages.push({
                     url,
                     color: img.color,
@@ -2378,7 +2406,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                         children: "Supprimer ce produit ?"
                     }, void 0, false, {
                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                        lineNumber: 332,
+                        lineNumber: 374,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2395,7 +2423,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                 children: "Oui"
                             }, void 0, false, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 334,
+                                lineNumber: 376,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2405,19 +2433,19 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                 children: "Non"
                             }, void 0, false, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 335,
+                                lineNumber: 377,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                        lineNumber: 333,
+                        lineNumber: 375,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                lineNumber: 331,
+                lineNumber: 373,
                 columnNumber: 7
             }, this), {
             duration: 10000
@@ -2447,7 +2475,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                         children: "Gestion des produits"
                     }, void 0, false, {
                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                        lineNumber: 359,
+                        lineNumber: 401,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2463,12 +2491,12 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             placeholder: "Toutes les catégories"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 362,
+                                            lineNumber: 404,
                                             columnNumber: 45
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 362,
+                                        lineNumber: 404,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -2478,7 +2506,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 children: "Toutes les catégories"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 364,
+                                                lineNumber: 406,
                                                 columnNumber: 15
                                             }, this),
                                             categories.map((c)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -2486,19 +2514,19 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                     children: c.nom
                                                 }, c._id, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 365,
+                                                    lineNumber: 407,
                                                     columnNumber: 36
                                                 }, this))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 363,
+                                        lineNumber: 405,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 361,
+                                lineNumber: 403,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -2515,19 +2543,19 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                     className: "w-4 h-4 mr-2"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 370,
+                                                    lineNumber: 412,
                                                     columnNumber: 72
                                                 }, this),
                                                 " Catégorie"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 370,
+                                            lineNumber: 412,
                                             columnNumber: 36
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 370,
+                                        lineNumber: 412,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogContent"], {
@@ -2537,12 +2565,12 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                     children: "Nouvelle catégorie"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 372,
+                                                    lineNumber: 414,
                                                     columnNumber: 29
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 372,
+                                                lineNumber: 414,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2551,7 +2579,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 placeholder: "Ex: Soins capillaires"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 373,
+                                                lineNumber: 415,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -2563,31 +2591,31 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                             className: "mr-2 h-4 w-4 animate-spin"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 374,
+                                                            lineNumber: 416,
                                                             columnNumber: 93
                                                         }, this),
                                                         "Créer"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 374,
+                                                    lineNumber: 416,
                                                     columnNumber: 29
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 374,
+                                                lineNumber: 416,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 371,
+                                        lineNumber: 413,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 369,
+                                lineNumber: 411,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -2602,36 +2630,36 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 className: "w-4 h-4 mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 379,
+                                                lineNumber: 421,
                                                 columnNumber: 54
                                             }, this),
                                             " Ajouter produit"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 379,
+                                        lineNumber: 421,
                                         columnNumber: 36
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 379,
+                                    lineNumber: 421,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 378,
+                                lineNumber: 420,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                        lineNumber: 360,
+                        lineNumber: 402,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                lineNumber: 358,
+                lineNumber: 400,
                 columnNumber: 7
             }, this),
             products.some((p)=>p.stock < 10) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -2643,7 +2671,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                             className: "w-5 h-5 text-orange-600"
                         }, void 0, false, {
                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                            lineNumber: 388,
+                            lineNumber: 430,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2653,18 +2681,18 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                            lineNumber: 389,
+                            lineNumber: 431,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                    lineNumber: 387,
+                    lineNumber: 429,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                lineNumber: 386,
+                lineNumber: 428,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2674,7 +2702,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                     children: "Aucun produit dans cette catégorie."
                 }, void 0, false, {
                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                    lineNumber: 397,
+                    lineNumber: 439,
                     columnNumber: 11
                 }, this) : filteredProducts.map((p)=>{
                     const imageUrl = p.images?.[0] ? getImageUrl(p.images[0]) : "/placeholder.png";
@@ -2691,7 +2719,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                         className: "object-cover group-hover:scale-110 transition-transform duration-500"
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 404,
+                                        lineNumber: 446,
                                         columnNumber: 19
                                     }, this),
                                     p.stock === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2701,18 +2729,18 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Rupture"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 407,
+                                            lineNumber: 449,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 406,
+                                        lineNumber: 448,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 403,
+                                lineNumber: 445,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -2726,7 +2754,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 children: p.nom
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 413,
+                                                lineNumber: 455,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
@@ -2734,13 +2762,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 children: p.stock
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 414,
+                                                lineNumber: 456,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 412,
+                                        lineNumber: 454,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2751,7 +2779,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 416,
+                                        lineNumber: 458,
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2767,14 +2795,14 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                         className: "w-4 h-4 mr-1"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                        lineNumber: 418,
+                                                        lineNumber: 460,
                                                         columnNumber: 104
                                                     }, this),
                                                     " Éditer"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 418,
+                                                lineNumber: 460,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2785,36 +2813,36 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                     className: "w-4 h-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 419,
+                                                    lineNumber: 461,
                                                     columnNumber: 97
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                lineNumber: 419,
+                                                lineNumber: 461,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 417,
+                                        lineNumber: 459,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 411,
+                                lineNumber: 453,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, p._id, true, {
                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                        lineNumber: 402,
+                        lineNumber: 444,
                         columnNumber: 15
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                lineNumber: 395,
+                lineNumber: 437,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -2828,12 +2856,12 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                 children: "Ajouter un produit"
                             }, void 0, false, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 431,
+                                lineNumber: 473,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                            lineNumber: 431,
+                            lineNumber: 473,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2845,7 +2873,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Nom *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 433,
+                                            lineNumber: 475,
                                             columnNumber: 18
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2856,13 +2884,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 433,
+                                            lineNumber: 475,
                                             columnNumber: 38
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 433,
+                                    lineNumber: 475,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2871,7 +2899,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Prix (Fcfa) *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 434,
+                                            lineNumber: 476,
                                             columnNumber: 18
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2883,13 +2911,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 434,
+                                            lineNumber: 476,
                                             columnNumber: 46
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 434,
+                                    lineNumber: 476,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2898,7 +2926,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Stock *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 435,
+                                            lineNumber: 477,
                                             columnNumber: 18
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2910,13 +2938,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 435,
+                                            lineNumber: 477,
                                             columnNumber: 40
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 435,
+                                    lineNumber: 477,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2925,7 +2953,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Volume"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 436,
+                                            lineNumber: 478,
                                             columnNumber: 18
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -2936,13 +2964,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 436,
+                                            lineNumber: 478,
                                             columnNumber: 39
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 436,
+                                    lineNumber: 478,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2951,7 +2979,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Catégorie *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 438,
+                                            lineNumber: 480,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
@@ -2966,12 +2994,12 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                         placeholder: "Choisir..."
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                        lineNumber: 440,
+                                                        lineNumber: 482,
                                                         columnNumber: 32
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 440,
+                                                    lineNumber: 482,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -2980,24 +3008,24 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                             children: c.nom
                                                         }, c._id, false, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 441,
+                                                            lineNumber: 483,
                                                             columnNumber: 53
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 441,
+                                                    lineNumber: 483,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 439,
+                                            lineNumber: 481,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 437,
+                                    lineNumber: 479,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3007,7 +3035,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Images *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 447,
+                                            lineNumber: 489,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3025,7 +3053,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                     className: "object-cover"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 452,
+                                                                    lineNumber: 494,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3035,24 +3063,25 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                        lineNumber: 454,
+                                                                        lineNumber: 496,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 453,
+                                                                    lineNumber: 495,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 451,
+                                                            lineNumber: 493,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "mt-2 space-y-1",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                    type: "color",
                                                                     placeholder: "Couleur",
                                                                     value: img.color,
                                                                     onChange: (e)=>setAddImages((prev)=>{
@@ -3064,7 +3093,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                         })
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 458,
+                                                                    lineNumber: 500,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3079,7 +3108,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                         })
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 459,
+                                                                    lineNumber: 501,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3095,24 +3124,24 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                         })
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 460,
+                                                                    lineNumber: 502,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 457,
+                                                            lineNumber: 499,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, i, true, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 450,
+                                                    lineNumber: 492,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 448,
+                                            lineNumber: 490,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -3139,7 +3168,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 466,
+                                                    lineNumber: 508,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3149,7 +3178,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                             className: "w-10 h-10 mx-auto text-muted-foreground"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 479,
+                                                            lineNumber: 521,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3157,25 +3186,25 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                             children: "Ajouter des images"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 480,
+                                                            lineNumber: 522,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 478,
+                                                    lineNumber: 520,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 465,
+                                            lineNumber: 507,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 446,
+                                    lineNumber: 488,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3185,7 +3214,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Description"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 485,
+                                            lineNumber: 527,
                                             columnNumber: 44
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
@@ -3197,13 +3226,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 485,
+                                            lineNumber: 527,
                                             columnNumber: 70
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 485,
+                                    lineNumber: 527,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3213,7 +3242,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Bienfaits (séparés par virgule)"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 486,
+                                            lineNumber: 528,
                                             columnNumber: 44
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3224,19 +3253,19 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 486,
+                                            lineNumber: 528,
                                             columnNumber: 90
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 486,
+                                    lineNumber: 528,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                            lineNumber: 432,
+                            lineNumber: 474,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -3248,30 +3277,30 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                         className: "mr-2 h-4 w-4 animate-spin"
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 490,
+                                        lineNumber: 532,
                                         columnNumber: 27
                                     }, this),
                                     "Créer le produit"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 489,
+                                lineNumber: 531,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                            lineNumber: 488,
+                            lineNumber: 530,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                    lineNumber: 430,
+                    lineNumber: 472,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                lineNumber: 429,
+                lineNumber: 471,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -3288,12 +3317,12 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 499,
+                                lineNumber: 541,
                                 columnNumber: 25
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                            lineNumber: 499,
+                            lineNumber: 541,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3305,7 +3334,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Nom *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 501,
+                                            lineNumber: 543,
                                             columnNumber: 18
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3316,13 +3345,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 501,
+                                            lineNumber: 543,
                                             columnNumber: 38
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 501,
+                                    lineNumber: 543,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3331,7 +3360,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Prix (Fcfa) *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 502,
+                                            lineNumber: 544,
                                             columnNumber: 18
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3343,13 +3372,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 502,
+                                            lineNumber: 544,
                                             columnNumber: 46
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 502,
+                                    lineNumber: 544,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3358,7 +3387,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Stock total"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 503,
+                                            lineNumber: 545,
                                             columnNumber: 18
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3370,13 +3399,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 503,
+                                            lineNumber: 545,
                                             columnNumber: 44
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 503,
+                                    lineNumber: 545,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3385,7 +3414,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Volume"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 504,
+                                            lineNumber: 546,
                                             columnNumber: 18
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3396,13 +3425,13 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 504,
+                                            lineNumber: 546,
                                             columnNumber: 39
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 504,
+                                    lineNumber: 546,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3411,7 +3440,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Catégorie *"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 506,
+                                            lineNumber: 548,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
@@ -3426,12 +3455,12 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                         placeholder: "Choisir..."
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                        lineNumber: 508,
+                                                        lineNumber: 550,
                                                         columnNumber: 32
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 508,
+                                                    lineNumber: 550,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -3440,24 +3469,24 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                             children: c.nom
                                                         }, c._id, false, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 509,
+                                                            lineNumber: 551,
                                                             columnNumber: 53
                                                         }, this))
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 509,
+                                                    lineNumber: 551,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 507,
+                                            lineNumber: 549,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 505,
+                                    lineNumber: 547,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3467,7 +3496,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                             children: "Images"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 515,
+                                            lineNumber: 557,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3485,7 +3514,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                     className: "object-cover"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 520,
+                                                                    lineNumber: 562,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 img.file && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3495,24 +3524,40 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                         className: "w-4 h-4"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                        lineNumber: 523,
+                                                                        lineNumber: 565,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 522,
+                                                                    lineNumber: 564,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 519,
+                                                            lineNumber: 561,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "mt-2 space-y-2",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                    placeholder: "Prix",
+                                                                    value: img.prix,
+                                                                    onChange: (e)=>setEditImages((prev)=>{
+                                                                            const n = [
+                                                                                ...prev
+                                                                            ];
+                                                                            n[i].prix = e.target.value;
+                                                                            return n;
+                                                                        })
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/superadmin/products-tab.tsx",
+                                                                    lineNumber: 570,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                    type: "color",
                                                                     placeholder: "Couleur",
                                                                     value: img.color,
                                                                     onChange: (e)=>setEditImages((prev)=>{
@@ -3524,7 +3569,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                         })
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 528,
+                                                                    lineNumber: 571,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3539,12 +3584,11 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                         })
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 529,
+                                                                    lineNumber: 572,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
-                                                                    type: "number",
-                                                                    placeholder: "Stock variante",
+                                                                    placeholder: "Stock disponible",
                                                                     value: img.stock,
                                                                     onChange: (e)=>setEditImages((prev)=>{
                                                                             const n = [
@@ -3555,24 +3599,24 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                                         })
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                                    lineNumber: 530,
+                                                                    lineNumber: 573,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 527,
+                                                            lineNumber: 569,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, i, true, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 518,
+                                                    lineNumber: 560,
                                                     columnNumber: 19
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 516,
+                                            lineNumber: 558,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -3599,7 +3643,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                     }
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 537,
+                                                    lineNumber: 580,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3609,7 +3653,7 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                             className: "w-10 h-10 mx-auto text-muted-foreground"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 550,
+                                                            lineNumber: 593,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3617,48 +3661,20 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                             children: "Ajouter d'autres images"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                            lineNumber: 551,
+                                                            lineNumber: 594,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                                    lineNumber: 549,
+                                                    lineNumber: 592,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 536,
+                                            lineNumber: 579,
                                             columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 514,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "md:col-span-2",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                            children: "Description"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 556,
-                                            columnNumber: 44
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
-                                            rows: 4,
-                                            value: editForm.description,
-                                            onChange: (e)=>setEditForm({
-                                                    ...editForm,
-                                                    description: e.target.value
-                                                })
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 556,
-                                            columnNumber: 70
                                         }, this)
                                     ]
                                 }, void 0, true, {
@@ -3670,10 +3686,38 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                     className: "md:col-span-2",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                            children: "Description"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/superadmin/products-tab.tsx",
+                                            lineNumber: 599,
+                                            columnNumber: 44
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$textarea$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Textarea"], {
+                                            rows: 4,
+                                            value: editForm.description,
+                                            onChange: (e)=>setEditForm({
+                                                    ...editForm,
+                                                    description: e.target.value
+                                                })
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/superadmin/products-tab.tsx",
+                                            lineNumber: 599,
+                                            columnNumber: 70
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/superadmin/products-tab.tsx",
+                                    lineNumber: 599,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "md:col-span-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
                                             children: "Bienfaits (séparés par virgule)"
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 557,
+                                            lineNumber: 600,
                                             columnNumber: 44
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
@@ -3684,19 +3728,19 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                                 })
                                         }, void 0, false, {
                                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                                            lineNumber: 557,
+                                            lineNumber: 600,
                                             columnNumber: 90
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                                    lineNumber: 557,
+                                    lineNumber: 600,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                            lineNumber: 500,
+                            lineNumber: 542,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f2e$pnpm$2f$next$40$16$2e$1$2e$1_react$2d$dom$40$18$2e$3$2e$1_react$40$18$2e$3$2e$1_$5f$react$40$18$2e$3$2e$1$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -3708,36 +3752,36 @@ function ProductsTab({ products: initialProducts, onDeleteProduct }) {
                                         className: "mr-2 h-4 w-4 animate-spin"
                                     }, void 0, false, {
                                         fileName: "[project]/components/superadmin/products-tab.tsx",
-                                        lineNumber: 561,
+                                        lineNumber: 604,
                                         columnNumber: 27
                                     }, this),
                                     "Enregistrer"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                                lineNumber: 560,
+                                lineNumber: 603,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/superadmin/products-tab.tsx",
-                            lineNumber: 559,
+                            lineNumber: 602,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/superadmin/products-tab.tsx",
-                    lineNumber: 498,
+                    lineNumber: 540,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/superadmin/products-tab.tsx",
-                lineNumber: 497,
+                lineNumber: 539,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/superadmin/products-tab.tsx",
-        lineNumber: 356,
+        lineNumber: 398,
         columnNumber: 5
     }, this);
 }

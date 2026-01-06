@@ -21,29 +21,31 @@ import Image from "next/image"
 import toast from "react-hot-toast"
 import { useAuthSafe } from "@/hooks/useAuthSafe"
 import { Product } from "@/types/product"
+import { upload } from "@imagekit/next";
+import imageCompression from "browser-image-compression";
 
 const API_URL = "http://localhost:3500/api"
 const BASE_URL = "http://localhost:3500/api"
 
-const getImageUrl = (img: any): string => {
-  if (!img) return "/placeholder.png";
+// const getImageUrl = (img: any): string => {
+//   if (!img) return "/placeholder.png";
   
-  // Si c'est déjà une URL string (rétro-compatibilité)
-  if (typeof img === "string") {
-    return img.startsWith("http") ? img : `${BASE_URL}${img}`;
-  }
+//   // Si c'est déjà une URL string (rétro-compatibilité)
+//   if (typeof img === "string") {
+//     return img.startsWith("http") ? img : `${BASE_URL}${img}`;
+//   }
   
-  // Si c'est un objet ProductImage
-  if (img && typeof img === "object") {
-    // Récupère l'URL de différentes propriétés possibles
-    const url = img.url || img.path || img.src;
-    if (url && typeof url === "string") {
-      return url.startsWith("http") ? url : `${BASE_URL}${url}`;
-    }
-  }
+//   // Si c'est un objet ProductImage
+//   if (img && typeof img === "object") {
+//     // Récupère l'URL de différentes propriétés possibles
+//     const url = img.url || img.path || img.src;
+//     if (url && typeof url === "string") {
+//       return url.startsWith("http") ? url : `${BASE_URL}${url}`;
+//     }
+//   }
   
-  return "/placeholder.png";
-};
+//   return "/placeholder.png";
+// };
 
 
 interface Category { _id: string; nom: string }
@@ -74,12 +76,12 @@ export function ProductsTab({ products: initialProducts, onDeleteProduct }: Prod
 
   const [currentProduct, setCurrentProduct] = useState<Product | null>(null)
   const [editForm, setEditForm] = useState({ ...addForm })
-  const [editImages, setEditImages] = useState<{ file: File | null; preview: string; color: string; size: string; stock: string }[]>([])
+  const [editImages, setEditImages] = useState<{ file: File | null; preview: string; color: string; size: string; stock: string, prix: string }[]>([])
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [newCatName, setNewCatName] = useState("")
 
-  // Fonction pour uploader une image vers ImageKit
+/*   // Fonction pour uploader une image vers ImageKit
 const uploadToImageKit = async (file: File): Promise<string> => {
   const formData = new FormData();
   formData.append("file", file);
@@ -95,7 +97,7 @@ const uploadToImageKit = async (file: File): Promise<string> => {
   if (!res.ok) throw new Error(data.message || "Upload ImageKit échoué");
 
   return data.url; // ← L’URL finale de l’image hébergée
-};
+}; */
 
 
   // Nettoyage des blob URLs
@@ -168,8 +170,43 @@ const fileToBase64 = (file: File): Promise<string> => {
     reader.readAsDataURL(file);
   });
 };
+
+
+//fonction pour uploader les images sur imagekit
+ const UploadImageAvecImageKit = async (file: File) => {
+    try {
+
+        const response = await fetch("/api/imagekit-auth");
+        const data = await response.json();
+        const { signature, expire, token, publicKey } = data;
+
+        if (!file) return {message: "Selectionnecter une image du produit"};
+        if (file && file.size > 1024 * 1024) return {message: "Selectionner une image inférireur à 1Mb"}
+
+        // Options de compression
+        const options = {
+            maxWidthOrHeight: 800,
+            useWebWorker: true,
+            fileType: "image/webp",
+        };
+
+        // Convertir l'image en WebP
+        const compressedImage = await imageCompression(file, options);
+
+        //Envoie à imageKit.io
+        const uploadResponse = await upload({ expire, token, signature, publicKey, file: compressedImage, fileName: `${Date.now()}.webp` });
+        console.log("Upload response:", uploadResponse.url);
+        return uploadResponse.url
+
+    } catch (error) {
+        console.log(error)
+        return "error"
+    }
+}
+
   // === Ajout produit ===
 const handleAdd = async () => {
+
   if (!addForm.nom || !addForm.prix || !addForm.categoryId || addImages.length === 0) {
     toast.error("Champs obligatoires manquants");
     return;
@@ -179,9 +216,14 @@ const handleAdd = async () => {
     setLoading(true);
 
     // 1. UPLOAD CHAQUE IMAGE VERS IMAGEKIT
-    const uploadedImages = [];
+    let uploadedImages = [];
     for (const img of addImages) {
-      const url = await uploadToImageKit(img.file); // upload 1 image
+      const url = await UploadImageAvecImageKit(img?.file)
+      if(!url) {
+          toast.error("Erreur lors du téléchargements des images.");
+          return;
+      }
+
       uploadedImages.push({
         url,
         color: img.color,
@@ -455,7 +497,7 @@ const handleAdd = async () => {
                       </button>
                     </div>
                     <div className="mt-2 space-y-1">
-                      <Input placeholder="Couleur" value={img.color} onChange={e => setAddImages(prev => { const n = [...prev]; n[i].color = e.target.value; return n })} />
+                      <Input type="color" placeholder="Couleur" value={img.color} onChange={e => setAddImages(prev => { const n = [...prev]; n[i].color = e.target.value; return n })} />
                       <Input placeholder="Taille" value={img.size} onChange={e => setAddImages(prev => { const n = [...prev]; n[i].size = e.target.value; return n })} />
                       <Input type="number" placeholder="Stock" value={img.stock} onChange={e => setAddImages(prev => { const n = [...prev]; n[i].stock = e.target.value; return n })} />
                     </div>
@@ -525,9 +567,10 @@ const handleAdd = async () => {
                       )}
                     </div>
                     <div className="mt-2 space-y-2">
-                      <Input placeholder="Couleur" value={img.color} onChange={e => setEditImages(prev => { const n = [...prev]; n[i].color = e.target.value; return n })} />
+                      <Input placeholder="Prix" value={img.prix} onChange={e => setEditImages(prev => { const n = [...prev]; n[i].prix = e.target.value; return n })} />
+                      <Input type="color" placeholder="Couleur" value={img.color} onChange={e => setEditImages(prev => { const n = [...prev]; n[i].color = e.target.value; return n })} />
                       <Input placeholder="Taille" value={img.size} onChange={e => setEditImages(prev => { const n = [...prev]; n[i].size = e.target.value; return n })} />
-                      <Input type="number" placeholder="Stock variante" value={img.stock} onChange={e => setEditImages(prev => { const n = [...prev]; n[i].stock = e.target.value; return n })} />
+                      <Input placeholder="Stock disponible" value={img.stock} onChange={e => setEditImages(prev => { const n = [...prev]; n[i].stock = e.target.value; return n })} />
                     </div>
                   </div>
                 ))}
